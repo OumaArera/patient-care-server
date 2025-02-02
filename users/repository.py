@@ -2,7 +2,6 @@ import logging
 from core.db_exceptions import *
 from django.db import IntegrityError, DatabaseError # type: ignore
 from django.core.exceptions import ObjectDoesNotExist, ValidationError # type: ignore
-
 from core.dtos.user_dto import UserResponseDTO
 from core.paginator import paginator
 from users.models import User 
@@ -104,6 +103,7 @@ class UserRepository:
                 "lastName",
                 "email",
                 "phoneNumber",
+                "patients",
                 "sex",
                 "role",
                 "status"

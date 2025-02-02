@@ -29,6 +29,11 @@ class User(AbstractUser):
     )
     SEX_CHOICES = [('male', 'Male'), ('female', 'Female'), ('other', 'Other Sex')]
     sex = models.CharField(max_length=6, choices=SEX_CHOICES)
+    patients = models.JSONField(
+      default=list,
+      blank=True,
+      null=True
+    )
     ROLE_CHOICES = [
         ('care giver', 'Care Giver'),
         ('manager', 'Manager'),

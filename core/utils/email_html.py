@@ -6,13 +6,14 @@ class EmailHtmlContent:
 		html_content = \
 		f"""
 		<div>
-			<h3>Dear {recipient}, you have been created on the XYZ Care Givers.</h3>
+			<h4>Dear <strong>{recipient}</strong>,</h4>
+			<p>You have been created on the 1st Edmonds & Serenity Adult Family Homes.</p>
 			<p>Your username is <strong>{username}</strong>.</p>
 			<p>Your password is <strong>{password}</strong>.</p>
 			<p>Use this link to login: http://localhost:3000/</p>
 			<br />
 			<p>Best Regards,</p>
-			<footer>XYZ Team</footer>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
 		</div>
 		"""
 		return html_content
@@ -22,13 +23,15 @@ class EmailHtmlContent:
 		html_content = \
 		f"""
 		<div>
-			<h3>Dear {recipient}, your password has been reset.</h3>
+			<h4>Dear <strong>{recipient}</strong>,</h4>
+			<p>Your password for 1st Edmonds & Serenity Adult Family Homes</p>
+			<p>has been reset successfully</p>
 			<p>Your username is <strong>{username}</strong>.</p>
 			<p>Your new password is <strong>{password}</strong>.</p>
 			<p>Use this link to login: http://localhost:3000/</p>
 			<br />
 			<p>Best Regards,</p>
-			<footer>XYZ Team</footer>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
 		</div>
 		"""
 		return html_content

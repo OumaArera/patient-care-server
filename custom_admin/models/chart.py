@@ -11,23 +11,18 @@ class Chart(models.Model):
 		on_delete=models.CASCADE,
 		related_name='charts'
 	)
-    careGiver1 =  models.ForeignKey(
+    careGiver =  models.ForeignKey(
 		User,
-		null=True,
-		blank=True,
-		on_delete=models.SET_NULL,
-		related_name='first_care_giver'
-	)
-    careGiver2 =  models.ForeignKey(
-		User,
-		null=True,
-		blank=True,
-		on_delete=models.SET_NULL,
-		related_name='second_care_giver'
+		on_delete=models.CASCADE,
+		related_name='charts'
 	)
     behaviors = models.JSONField()
-    behaviorsDescription = models.JSONField()
-    dateTaken = models.DateField()
+    behaviorsDescription = models.JSONField(
+      default=list,
+      blank=True,
+      null=True
+    )
+    dateTaken = models.DateTimeField()
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 
