@@ -2,6 +2,7 @@ from core.utils.send_email import send_email
 from core.utils.generate_random_password import generate_random_password
 from users.repository import UserRepository
 from core.utils.email_html import EmailHtmlContent
+from users.serializers import UserSerializer
 
 
 class UserService:
@@ -35,6 +36,38 @@ class UserService:
         try:
             user = UserRepository.get_user_by_username(username=username)
             return user
+        except Exception as ex:
+            raise ex
+        
+
+    @staticmethod
+    def block_user(username):
+        try:
+            user = UserRepository.block_user(username=username)
+            serialized_user = UserSerializer(instance=user)
+            return serialized_user.data
+        except Exception as ex:
+            raise ex
+        
+
+    @staticmethod
+    def unblock_user(username):
+        try:
+            password = generate_random_password()
+            user = UserRepository.unblock_user(username=username, password=password)
+            html_content = EmailHtmlContent.new_user_html(
+                password=password,
+                username=user.username,
+                recipient=user.firstName
+            )
+            send_email(
+                recipient_email=user.username,
+                recipient_name=user.firstName,
+                subject="Account Activation!",
+                html_content=html_content
+            )
+            serialized_user = UserSerializer(instance=user)
+            return serialized_user.data
         except Exception as ex:
             raise ex
         

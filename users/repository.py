@@ -74,6 +74,39 @@ class UserRepository:
         except Exception as ex:
             logger.error(f"An error occurred while fetching user {ex}", exc_info=False)
             raise ex
+        
+    @staticmethod
+    def block_user(username):
+        """Fetches user by username and change status"""
+        try:
+            user = User.objects.get(username=username)
+            user.is_active = False
+            user.is_staff = False
+            user.status = "blocked"
+            user.save()
+            return user
+        except ObjectDoesNotExist:
+            raise NotFoundException(entity_name='User with that username')
+        except Exception as ex:
+            logger.error(f"An error occurred while blocking user {ex}", exc_info=False)
+            raise ex
+        
+    @staticmethod
+    def unblock_user(username, password):
+        """Fetches user by username and change their status"""
+        try:
+            user = User.objects.get(username=username)
+            user.is_active = True
+            user.is_staff = True
+            user.status = "active"
+            user.set_password(raw_password=password)
+            user.save()
+            return user
+        except ObjectDoesNotExist:
+            raise NotFoundException(entity_name='User with that username')
+        except Exception as ex:
+            logger.error(f"An error occurred while fetching user {ex}", exc_info=False)
+            raise ex
 
     @staticmethod
     def get_all_users(request, query_params):

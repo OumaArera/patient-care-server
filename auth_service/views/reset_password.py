@@ -9,7 +9,6 @@ from rest_framework import status # type: ignore
 from auth_service.utils.password_utils import *
 from users.repository import UserRepository
 from core.utils.responses import APIResponse
-from django.core.exceptions import ValidationError # type: ignore
 
 
 class ResetPasswordView(APIView):
