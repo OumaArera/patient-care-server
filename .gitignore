@@ -8,7 +8,7 @@ __pycache__/
 
 */seeds/
 
-*/certificate.py
+# */certificate.py
 
 # Distribution / packaging
 .Python
