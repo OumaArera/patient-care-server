@@ -88,7 +88,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'patient_project.urls'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 
