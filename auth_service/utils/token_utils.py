@@ -11,7 +11,7 @@ def generate_jwt_token(user):
 	payload = {
 		"user_id": user.id,
 		"username": user.username,
-		"full_name": f"{user.firstName} {user.lastName}",
+		"fullName": f"{user.firstName} {user.lastName}",
 		"role": user.role,
 		"iss": JWT_ISSUER,
 		"aud": JWT_AUDIENCE,
