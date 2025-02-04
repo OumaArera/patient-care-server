@@ -8,9 +8,9 @@ class EmailHtmlContent:
 		<div>
 			<h4>Dear <strong>{recipient}</strong>,</h4>
 			<p>You have been created on the 1st Edmonds & Serenity Adult Family Homes.</p>
-			<p>Your username is <strong>{username}</strong>.</p>
-			<p>Your password is <strong>{password}</strong>.</p>
-			<p>Use this link to login: http://localhost:3000/</p>
+			<p>Your username is <strong>{username}</strong></p>
+			<p>Your password is <strong>{password}</strong></p>
+			<p>Use this link to login: https://patient-care-pied.vercel.app/</p>
 			<br />
 			<p>Best Regards,</p>
 			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
@@ -26,9 +26,9 @@ class EmailHtmlContent:
 			<h4>Dear <strong>{recipient}</strong>,</h4>
 			<p>Your password for 1st Edmonds & Serenity Adult Family Homes</p>
 			<p>has been reset successfully</p>
-			<p>Your username is <strong>{username}</strong>.</p>
-			<p>Your new password is <strong>{password}</strong>.</p>
-			<p>Use this link to login: http://localhost:3000/</p>
+			<p>Your username is <strong>{username}</strong></p>
+			<p>Your new password is <strong>{password}</strong></p>
+			<p>Use this link to login: https://patient-care-pied.vercel.app/</p>
 			<br />
 			<p>Best Regards,</p>
 			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
