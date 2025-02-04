@@ -51,6 +51,7 @@ class UpdateRepository:
                 "patient": "patient_id",
                 "careGiver": "careGiver_id",
                 "dateTaken": "dateTaken",
+                "status": "status__icontains"
             }
 
             adjusted_filters = {
@@ -68,6 +69,8 @@ class UpdateRepository:
                 "updateId", 
                 "notes", 
                 "dateTaken", 
+                "status",
+                "reasonNotFiled",
                 "createdAt", 
                 "modifiedAt",
                 "patient__patientId", 

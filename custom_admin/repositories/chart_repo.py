@@ -50,6 +50,7 @@ class ChartRepository:
             field_mapping = {
                 "patient": "patient__patientId",
                 "dateTaken": "dateTaken__lte",
+                "status": "status__icontains"
             }
 
             adjusted_filters = {
@@ -60,10 +61,20 @@ class ChartRepository:
 
             charts = Chart.objects.select_related(
                 "patient", "careGiver1", "careGiver2"
-            ).filter(**adjusted_filters).values(
-                "chartId", "behaviors", "behaviorsDescription", "dateTaken",
-                "patient__firstName", "patient__lastName",
-                "careGiver__firstName", "careGiver__lastName",
+            ).filter(
+                **adjusted_filters
+            ).values(
+                "chartId", "behaviors", 
+                "behaviorsDescription", 
+                "dateTaken",
+                "patient__firstName", 
+                "patient__lastName", 
+                "status",
+                "careGiver__firstName", 
+                "careGiver__lastName", 
+                "reasonNotFiled",
+                "createdAt", 
+                "modifiedAt"
             ).order_by("createdAt")
             
             charts = paginator.paginate_queryset(queryset=charts, request=request)

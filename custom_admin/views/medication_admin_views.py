@@ -12,7 +12,13 @@ from core.utils.format_errors import format_validation_errors as fve
 
 class MedicationAdministrationView(APIView):
 
-    permission_classes = [IsAllUsers]
+    def get_permissions(self):
+        """Dynamically assigns permissions based on request method."""
+        if self.request.method == "POST":
+            self.permission_classes = [IsCareGiver]
+        elif self.request.method == "GET":
+            self.permission_classes = [IsAllUsers]
+        return [permission() for permission in self.permission_classes]
 
     def post(self, request):
         """Handles creating a new medication administration."""
@@ -85,7 +91,15 @@ class MedicationAdministrationView(APIView):
 
 class MedicationAdministrationQueryByIDView(APIView):
 
-    permission_classes = [IsAllUsers]
+    def get_permissions(self):
+        """Dynamically assigns permissions based on request method."""
+        if self.request.method == "PUT":
+            self.permission_classes = [IsCareGiver]
+        elif self.request.method == "GET":
+            self.permission_classes = [IsAllUsers]
+        elif self.request.method == "DELETE":
+            self.permission_classes = [IsSuperUser]
+        return [permission() for permission in self.permission_classes]
 
     def get(self, request, administrationId):
         """Handles fetching a medication administration by ID."""

@@ -13,6 +13,10 @@ class MedicationAdministrationResponseDTO:
                 "medicationId": data.get("medication__medicationId"),
                 "careGiverId": data.get("careGiver"),
                 "timeAdministered": data.get("timeAdministered"),
+                "status": data.get("status"),
+                "reasonNotFiled": data.get("reasonNotFiled"),
+                "createdAt": data.get("createdAt"),
+                "modifiedAt": data.get("modifiedAt"),
             }
         else:  
             return {
@@ -21,4 +25,8 @@ class MedicationAdministrationResponseDTO:
                 "medicationId": data.medication.medicationId,
                 "careGiverId": data.careGiver.id if data.careGiver else None,
                 "timeAdministered": data.timeAdministered,
+                "status": data.status,
+                "reasonNotFiled": data.reasonNotFiled,
+                "createdAt": data.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
+                "modifiedAt": data.modifiedAt.strftime("%Y-%m-%d %H:%M:%S"),
             }

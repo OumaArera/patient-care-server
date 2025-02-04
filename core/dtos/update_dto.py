@@ -15,6 +15,8 @@ class UpdateResponseDTO:
                 "careGiverId": update.get("careGiver"),
                 "notes": update.get("notes"),
                 "dateTaken": update.get("dateTaken"),
+                "status": update.get("status"),
+                "reasonNotFiled": update.get("reasonNotFiled"),
                 "createdAt": update.get("createdAt"),
                 "modifiedAt": update.get("modifiedAt"),
             }
@@ -25,7 +27,10 @@ class UpdateResponseDTO:
             "patientId": update.patient.patientId if update.patient else None,
             "careGiverId": update.careGiver.id if update.careGiver else None,
             "notes": update.notes,
-            "dateTaken": update.dateTaken.strftime("%Y-%m-%d") if isinstance(update.dateTaken, datetime) else update.dateTaken,
+            "dateTaken": update.dateTaken.strftime("%Y-%m-%d")\
+                if isinstance(update.dateTaken, datetime) else update.dateTaken,
+            "status": update.status,
+            "reasonNotFiled": update.reasonNotFiled,
             "createdAt": update.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
             "modifiedAt": update.modifiedAt.strftime("%Y-%m-%d %H:%M:%S"),
         }

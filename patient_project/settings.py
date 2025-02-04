@@ -52,7 +52,7 @@ DEFAULT_PASSWORD = os.environ.get("DEFAULT_PASSWORD")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -66,6 +66,7 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+    'corsheaders',
 	'drf_yasg',
 	'core', 
     'users',
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
@@ -84,6 +86,35 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'patient_project.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+
 
 TEMPLATES = [
 	{

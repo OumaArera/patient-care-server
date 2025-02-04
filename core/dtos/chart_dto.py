@@ -23,8 +23,11 @@ class ChartResponseDTO:
                 ),
                 "behaviors": chart.get('behaviors'),
                 "behaviorsDescription": chart.get('behaviorsDescription'),
+                "status": chart.get("status"),
+                "reasonNotFiled": chart.get("reasonNotFiled"),
                 "dateTaken": chart.get('dateTaken'),
-                "createdAt": chart.get('createdAt')
+                "createdAt": chart.get('createdAt'),
+                "modifiedAt": chart.get("modifiedAt"),
             }
         else:
             return {
@@ -40,8 +43,11 @@ class ChartResponseDTO:
                 ) if chart.careGiver else None,
                 "behaviors": chart.behaviors,
                 "behaviorsDescription": chart.behaviorsDescription,
+                "status": chart.status,
+                "reasonNotFiled": chart.reasonNotFiled,
                 "dateTaken": chart.dateTaken,
-                "createdAt": chart.createdAt
+                "createdAt": chart.createdAt,
+                "modifiedAt": chart.modifiedAt,
             }
 
     @staticmethod

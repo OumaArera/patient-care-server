@@ -20,6 +20,13 @@ class Update(models.Model):
     )
     notes = models.TextField()
     dateTaken = models.DateField()
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('declined', 'Declined'),
+        ('approved', 'Approved')
+    ]
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
+    reasonNotFiled = models.TextField(blank=True, null=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

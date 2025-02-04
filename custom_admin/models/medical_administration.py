@@ -25,6 +25,13 @@ class MedicationAdministration(models.Model):
 		related_name='medication_ad'
 	)
     timeAdministered = models.TimeField()
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('declined', 'Declined'),
+        ('approved', 'Approved')
+    ]
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
+    reasonNotFiled = models.TextField(blank=True, null=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

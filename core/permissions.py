@@ -37,7 +37,7 @@ class IsCareGiver(RolePermission):
 	Permission to allow care givers to update their own details.
 	"""
 	allowed_roles = [
-		'care giver'
+		'care giver', 'superuser'
 	]
 	def add_roles(self, allowed_roles):
 		return super().add_roles(allowed_roles)

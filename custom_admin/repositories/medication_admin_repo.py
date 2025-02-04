@@ -51,6 +51,7 @@ class MedicationAdministrationRepository:
                 "medication": "medication__medicationId",
                 "patient": "patient__patientId",
                 "careGiver": "careGiver__id",
+                "status": "status__icontains"
             }
 
             adjusted_filters = {
@@ -68,6 +69,8 @@ class MedicationAdministrationRepository:
                 "patient__patientId", 
                 "medication__medicationId",
                 "careGiver", 
+                "status",
+                "reasonNotFiled",
                 "timeAdministered", 
                 "createdAt", 
                 "modifiedAt"
