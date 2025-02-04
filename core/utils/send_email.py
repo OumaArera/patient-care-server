@@ -6,7 +6,7 @@ def send_email(recipient_email, recipient_name, subject, html_content):
 		"""Sends Email using the configured Email provider"""
 		# Email payload
 		email_payload = {
-			"sender": {"email": settings.EMAIL_SENDER_ID, "name": "Istiwai Solutions"},
+			"sender": {"email": settings.EMAIL_SENDER_ID, "name": "1st Edmonds & Serenity Adult Family Homes"},
 			"to": [{"email": recipient_email, "name": recipient_name}],
 			"subject": subject,
 			"htmlContent": html_content
