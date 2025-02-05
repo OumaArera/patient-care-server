@@ -58,9 +58,10 @@ class MedicationAdministrationUpdateSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all(), required=False)
     timeAdministered = serializers.TimeField(required=False)
+    status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
 
     class Meta:
         model = MedicationAdministration
         fields = [
-            "patient", "medication", "timeAdministered"
+            "patient", "medication", "status", "timeAdministered"
         ]

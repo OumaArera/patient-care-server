@@ -5,6 +5,7 @@ from custom_admin.views.chart_views import *
 from custom_admin.views.facility_views import *
 from custom_admin.views.medication_admin_views import *
 from custom_admin.views.medication_views import *
+from custom_admin.views.patient_manager_views import *
 from custom_admin.views.patient_views import *
 from custom_admin.views.update_views import *
 
@@ -101,6 +102,17 @@ urlpatterns=[
         'updates/<int:updateId>',
         UpdateQueryByIDView.as_view(), 
         name='update-details'
+    ),
+
+    path(
+        'patient-managers',
+        PatientManagerView.as_view(), 
+        name='patient-managers'
+    ),
+    path(
+        'patient-managers/<int:managerId>',
+        PatientManagerQueryByIDView.as_view(), 
+        name='patient-manager-details'
     ),
 
 ]
