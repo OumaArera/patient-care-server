@@ -22,7 +22,8 @@ class ResetPasswordView(APIView):
 			username = request.data.get("username", None)
 			
 			if not username:
-				raise ValidationException(message="'username' field and value are required. Please check and try again")
+				raise ValidationException(
+					message="'username' field and value are required. Please check and try again")
 			
 			new_password = generate_random_password()
 			updated_user = UserRepository.update_user_password(
@@ -45,19 +46,27 @@ class ResetPasswordView(APIView):
 				'target_user': {
 					'username': updated_user.username,
 					'email': updated_user.email,
-					'name': updated_user.first_name,
+					'name': f"{updated_user.firstName} {updated_user.lastName}",
 					'role': updated_user.role
 				}
 			}
 	
 			return Response(
-				data=APIResponse.success('00', 'Check your email/sms for your new password', data=data),
+				data=APIResponse.success(
+					code='00', 
+					message='Check your email/sms for your new password', 
+					data=data
+				),
 				status=status.HTTP_200_OK
 			)
 			
 		except Exception as ex:
 			return Response(
-				data=APIResponse.error('06', 'Error occurred while resetting your password', error=ex),
+				data=APIResponse.error(
+					code='06', 
+					message='Error occurred while resetting your password', 
+					error=ex
+				),
 				status=ex.status_code
 			)
 		
