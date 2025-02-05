@@ -3,14 +3,14 @@ from users.views import *
 
 urlpatterns=[
     path(
-        'create-users',
+        'users',
         UserView.as_view(), 
-        name='create-users'
+        name='users'
     ),
     path(
-        'create-users/<int:userId>',
+        'users/<int:userId>',
         UserQueryByIDView.as_view(), 
-        name='create-user-details'
+        name='user-details'
     ),
 
 ]
