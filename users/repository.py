@@ -136,7 +136,6 @@ class UserRepository:
                 "lastName",
                 "email",
                 "phoneNumber",
-                "patients",
                 "sex",
                 "role",
                 "status"

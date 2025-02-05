@@ -135,7 +135,7 @@ class UserQueryByIDView(APIView):
     def put(self, request, userId):
         """Handles updating an user."""
         try:
-            deserializer = UserDeserializer(data=request.data)
+            deserializer = UpdateUserDeserializer(data=request.data)
             if deserializer.is_valid():
                 validated_data = deserializer.validated_data
                 file = validated_data.pop('file', None)

@@ -18,7 +18,6 @@ class UserResponseDTO:
                 ),
                 "email": data.get('email'),
                 "phoneNumber": str(data.get("phoneNumber")),
-                "patients": data("patients"),
                 "sex": data.get("sex"),
                 "role": data.get("role"),
                 "status": data.get("status")
@@ -34,7 +33,6 @@ class UserResponseDTO:
                 ),
                 "email": data.email,
                 "phoneNumber": str(data.phoneNumber),
-                "patients": data.patients,
                 "sex": data.sex,
                 "role": data.role,
                 "status": data.status
