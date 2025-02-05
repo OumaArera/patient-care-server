@@ -75,7 +75,7 @@ class UserView(APIView):
 				query_params=request.query_params,
 				valid_query_params=valid_query_params
 			)
-			users = UserRepository.get_all_users(
+			users = UserService.get_all_users(
 				query_params=query_params,
 				request=request
 				)
