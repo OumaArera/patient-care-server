@@ -2,7 +2,6 @@ from core.utils.non_empty_validator import NonEmptyListValidator
 from custom_admin.models.chart import Chart
 from custom_admin.models.patient import Patient
 from rest_framework import serializers # type: ignore
-from users.models import User  # type: ignore
 from django.utils.timezone import localtime # type: ignore
 from django.db.models import Q # type: ignore
 

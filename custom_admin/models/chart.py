@@ -33,6 +33,9 @@ class Chart(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 
+    class Meta:
+      unique_together = ('patient', 'dateTaken') 
+
     @classmethod
     def create_chart(cls, validated_data):
         """
