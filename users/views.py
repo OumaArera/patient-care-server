@@ -77,7 +77,6 @@ class UserView(APIView):
 			)
 			users = UserService.get_all_users(
 				query_params=query_params,
-				request=request
 				)
 			return Response(
 				APIResponse.success(

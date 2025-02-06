@@ -24,13 +24,12 @@ class FacilityService:
             raise ex
 
     @staticmethod
-    def get_all_facilities(request, query_params):
+    def get_all_facilities(query_params):
         """Fetches and returns all facilities."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             facilities = FacilityRepository.get_all_facilities(
-                request=request, 
                 query_params=query_params
             )
             return facilities

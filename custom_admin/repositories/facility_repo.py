@@ -44,7 +44,7 @@ class FacilityRepository:
             raise DataBaseException("An unexpected error occurred while fetching facility by ID.")
 
     @staticmethod
-    def get_all_facilities(request, query_params):
+    def get_all_facilities(query_params):
         """Fetches and returns all the facilities with optional filtering."""
         try:
             field_mapping = {
@@ -62,7 +62,7 @@ class FacilityRepository:
                 "facilityId", "facilityName", "facilityAddress", "createdAt"
             ).order_by("createdAt")
             
-            facilities = paginator.paginate_queryset(queryset=facilities, request=request)
+            # facilities = paginator.paginate_queryset(queryset=facilities, request=request)
             return [FacilityResponseDTO.transform_facility(facility) for facility in facilities]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching facilities: {ex}", exc_info=True)

@@ -24,13 +24,12 @@ class MedicationService:
             raise ex
 
     @staticmethod
-    def get_all_medications(request, query_params):
+    def get_all_medications(query_params):
         """Fetches and returns all medications."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             medications = MedicationRepository.get_all_medications(
-                request=request,
                 query_params=query_params
             )
             return medications

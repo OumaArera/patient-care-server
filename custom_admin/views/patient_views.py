@@ -66,7 +66,6 @@ class PatientView(APIView):
                 valid_query_params=valid_query_params
             )
             patients = PatientService.get_all_patients(
-                request=request,
                 query_params=query_params
             )
             return Response(

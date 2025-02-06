@@ -60,7 +60,6 @@ class FacilityView(APIView):
                 valid_query_params=valid_query_params
             )
             facilities = FacilityService.get_all_facilities(
-                request=request,
                 query_params=query_params
             )
             return Response(

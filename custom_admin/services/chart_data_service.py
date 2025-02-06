@@ -31,13 +31,12 @@ class ChartDataService:
             raise ex
 
     @staticmethod
-    def get_all_chart_data(request, query_params):
+    def get_all_chart_data(query_params):
         """Fetches and returns all chart data with optional filters."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             chart_data_list = ChartDataRepository.get_all_chart_data(
-                request=request, 
                 query_params=query_params
             )
             return chart_data_list

@@ -24,13 +24,13 @@ class PatientService:
             raise ex
 
     @staticmethod
-    def get_all_patients(request, query_params):
+    def get_all_patients(query_params):
         """Fetches and returns all patients."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             patients = PatientRepository.get_all_patients(
-                request=request, query_params=query_params
+                query_params=query_params
             )
             return patients
         except Exception as ex:

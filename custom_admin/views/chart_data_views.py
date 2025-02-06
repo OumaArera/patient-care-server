@@ -63,7 +63,6 @@ class ChartDataView(APIView):
                 valid_query_params=valid_query_params
             )
             chart_data_list = ChartDataService.get_all_chart_data(
-                request=request,
                 query_params=query_params
             )
             return Response(

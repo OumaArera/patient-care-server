@@ -44,7 +44,7 @@ class BranchRepository:
             raise DataBaseException("An unexpected error occurred while fetching branch by ID.")
 
     @staticmethod
-    def get_all_branches(request, query_params):
+    def get_all_branches(query_params):
         """Fetches and returns all the branches with optional filtering."""
         try:
             field_mapping = {
@@ -66,7 +66,7 @@ class BranchRepository:
                 'facility__facilityName'
             ).order_by("createdAt")
             
-            branches = paginator.paginate_queryset(queryset=branches, request=request)
+            # branches = paginator.paginate_queryset(queryset=branches, request=request)
             return [BranchResponseDTO.transform_branch(branch) for branch in branches]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching branches: {ex}", exc_info=True)

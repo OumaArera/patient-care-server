@@ -44,7 +44,7 @@ class MedicationRepository:
             raise DataBaseException("An unexpected error occurred while fetching medication by ID.")
 
     @staticmethod
-    def get_all_medications(request, query_params):
+    def get_all_medications(query_params):
         """Fetches and returns all medications with optional filtering."""
         try:
             field_mapping = {
@@ -69,7 +69,7 @@ class MedicationRepository:
                 "patient__lastName",
             ).order_by("createdAt")
 
-            medications = paginator.paginate_queryset(queryset=medications, request=request)
+            # medications = paginator.paginate_queryset(queryset=medications, request=request)
             return [MedicationResponseDTO.transform_medication(medication) for medication in medications]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching medications: {ex}", exc_info=True)

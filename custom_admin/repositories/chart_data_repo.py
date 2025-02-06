@@ -44,7 +44,7 @@ class ChartDataRepository:
             raise DataBaseException("An unexpected error occurred while fetching chart data by ID.")
 
     @staticmethod
-    def get_all_chart_data(request, query_params):
+    def get_all_chart_data(query_params):
         """Fetches and returns all the chart data with optional filtering."""
         try:
             field_mapping = {
@@ -65,7 +65,7 @@ class ChartDataRepository:
                   "patient__firstName", "patient__lastName"
             ).order_by("createdAt")
             
-            chart_data = paginator.paginate_queryset(queryset=chart_data, request=request)
+            # chart_data = paginator.paginate_queryset(queryset=chart_data, request=request)
             return [ChartDataResponseDTO.transform_chart_data(data) for data in chart_data]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching chart data: {ex}", exc_info=True)

@@ -61,7 +61,6 @@ class BranchView(APIView):
                 valid_query_params=valid_query_params
             )
             branches = BranchService.get_all_branches(
-                request=request,
                 query_params=query_params
             )
             return Response(

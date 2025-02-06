@@ -94,13 +94,12 @@ class UserService:
             raise ex
 
     @staticmethod
-    def get_all_users(request, query_params):
+    def get_all_users(query_params):
         """Fetches and returns all users."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             users = UserRepository.get_all_users(
-                request=request,
                 query_params=query_params
             )
             return users

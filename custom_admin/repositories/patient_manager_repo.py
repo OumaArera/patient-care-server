@@ -76,7 +76,7 @@ class PatientManagerRepository:
             raise DataBaseException("An unexpected error occurred while fetching patient manager by ID.")
 
     @staticmethod
-    def get_all_patient_managers(request, query_params):
+    def get_all_patient_managers(query_params):
         """Fetches PatientManager records with optional filtering."""
         try:
             field_mapping = {
@@ -115,7 +115,7 @@ class PatientManagerRepository:
                 "modifiedAt"
             ).order_by("createdAt")
 
-            managers = paginator.paginate_queryset(queryset=managers, request=request)
+            # managers = paginator.paginate_queryset(queryset=managers, request=request)
             return [PatientManagerResponseDTO.transform_patient_manager(manager) for manager in managers]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching patient managers: {ex}", exc_info=True)

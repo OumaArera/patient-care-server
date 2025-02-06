@@ -44,7 +44,7 @@ class PatientRepository:
             raise DataBaseException("An unexpected error occurred while fetching patient by ID.")
 
     @staticmethod
-    def get_all_patients(request, query_params):
+    def get_all_patients(query_params):
         """Fetches and returns all patients with optional filtering."""
         try:
             field_mapping = {
@@ -87,7 +87,7 @@ class PatientRepository:
                 "createdAt"
             )
             
-            patients = paginator.paginate_queryset(queryset=patients, request=request)
+            # patients = paginator.paginate_queryset(queryset=patients, request=request)
             return [PatientResponseDTO.transform_patient(patient) for patient in patients]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching patients: {ex}", exc_info=True)

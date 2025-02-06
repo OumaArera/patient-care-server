@@ -35,14 +35,13 @@ class PatientManagerService:
             raise ex
 
     @staticmethod
-    def get_all_patient_managers(request, query_params):
+    def get_all_patient_managers(query_params):
         """Fetches and returns all patient managers with optional filtering."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             managers = PatientManagerRepository.\
                 get_all_patient_managers(
-                    request=request, 
                     query_params=query_params
                 )
             return managers

@@ -109,7 +109,7 @@ class UserRepository:
             raise ex
 
     @staticmethod
-    def get_all_users(request, query_params):
+    def get_all_users(query_params):
         """Fetches and returns all the users."""
         try:
             field_mapping = {
@@ -140,7 +140,7 @@ class UserRepository:
                 "role",
                 "status"
             ).order_by('createdAt')
-            users = paginator.paginate_queryset(queryset=users, request=request)
+            # users = paginator.paginate_queryset(queryset=users, request=request)
             return [UserResponseDTO.transform_user(user) for user in users]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching users: {ex}", exc_info=True)

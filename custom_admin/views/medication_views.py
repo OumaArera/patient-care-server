@@ -54,7 +54,6 @@ class MedicationView(APIView):
                 valid_query_params=valid_query_params
             )
             medications = MedicationService.get_all_medications(
-                request=request,
                 query_params=query_params
             )
             return Response(

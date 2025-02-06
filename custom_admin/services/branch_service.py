@@ -24,13 +24,12 @@ class BranchService:
             raise ex
 
     @staticmethod
-    def get_all_branches(request, query_params):
+    def get_all_branches(query_params):
         """Fetches and returns all branches."""
         try:
             query_params.pop("pageSize", None)
             query_params.pop("pageNumber", None)
             branches = BranchRepository.get_all_branches(
-                request=request, 
                 query_params=query_params
             )
             return branches

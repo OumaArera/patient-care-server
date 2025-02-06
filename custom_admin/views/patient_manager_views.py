@@ -66,7 +66,6 @@ class PatientManagerView(APIView):
             )
 
             patient_managers = PatientManagerService.get_all_patient_managers(
-                request=request,
                 query_params=query_params
             )
 
