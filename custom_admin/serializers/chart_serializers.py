@@ -37,15 +37,15 @@ class ChartSerializer(serializers.ModelSerializer):
 class ChartUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating Chart entries, all fields are optional."""
     
-    patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
+    # patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
-    dateTaken = serializers.DateTimeField(required=False)
+    # dateTaken = serializers.DateTimeField(required=False)
     status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
 
     class Meta:
         model = Chart
-        fields = ["patient", "status", "behaviors", "behaviorsDescription", "dateTaken"]
+        fields = ["status", "behaviors", "behaviorsDescription"]
 
 
 
