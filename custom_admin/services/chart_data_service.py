@@ -1,3 +1,5 @@
+from core.db_exceptions import IntegrityException
+from custom_admin.models.chart_data import ChartData
 from custom_admin.repositories.chart_data_repo import ChartDataRepository
 from core.dtos.chart_data_dto import ChartDataResponseDTO
 
@@ -9,8 +11,13 @@ class ChartDataService:
     def create_chart_data(data):
         """Creates a chart data entry in the database."""
         try:
+            entry = ChartData.objects.get(patient=data['patient'])
+            if entry:
+                raise IntegrityException(message="Patient already has Chart data")
             new_chart_data = ChartDataRepository.create_chart_data(chart_data=data)
             return ChartDataResponseDTO.transform_chart_data(chart_data=new_chart_data)
+        except IntegrityException as ex:
+            raise ex
         except Exception as ex:
             raise ex
 
