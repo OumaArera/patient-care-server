@@ -10,7 +10,7 @@ class ChartDataSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()])
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()])
-    timeToBeTaken = serializers.DateTimeField()
+    timeToBeTaken = serializers.TimeField()
 
     class Meta:
         model = ChartData
@@ -23,7 +23,7 @@ class ChartDataUpdateSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
-    timeToBeTaken = serializers.DateTimeField(required=False)
+    timeToBeTaken = serializers.TimeField(required=False)
 
     class Meta:
         model = ChartData
