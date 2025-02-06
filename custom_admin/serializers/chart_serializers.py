@@ -29,7 +29,6 @@ class ChartSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "A chart entry for this patient already exists on this date."
             )
-
         return data
 
 
