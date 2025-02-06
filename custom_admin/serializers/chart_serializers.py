@@ -9,14 +9,15 @@ from django.db.models import Q # type: ignore
 class ChartSerializer(serializers.ModelSerializer):
     """Serializer for creating Chart entries."""
     
-    patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
-    behaviors = serializers.JSONField(validators=[NonEmptyListValidator()])
-    behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
-    dateTaken = serializers.DateTimeField()
+    patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=True)
+    behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    dateTaken = serializers.DateTimeField(required=True)
+    reasonNotFiled = serializers.CharField(required=False)
 
     class Meta:
         model = Chart
-        fields = ["patient", "behaviors", "behaviorsDescription", "dateTaken"]
+        fields = ["patient", "behaviors", "reasonNotFiled", "behaviorsDescription", "dateTaken"]
 
     def validate(self, data):
         patient = data.get("patient")
