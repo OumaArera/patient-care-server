@@ -69,7 +69,7 @@ class ChartRepository:
                 "dateTaken",
                 "patient__firstName", 
                 "patient__lastName", 
-                 "patient__patientId"
+                "patient__patientId",
                 "status",
                 "careGiver__firstName", 
                 "careGiver__lastName", 
