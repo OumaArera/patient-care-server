@@ -13,7 +13,7 @@ class ChartDataResponseDTO:
         if isinstance(chart_data, dict):
             return {
                 "chartDataId": chart_data.get('chartDataId'),
-                "patientId": chart_data.get('patient_id'),
+                "patientId": chart_data.get('patient__patientId'),
                 "patientName": format_value(
                     chart_data.get('patient__firstName'),
                     chart_data.get('patient__lastName')
