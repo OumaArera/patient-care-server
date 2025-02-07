@@ -59,6 +59,7 @@ class ChartRepository:
                 if value
             }
 
+
             charts = Chart.objects.select_related(
                 "patient", "careGiver1", "careGiver2"
             ).filter(
@@ -70,6 +71,8 @@ class ChartRepository:
                 "patient__firstName", 
                 "patient__lastName", 
                 "patient__patientId",
+                "patient__branch__branchName",
+                "patient__branch__facility__facilityName",
                 "status",
                 "careGiver__firstName", 
                 "careGiver__lastName", 

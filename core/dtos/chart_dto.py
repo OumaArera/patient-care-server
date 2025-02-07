@@ -13,6 +13,8 @@ class ChartResponseDTO:
             return {
                 "chartId": chart.get('chartId'),
                 "patientId": chart.get('patient__patientId'),
+                "facilityName": chart.get('patient__branch__facility__facilityName'),
+                "branchName": chart.get('patient__branch__branchName'),
                 "patientName": format_value(
                     chart.get('patient__firstName'),
                     chart.get('patient__lastName')
@@ -33,6 +35,11 @@ class ChartResponseDTO:
             return {
                 "chartId": chart.chartId,
                 "patientId": chart.patient.patientId,
+                "facilityName": chart.patient.branch.facility.facilityName\
+                    if chart.patient and chart.patient.branch and chart.patient.branch.facility\
+                    else None,
+                "branchName": chart.patient.branch.branchName\
+                    if chart.patient and chart.patient.branch else None,
                 "patientName": format_value(
                     chart.patient.firstName, 
                     chart.patient.lastName
