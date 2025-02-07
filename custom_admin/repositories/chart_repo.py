@@ -92,12 +92,16 @@ class ChartRepository:
         """Updates the details of an existing chart entry."""
         try:
             chart = ChartRepository.get_chart_by_id(chart_id=chart_id)
+            print(chart_data)
+            print(chart_id)
             for field, value in chart_data.items():
                 if hasattr(chart, field):  
                     setattr(chart, field, value)
             chart.full_clean()
             chart.save()
             return chart
+        except NotFoundException as ex:
+            raise ex
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:

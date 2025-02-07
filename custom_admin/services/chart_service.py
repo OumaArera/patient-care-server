@@ -46,6 +46,8 @@ class ChartService:
     def update_chart(chart_id, chart_data):
         """Updates an existing chart entry."""
         try:
+            print(chart_data)
+            print(chart_id)
             updated_chart = ChartRepository.update_chart(
                 chart_id=chart_id, 
                 chart_data=chart_data

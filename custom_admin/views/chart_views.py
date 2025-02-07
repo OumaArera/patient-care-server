@@ -130,6 +130,8 @@ class ChartQueryByIDView(APIView):
                     chart_id=chartId,
                     chart_data=deserializer.validated_data
                 )
+                print(deserializer.validated_data)
+                print(chartId)
                 return Response(
                     APIResponse.success(
                         code="00",
