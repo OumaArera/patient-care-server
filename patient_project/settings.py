@@ -27,7 +27,7 @@ DOMAIN = os.getenv("DOMAIN")
 MEDIA_FULL_URL = f"{DOMAIN}"
 
 DEFAULT_PAGE_SIZE = 5
-MAXIMUM_PAGE_SIZE = 50
+MAXIMUM_PAGE_SIZE = 366
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
