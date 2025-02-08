@@ -67,8 +67,12 @@ class MedicationAdministrationRepository:
             ).values(
                 "medicationAdministrationId",
                 "patient__patientId", 
+                "patient__firstName",
+                "patient__lastName",
                 "medication__medicationId",
                 "careGiver", 
+                "careGiver__firstName",
+                "careGiver__lastName",
                 "status",
                 "reasonNotFiled",
                 "timeAdministered", 
