@@ -69,6 +69,8 @@ class MedicationAdministrationRepository:
                 "patient__patientId", 
                 "patient__firstName",
                 "patient__lastName",
+                "patient__branch__branchName",
+                "patient__branch__facility__facilityName",
                 "medication__medicationId",
                 "careGiver", 
                 "careGiver__firstName",

@@ -19,6 +19,8 @@ class MedicationAdministrationResponseDTO:
                     data.get("patient__firstName"),
                     data.get("patient__lastName")
                 ),
+                "facilityName": data.get('patient__branch__facility__facilityName'),
+                "branchName": data.get('patient__branch__branchName'),
                 "medicationId": data.get("medication__medicationId"),
                 "careGiverId": data.get("careGiver"),
                 "careGiverName": format_value(
@@ -39,6 +41,11 @@ class MedicationAdministrationResponseDTO:
                     data.patient.firstName if data.patient else None,
                     data.patient.lastName if data.patient else None
                 ),
+                "facilityName": data.patient.branch.facility.facilityName\
+                    if data.patient and data.patient.branch and\
+                    data.patient.branch.facility else None,
+                "branchName": data.patient.branch.branchName\
+                    if data.patient and data.patient.branch else None,
                 "medicationId": data.medication.medicationId,
                 "careGiverName": format_value(
                     data.careGiver.firstName if data.careGiver else None,
