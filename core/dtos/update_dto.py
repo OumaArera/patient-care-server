@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Union
 
+from core.utils.format_null_values import format_value
+
 class UpdateResponseDTO:
     """DTO for transforming Update model responses."""
 
@@ -12,7 +14,17 @@ class UpdateResponseDTO:
             return {
                 "updateId": update.get("updateId"),
                 "patientId": update.get("patient__patientId"),
+                "patientName": format_value(
+                    update.get("patient__firstName"),
+                    update.get("patient__lastName")
+                ),
+                "facilityName": update.get('patient__branch__facility__facilityName'),
+                "branchName": update.get('patient__branch__branchName'),
                 "careGiverId": update.get("careGiver"),
+                "careGiverName": format_value(
+                    update.get("careGiver__firstName"),
+                    update.get("careGiver__lastName")
+                ),
                 "notes": update.get("notes"),
                 "dateTaken": update.get("dateTaken"),
                 "status": update.get("status"),
@@ -25,6 +37,15 @@ class UpdateResponseDTO:
         return {
             "updateId": update.updateId,
             "patientId": update.patient.patientId if update.patient else None,
+            "patientName": format_value(
+                    update.patient.firstName if update.patient else None,
+                    update.patient.lastName if update.patient else None
+                ),
+            "facilityName": update.patient.branch.facility.facilityName\
+                if update.patient and update.patient.branch and\
+                update.patient.branch.facility else None,
+            "branchName": update.patient.branch.branchName\
+                if update.patient and update.patient.branch else None,
             "careGiverId": update.careGiver.id if update.careGiver else None,
             "notes": update.notes,
             "dateTaken": update.dateTaken.strftime("%Y-%m-%d")\

@@ -74,7 +74,13 @@ class UpdateRepository:
                 "createdAt", 
                 "modifiedAt",
                 "patient__patientId", 
-                "careGiver"
+                "patient__firstName",
+                "patient__lastName",
+                "patient__branch__facility__facilityName",
+                "patient__branch__branchName",
+                "careGiver",
+                "careGiver__firstName",
+                "careGiver__lastName"
             ).order_by(
                 "-createdAt"
             )
