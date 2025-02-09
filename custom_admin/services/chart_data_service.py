@@ -11,7 +11,7 @@ class ChartDataService:
     def create_chart_data(data):
         """Creates a chart data entry in the database."""
         try:
-            entry = ChartData.objects.get(patient=data['patient'])
+            entry = ChartData.objects.filter(patient=data['patient'])
             if entry:
                 raise IntegrityException(message="Patient already has Chart data")
             new_chart_data = ChartDataRepository.create_chart_data(chart_data=data)

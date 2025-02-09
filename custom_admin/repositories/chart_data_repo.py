@@ -15,7 +15,7 @@ class ChartDataRepository:
     def create_chart_data(chart_data):
         """Creates chart data in the database."""
         try:
-            new_chart_data = ChartData.create_chart_data(validated_data=chart_data)
+            new_chart_data = ChartData.create_chart_data(chart_data)
             new_chart_data.full_clean()
             new_chart_data.save()
             return new_chart_data
