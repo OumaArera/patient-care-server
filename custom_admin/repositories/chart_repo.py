@@ -49,7 +49,7 @@ class ChartRepository:
         try:
             field_mapping = {
                 "patient": "patient__patientId",
-                "dateTaken": "dateTaken__lte",
+                "dateTaken": "dateTaken",
                 "status": "status__icontains"
             }
 
