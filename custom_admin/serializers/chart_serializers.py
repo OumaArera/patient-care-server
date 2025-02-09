@@ -38,7 +38,7 @@ class ChartUpdateSerializer(serializers.ModelSerializer):
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
-    reasonNotFiled = serializers.CharField(required=False)
+    reasonNotFiled = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta:
         model = Chart
