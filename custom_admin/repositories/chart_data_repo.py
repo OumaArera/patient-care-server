@@ -60,7 +60,9 @@ class ChartDataRepository:
 
             chart_data = ChartData.objects.select_related(
                 "patient"
-            ).filter(**adjusted_filters).values(
+            ).filter(
+                **adjusted_filters
+            ).values(
                 "chartDataId", "behaviors", 
                 "behaviorsDescription", "timeToBeTaken",
                 "patient__firstName", "patient__lastName", 
@@ -87,6 +89,8 @@ class ChartDataRepository:
             data.full_clean()
             data.save()
             return data
+        except NotFoundException as ex:
+            raise ex
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
