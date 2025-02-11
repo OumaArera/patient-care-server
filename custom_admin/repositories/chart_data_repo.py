@@ -61,8 +61,10 @@ class ChartDataRepository:
             chart_data = ChartData.objects.select_related(
                 "patient"
             ).filter(**adjusted_filters).values(
-                "chartDataId", "behaviors", "behaviorsDescription", "timeToBeTaken",
-                  "patient__firstName", "patient__lastName", "patient__patientId"
+                "chartDataId", "behaviors", 
+                "behaviorsDescription", "timeToBeTaken",
+                "patient__firstName", "patient__lastName", 
+                "patient__patientId", "vitals"
             ).order_by("createdAt")
             
             # chart_data = paginator.paginate_queryset(queryset=chart_data, request=request)

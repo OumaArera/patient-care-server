@@ -20,6 +20,7 @@ class ChartDataResponseDTO:
                 ),
                 "behaviors": chart_data.get('behaviors'),
                 "behaviorsDescription": chart_data.get('behaviorsDescription'),
+                "vitals": chart_data.get("vitals"),
                 "timeToBeTaken": chart_data.get('timeToBeTaken'),
                 "createdAt": chart_data.get('createdAt')
             }
@@ -33,6 +34,7 @@ class ChartDataResponseDTO:
                 ),
                 "behaviors": chart_data.behaviors,
                 "behaviorsDescription": chart_data.behaviorsDescription,
+                "vitals": chart_data.vitals,
                 "timeToBeTaken": chart_data.timeToBeTaken,
                 "createdAt": chart_data.createdAt
             }
