@@ -4,7 +4,6 @@ class ChartDataResponseDTO:
     """
     Data Transfer Object for ChartData Model
     """
-
     @staticmethod
     def transform_chart_data(chart_data):
         """
