@@ -11,6 +11,7 @@ class ChartSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=True)
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     dateTaken = serializers.DateTimeField(required=True)
     reasonNotFiled = serializers.CharField(required=False)
 

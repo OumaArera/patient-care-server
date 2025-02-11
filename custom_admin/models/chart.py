@@ -22,6 +22,10 @@ class Chart(models.Model):
       blank=True,
       null=True
     )
+    vitals = models.JSONField(
+      default=list,
+      blank=True,
+      null=True)
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('declined', 'Declined'),

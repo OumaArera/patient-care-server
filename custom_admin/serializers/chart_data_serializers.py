@@ -8,8 +8,9 @@ class ChartDataSerializer(serializers.ModelSerializer):
     """Deserializer for creating ChartData."""
 
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
-    behaviors = serializers.JSONField(validators=[NonEmptyListValidator()])
-    behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()])
+    behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     timeToBeTaken = serializers.TimeField()
 
     class Meta:

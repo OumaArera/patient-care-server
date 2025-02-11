@@ -44,7 +44,7 @@ class UpdateUserDeserializer(serializers.Serializer):
     firstName = serializers.CharField(required=False)
     middleNames = serializers.CharField(required=False, allow_blank=True)
     lastName = serializers.CharField(required=False)
-    password = serializers.CharField(required=False, write_only=True)  # 👈 `write_only=True` so it won’t be returned
+    password = serializers.CharField(required=False, write_only=True) 
     phoneNumber = serializers.CharField(required=False)
     sex = serializers.ChoiceField(choices=["male", "female", "other"], required=False)
     role = serializers.ChoiceField(choices=["care giver", "manager", "superuser"], required=False)

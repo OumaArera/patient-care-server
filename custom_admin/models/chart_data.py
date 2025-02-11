@@ -11,6 +11,11 @@ class ChartData(models.Model):
 	)
     behaviors = models.JSONField()
     behaviorsDescription = models.JSONField()
+    vitals = models.JSONField(
+        default=list,
+        blank=True,
+        null=True
+    )
     timeToBeTaken = models.TimeField()
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
