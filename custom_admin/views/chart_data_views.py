@@ -23,9 +23,7 @@ class ChartDataView(APIView):
     def post(self, request):
         """Handles creating a new chart data entry."""
         try:
-            print(f"Data: {request.data}")
             deserializer = ChartDataSerializer(data=request.data)
-            # print(f"Data: {request.data}")
             if deserializer.is_valid():
                 chart_data = ChartDataService.create_chart_data(
                     data=deserializer.validated_data

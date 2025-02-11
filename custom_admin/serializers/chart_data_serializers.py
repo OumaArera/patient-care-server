@@ -15,7 +15,7 @@ class ChartDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ChartData
-        fields = ["patient", "behaviors", "behaviorsDescription", "timeToBeTaken"]
+        fields = ["patient", "behaviors", "vitals", "behaviorsDescription", "timeToBeTaken"]
 
 
 class ChartDataUpdateSerializer(serializers.ModelSerializer):
@@ -25,7 +25,8 @@ class ChartDataUpdateSerializer(serializers.ModelSerializer):
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     timeToBeTaken = serializers.TimeField(required=False)
+    vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
 
     class Meta:
         model = ChartData
-        fields = ["patient", "behaviors", "behaviorsDescription", "timeToBeTaken"]
+        fields = ["patient", "behaviors", "vitals", "behaviorsDescription", "timeToBeTaken"]
