@@ -24,6 +24,7 @@ class ChartResponseDTO:
                     chart.get('careGiver__lastName')
                 ),
                 "behaviors": chart.get('behaviors'),
+                "vitals": chart.get("vitals"),
                 "behaviorsDescription": chart.get('behaviorsDescription'),
                 "status": chart.get("status"),
                 "reasonNotFiled": chart.get("reasonNotFiled"),
@@ -50,6 +51,7 @@ class ChartResponseDTO:
                 ) if chart.careGiver else None,
                 "behaviors": chart.behaviors,
                 "behaviorsDescription": chart.behaviorsDescription,
+                "vitals": chart.vitals,
                 "status": chart.status,
                 "reasonNotFiled": chart.reasonNotFiled,
                 "dateTaken": chart.dateTaken,

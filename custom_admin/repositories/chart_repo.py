@@ -67,7 +67,7 @@ class ChartRepository:
             ).values(
                 "chartId", "behaviors", 
                 "behaviorsDescription", 
-                "dateTaken",
+                "dateTaken", "vitals",
                 "patient__firstName", 
                 "patient__lastName", 
                 "patient__patientId",
@@ -95,8 +95,6 @@ class ChartRepository:
         """Updates the details of an existing chart entry."""
         try:
             chart = ChartRepository.get_chart_by_id(chart_id=chart_id)
-            print(chart_data)
-            print(chart_id)
             for field, value in chart_data.items():
                 if hasattr(chart, field):  
                     setattr(chart, field, value)

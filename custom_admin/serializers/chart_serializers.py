@@ -17,7 +17,7 @@ class ChartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chart
-        fields = ["patient", "behaviors", "reasonNotFiled", "behaviorsDescription", "dateTaken"]
+        fields = ["patient", "vitals", "behaviors", "reasonNotFiled", "behaviorsDescription", "dateTaken"]
 
     def validate(self, data):
         patient = data.get("patient")
@@ -38,12 +38,13 @@ class ChartUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating Chart entries, all fields are optional."""
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
+    vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
     reasonNotFiled = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta:
         model = Chart
-        fields = ["status", "behaviors", "behaviorsDescription", "reasonNotFiled"]
+        fields = ["status", "behaviors", "vitals", "behaviorsDescription", "reasonNotFiled"]
 
 
 
