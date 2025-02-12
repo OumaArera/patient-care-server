@@ -17,9 +17,9 @@ class AppointmentResponseDTO:
                     appointment.get('patient__firstName'),
                     appointment.get('patient__lastName')
                 ),
-                "weeeklyAppointments": appointment.get('weeeklyAppointments'),
-                "fortnightAppoints": appointment.get('fortnightAppoints'),
-                "monthlyAppoints": appointment.get("monthlyAppoints"),
+                "weeklyAppointments": appointment.get('weeklyAppointments'),
+                "fortnightAppointments": appointment.get('fortnightAppointments'),
+                "monthlyAppointments": appointment.get("monthlyAppointments"),
                 "createdAt": appointment.get('createdAt')
             }
         else:
@@ -30,12 +30,11 @@ class AppointmentResponseDTO:
                     appointment.patient.firstName if appointment.patient else None,
                     appointment.patient.lastName if appointment.patient else None
                 ),
-                "weeeklyAppointments": appointment.weeeklyAppointments,
-                "fortnightAppoints": appointment.fortnightAppoints,
-                "monthlyAppoints": appointment.monthlyAppoints,
+                "weeklyAppointments": appointment.weeklyAppointments,
+                "fortnightAppointments": appointment.fortnightAppointments,
+                "monthlyAppointments": appointment.monthlyAppointments,
                 "createdAt": appointment.createdAt
             }
-
     @staticmethod
     def transform_appointment_list(appointment_list):
         """

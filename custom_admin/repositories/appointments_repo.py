@@ -62,11 +62,11 @@ class AppointmentRepository:
             ).filter(
                 **adjusted_filters
             ).values(
-                "appointmentId", "weeeklyAppointments", 
-                "fortnightAppoints", "monthlyAppoints",
+                "appointmentId", "weeklyAppointments", 
+                "fortnightAppointments", "monthlyAppointments",
                 "patient__firstName", "patient__lastName", 
                 "patient__patientId", "createdAt"
-            ).order_by("createdAt")
+            ).order_by("createdAt") 
             
             return [AppointmentResponseDTO.transform_appointment(data) for data in appointments]
         except DatabaseError as ex:
