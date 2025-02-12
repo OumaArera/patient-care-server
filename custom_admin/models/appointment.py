@@ -15,12 +15,12 @@ class Appointment(models.Model):
         blank=True,
         null=True
     )
-    fortnightAppoints = models.JSONField(
+    fortnightAppointments = models.JSONField(
         default=list,
         blank=True,
         null=True
     )
-    monthlyAppoints = models.JSONField(
+    monthlyAppointments = models.JSONField(
         default=list,
         blank=True,
         null=True

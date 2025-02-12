@@ -9,12 +9,12 @@ class AppointmentSerializer(serializers.ModelSerializer):
     
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=True)
     weeeklyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
-    fortnightAppoints = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
-    monthlyAppoints = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    fortnightAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    monthlyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
 
     class Meta:
         model = Chart
-        fields = ["patient", "weeeklyAppointments", "fortnightAppoints", "monthlyAppoints"]
+        fields = ["patient", "weeeklyAppointments", "fortnightAppointments", "monthlyAppointments"]
 
     def validate(self, data):
         patient = data.get("patient")
@@ -30,12 +30,12 @@ class AppointmentSerializer(serializers.ModelSerializer):
 class AppointmentUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating Appointment entries, all fields are optional."""
     weeeklyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
-    fortnightAppoints = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
-    monthlyAppoints = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
+    fortnightAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
+    monthlyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
 
     class Meta:
         model = Chart
-        fields = ["weeeklyAppointments", "fortnightAppoints", "monthlyAppoints",]
+        fields = ["weeeklyAppointments", "fortnightAppointments", "monthlyAppointments"]
 
 
 
