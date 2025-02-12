@@ -10,7 +10,7 @@ class Appointment(models.Model):
 		on_delete=models.CASCADE,
 		related_name='appointments'
 	)
-    weeeklyAppointments = models.JSONField(
+    weeklyAppointments = models.JSONField(
         default=list,
         blank=True,
         null=True
