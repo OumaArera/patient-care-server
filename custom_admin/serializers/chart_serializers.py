@@ -28,7 +28,7 @@ class ChartSerializer(serializers.ModelSerializer):
             Q(dateTaken__date=date_taken)
         ).exists():
             raise serializers.ValidationError(
-                "A chart entry for this patient already exists on this date."
+                "A chart entry for this resident already exists on this date."
             )
         return data
 

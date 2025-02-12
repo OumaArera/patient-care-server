@@ -46,7 +46,7 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
 
         if conflicting_medication.exists():
             raise serializers.ValidationError(
-                "Another medication has already been administered to this patient within the last 4 hours."
+                "Another medication has already been administered to this resident within the last 4 hours."
             )
 
         return data

@@ -1,4 +1,5 @@
 from django.urls import path # type: ignore
+from custom_admin.views.appointment_views import *
 from custom_admin.views.branch_views import *
 from custom_admin.views.chart_data_views import *
 from custom_admin.views.chart_views import *
@@ -113,6 +114,17 @@ urlpatterns=[
         'patient-managers/<int:managerId>',
         PatientManagerQueryByIDView.as_view(), 
         name='patient-manager-details'
+    ),
+
+    path(
+        'appointments',
+        AppointmentView.as_view(), 
+        name='appointments'
+    ),
+    path(
+        'appointments/<int:appointmentId>',
+        AppointmentQueryByIDView.as_view(), 
+        name='appointment-details'
     ),
 
 ]

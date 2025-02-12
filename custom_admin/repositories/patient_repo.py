@@ -110,11 +110,11 @@ class PatientRepository:
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
-            logger.error(f"Database error while updating patient: {ex}", exc_info=True)
-            raise QueryException(message="Error executing query to update patient.")
+            logger.error(f"Database error while updating resident: {ex}", exc_info=True)
+            raise QueryException(message="Error executing query to update resident.")
         except Exception as ex:
-            logger.error(f"Unexpected error while updating patient: {ex}", exc_info=True)
-            raise DataBaseException("An unexpected error occurred while updating patient.")
+            logger.error(f"Unexpected error while updating resident: {ex}", exc_info=True)
+            raise DataBaseException("An unexpected error occurred while updating resident.")
 
     @staticmethod
     def delete_patient(patient_id):
@@ -126,11 +126,11 @@ class PatientRepository:
         except NotFoundException as ex:
             raise ex
         except IntegrityError as ex:
-            logger.error(f"Integrity error while deleting patient: {ex}", exc_info=True)
+            logger.error(f"Integrity error while deleting resident: {ex}", exc_info=True)
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
-            logger.error(f"Database error while deleting patient: {ex}", exc_info=True)
-            raise QueryException(message="Error executing query to delete patient.")
+            logger.error(f"Database error while deleting resident: {ex}", exc_info=True)
+            raise QueryException(message="Error executing query to delete resident.")
         except Exception as ex:
-            logger.error(f"Unexpected error while deleting patient: {ex}", exc_info=True)
-            raise DataBaseException("An unexpected error occurred while deleting patient.")
+            logger.error(f"Unexpected error while deleting resident: {ex}", exc_info=True)
+            raise DataBaseException("An unexpected error occurred while deleting resident.")

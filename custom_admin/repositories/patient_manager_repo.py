@@ -53,11 +53,11 @@ class PatientManagerRepository:
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
-            logger.error(f"Database error while creating/updating patient manager: {ex}", exc_info=True)
-            raise QueryException(message="Error executing query to create/update patient manager.")
+            logger.error(f"Database error while creating/updating resident manager: {ex}", exc_info=True)
+            raise QueryException(message="Error executing query to create/update resident manager.")
         except Exception as ex:
-            logger.error(f"Unexpected error while creating/updating patient manager: {ex}", exc_info=True)
-            raise DataBaseException("An unexpected error occurred while creating/updating patient manager.")
+            logger.error(f"Unexpected error while creating/updating resident manager: {ex}", exc_info=True)
+            raise DataBaseException("An unexpected error occurred while creating/updating resident manager.")
 
     
     @staticmethod
@@ -70,10 +70,10 @@ class PatientManagerRepository:
             raise NotFoundException(entity_name=f"PatientManager with ID: {manager_id}")
         except DatabaseError as ex:
             logger.error(f"Database error while fetching patient manager by ID: {ex}", exc_info=True)
-            raise QueryException(message="Error executing query to fetch patient manager by ID.")
+            raise QueryException(message="Error executing query to fetch resident manager by ID.")
         except Exception as ex:
             logger.error(f"Unexpected error while fetching patient manager by ID: {ex}", exc_info=True)
-            raise DataBaseException("An unexpected error occurred while fetching patient manager by ID.")
+            raise DataBaseException("An unexpected error occurred while fetching resident manager by ID.")
 
     @staticmethod
     def get_all_patient_managers(query_params):
@@ -119,10 +119,10 @@ class PatientManagerRepository:
             return [PatientManagerResponseDTO.transform_patient_manager(manager) for manager in managers]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching patient managers: {ex}", exc_info=True)
-            raise QueryException(message="Error executing query to fetch patient managers.")
+            raise QueryException(message="Error executing query to fetch resident managers.")
         except Exception as ex:
             logger.error(f"Unexpected error while fetching patient managers: {ex}", exc_info=True)
-            raise DataBaseException("An unexpected error occurred while fetching patient managers.")
+            raise DataBaseException("An unexpected error occurred while fetching resident managers.")
 
     @staticmethod
     def delete_patient_manager(manager_id):
@@ -137,8 +137,8 @@ class PatientManagerRepository:
             logger.error(f"Integrity error while deleting patient manager: {ex}", exc_info=True)
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
-            logger.error(f"Database error while deleting patient manager: {ex}", exc_info=True)
-            raise QueryException(message="Error executing query to delete patient manager.")
+            logger.error(f"Database error while deleting resident manager: {ex}", exc_info=True)
+            raise QueryException(message="Error executing query to delete resident manager.")
         except Exception as ex:
-            logger.error(f"Unexpected error while deleting patient manager: {ex}", exc_info=True)
-            raise DataBaseException("An unexpected error occurred while deleting patient manager.")
+            logger.error(f"Unexpected error while deleting resident manager: {ex}", exc_info=True)
+            raise DataBaseException("An unexpected error occurred while deleting resident manager.")

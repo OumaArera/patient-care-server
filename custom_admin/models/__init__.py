@@ -7,3 +7,4 @@ from custom_admin.models.patient import Patient
 from custom_admin.models.update import Update
 from custom_admin.models.chart_data import ChartData
 from custom_admin.models.patient_manager import PatientManager
+from custom_admin.models.appointment import Appointment
