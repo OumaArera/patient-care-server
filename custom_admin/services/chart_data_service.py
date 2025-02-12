@@ -13,7 +13,7 @@ class ChartDataService:
         try:
             entry = ChartData.objects.filter(patient=data['patient']).first()
             if entry:
-                raise IntegrityException(message="Patient already has Chart data")
+                raise IntegrityException(message="Resident already has Chart data")
             new_chart_data = ChartDataRepository.create_chart_data(chart_data=data)
             return ChartDataResponseDTO.transform_chart_data(chart_data=new_chart_data)
         except IntegrityException as ex:
