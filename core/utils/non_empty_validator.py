@@ -9,3 +9,13 @@ class NonEmptyListValidator:
         if not value:
             raise serializers.ValidationError("This field cannot be empty.")
 
+
+class MedicationTimeValidator:
+    """
+    Validator to check that medicationTime is not an empty list.
+    """
+    def __call__(self, value):
+        if not isinstance(value, list):
+            raise serializers.ValidationError("medicationTime must be a list.")
+        if not value:
+            raise serializers.ValidationError("medicationTime cannot be an empty list.")

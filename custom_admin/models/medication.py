@@ -16,7 +16,7 @@ class Medication(models.Model):
     instructions = models.TextField()
     quantity = models.CharField(max_length=255)
     diagnosis = models.TextField()
-    medicationTime = models.TimeField()
+    medicationTime = models.JSONField(default=list)
     STATUS_CHOICES = [
         ('active', 'Active Medication'),
         ('stale', 'Stale Medication'),

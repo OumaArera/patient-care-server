@@ -1,3 +1,4 @@
+from core.utils.non_empty_validator import MedicationTimeValidator
 from custom_admin.models.medication import Medication
 from custom_admin.models.patient import Patient
 from rest_framework import serializers  # type: ignore
@@ -11,7 +12,7 @@ class MedicationSerializer(serializers.ModelSerializer):
     instructions = serializers.CharField()
     quantity = serializers.CharField(max_length=255)
     diagnosis = serializers.CharField()
-    medicationTime = serializers.TimeField()
+    medicationTime = serializers.ListField(validators=[MedicationTimeValidator()])
 
     class Meta:
         model = Medication
@@ -30,7 +31,7 @@ class MedicationUpdateSerializer(serializers.ModelSerializer):
     instructions = serializers.CharField(required=False)
     quantity = serializers.CharField(max_length=255, required=False)
     diagnosis = serializers.CharField(required=False)
-    medicationTime = serializers.TimeField(required=False)
+    medicationTime = serializers.ListField(validators=[MedicationTimeValidator()], required=False)
 
     class Meta:
         model = Medication
