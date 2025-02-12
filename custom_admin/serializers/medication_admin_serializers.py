@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from django.utils.timezone import localtime # type: ignore
+from core.utils.non_empty_validator import MedicationTimeValidator
 from custom_admin.models.medical_administration import MedicationAdministration
 from custom_admin.models.medication import Medication
 from custom_admin.models.patient import Patient
@@ -10,7 +11,7 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
     """Serializer for creating MedicationAdministration records."""
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all())
-    timeAdministered = serializers.TimeField()
+    timeAdministered = serializers.ListField(validators=[MedicationTimeValidator()], required=True)
 
     class Meta:
         model = MedicationAdministration
@@ -20,44 +21,14 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ["medicationAdministrationId", "createdAt", "modifiedAt"]
 
-    def validate(self, data):
-        """Ensure no other medication was administered for the same patient within 4 hours."""
-        patient = data.get("patient")
-        medication = data.get("medication")
-        time_administered = data.get("timeAdministered")
-        today = localtime().date()
-
-        min_time = (datetime.combine(
-            today, 
-            time_administered
-            ) - timedelta(
-                hours=4
-            )).time()
-
-        conflicting_medication = MedicationAdministration.objects.filter(
-            patient=patient,
-            medication=medication,
-            createdAt__date=today,
-            timeAdministered__gte=min_time,
-        ).exclude(
-            medicationAdministrationId=self.instance.medicationAdministrationId\
-                if self.instance else None
-        )
-
-        if conflicting_medication.exists():
-            raise serializers.ValidationError(
-                "Another medication has already been administered to this resident within the last 4 hours."
-            )
-
-        return data
-
+    
 
 
 class MedicationAdministrationUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating MedicationAdministration records."""
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all(), required=False)
-    timeAdministered = serializers.TimeField(required=False)
+    timeAdministered = serializers.ListField(validators=[MedicationTimeValidator()], required=False)
     status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
 
     class Meta:

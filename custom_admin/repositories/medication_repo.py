@@ -89,6 +89,8 @@ class MedicationRepository:
             medication.full_clean()
             medication.save()
             return medication
+        except NotFoundException as ex:
+            raise ex
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
