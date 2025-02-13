@@ -1,4 +1,4 @@
-from core.utils.non_empty_validator import NonEmptyListValidator
+from core.utils.non_empty_validator import *
 from custom_admin.models.chart import Chart
 from custom_admin.models.patient import Patient
 from rest_framework import serializers # type: ignore
@@ -10,7 +10,7 @@ class ChartSerializer(serializers.ModelSerializer):
     
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=True)
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
-    behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    behaviorsDescription = serializers.JSONField(validators=[MedicationTimeValidator()], required=True)
     vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     dateTaken = serializers.DateTimeField(required=True)
     reasonNotFiled = serializers.CharField(required=False, allow_null=True, allow_blank=True)
