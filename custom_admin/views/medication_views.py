@@ -11,7 +11,7 @@ from core.utils.format_errors import format_validation_errors as fve
 
 class MedicationView(APIView):
 
-    permission_classes = [IsManager]
+    permission_classes = [IsAllUsers]
 
     def post(self, request):
         """Handles creating a new medication."""
@@ -77,7 +77,7 @@ class MedicationView(APIView):
 
 class MedicationQueryByIDView(APIView):
 
-    permission_classes = [IsManager]
+    permission_classes = [IsAllUsers]
 
     def get(self, request, medicationId):
         """Handles fetching a medication by ID."""
