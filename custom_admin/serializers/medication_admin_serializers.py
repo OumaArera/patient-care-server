@@ -12,6 +12,7 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all())
     timeAdministered = serializers.ListField(validators=[MedicationTimeValidator()], required=True)
+    reasonNotFiled = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta:
         model = MedicationAdministration
@@ -30,6 +31,7 @@ class MedicationAdministrationUpdateSerializer(serializers.ModelSerializer):
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all(), required=False)
     timeAdministered = serializers.ListField(validators=[MedicationTimeValidator()], required=False)
     status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
+    reasonNotFiled = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta:
         model = MedicationAdministration
