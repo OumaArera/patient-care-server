@@ -65,7 +65,7 @@ class AppointmentRepository:
                 "appointmentId", "weeklyAppointments", 
                 "fortnightAppointments", "monthlyAppointments",
                 "patient__firstName", "patient__lastName", 
-                "patient__patientId", "createdAt"
+                "patient__patientId", "createdAt", "attendedTo"
             ).order_by("createdAt") 
             
             return [AppointmentResponseDTO.transform_appointment(data) for data in appointments]

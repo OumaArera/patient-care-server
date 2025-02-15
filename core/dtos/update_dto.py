@@ -18,6 +18,9 @@ class UpdateResponseDTO:
                     update.get("patient__firstName"),
                     update.get("patient__lastName")
                 ),
+                "type": update.get("type"),
+                "weight": update.get("weight"),
+                "weightDeviation": update.get("weightDeviation"),
                 "facilityName": update.get('patient__branch__facility__facilityName'),
                 "branchName": update.get('patient__branch__branchName'),
                 "careGiverId": update.get("careGiver"),
@@ -41,6 +44,9 @@ class UpdateResponseDTO:
                     update.patient.firstName if update.patient else None,
                     update.patient.lastName if update.patient else None
                 ),
+            "type": update.type,
+            "weight": update.weight,
+            "weightDeviation": update.weightDeviation,
             "facilityName": update.patient.branch.facility.facilityName\
                 if update.patient and update.patient.branch and\
                 update.patient.branch.facility else None,

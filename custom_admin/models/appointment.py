@@ -25,6 +25,7 @@ class Appointment(models.Model):
         blank=True,
         null=True
     )
+    attendedTo = models.JSONField(default=list, blank=True, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

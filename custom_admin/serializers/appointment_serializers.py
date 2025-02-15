@@ -1,4 +1,4 @@
-from core.utils.non_empty_validator import NonEmptyListValidator
+from core.utils.non_empty_validator import *
 from custom_admin.models.appointment import Appointment
 from custom_admin.models.chart import Chart
 from custom_admin.models.patient import Patient
@@ -11,10 +11,11 @@ class AppointmentSerializer(serializers.ModelSerializer):
     weeklyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     fortnightAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     monthlyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    attendedTo = serializers.ListField(validators=[MedicationTimeValidator], required=True)
 
     class Meta:
         model = Chart
-        fields = ["patient", "weeklyAppointments", "fortnightAppointments", "monthlyAppointments"]
+        fields = ["patient", "weeklyAppointments", "fortnightAppointments", "monthlyAppointments", "attendedTo"]
 
     def validate(self, data):
         patient = data.get("patient")
@@ -32,10 +33,11 @@ class AppointmentUpdateSerializer(serializers.ModelSerializer):
     weeklyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     fortnightAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     monthlyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
+    attendedTo = serializers.ListField(validators=[MedicationTimeValidator], required=True)
 
     class Meta:
         model = Chart
-        fields = ["weeklyAppointments", "fortnightAppointments", "monthlyAppointments"]
+        fields = ["weeklyAppointments", "fortnightAppointments", "monthlyAppointments", "attendedTo"]
 
 
 

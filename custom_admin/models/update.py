@@ -26,6 +26,13 @@ class Update(models.Model):
         ('approved', 'Approved')
     ]
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
+    TYPE_CHOICES = [
+        ('weekly', 'Weekly'),
+        ('monthly', 'Monthly')
+    ]
+    type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='weekly')
+    weight = models.IntegerField(null=True, blank=True, default=0.0)
+    weightDeviation = models.IntegerField(null=True, blank=True, default=0.0)
     reasonNotFiled = models.TextField(blank=True, null=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)

@@ -17,6 +17,7 @@ class AppointmentResponseDTO:
                     appointment.get('patient__firstName'),
                     appointment.get('patient__lastName')
                 ),
+                "attendedTo": appointment.get("attendedTo"),
                 "weeklyAppointments": appointment.get('weeklyAppointments'),
                 "fortnightAppointments": appointment.get('fortnightAppointments'),
                 "monthlyAppointments": appointment.get("monthlyAppointments"),
@@ -30,6 +31,7 @@ class AppointmentResponseDTO:
                     appointment.patient.firstName if appointment.patient else None,
                     appointment.patient.lastName if appointment.patient else None
                 ),
+                "attendedTo": appointment.attendedTo,
                 "weeklyAppointments": appointment.weeklyAppointments,
                 "fortnightAppointments": appointment.fortnightAppointments,
                 "monthlyAppointments": appointment.monthlyAppointments,
