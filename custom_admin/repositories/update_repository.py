@@ -51,7 +51,8 @@ class UpdateRepository:
                 "patient": "patient_id",
                 "careGiver": "careGiver_id",
                 "dateTaken": "dateTaken",
-                "status": "status__icontains"
+                "status": "status__icontains",
+                "type": "type__icontains"
             }
 
             adjusted_filters = {
