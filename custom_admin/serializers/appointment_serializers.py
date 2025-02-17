@@ -11,7 +11,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
     weeklyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     fortnightAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     monthlyAppointments = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
-    attendedTo = serializers.ListField(validators=[MedicationTimeValidator], required=True)
+    attendedTo = serializers.ListField(validators=[MedicationTimeValidator], required=False)
 
     class Meta:
         model = Chart
