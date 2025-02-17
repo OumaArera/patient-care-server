@@ -18,7 +18,7 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
         model = MedicationAdministration
         fields = [
             "medicationAdministrationId", "patient", "medication",
-            "timeAdministered", "createdAt", "modifiedAt"
+            "timeAdministered", "createdAt", "modifiedAt", "reasonNotFiled"
         ]
         read_only_fields = ["medicationAdministrationId", "createdAt", "modifiedAt"]
 
@@ -36,5 +36,5 @@ class MedicationAdministrationUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = MedicationAdministration
         fields = [
-            "patient", "medication", "status", "timeAdministered"
+            "patient", "medication", "status", "timeAdministered", "reasonNotFiled"
         ]
