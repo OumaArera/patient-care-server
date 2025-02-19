@@ -28,8 +28,6 @@ class MedicationAdministrationResponseDTO:
                     data.get("careGiver__lastName")
                 ),
                 "timeAdministered": data.get("timeAdministered"),
-                "status": data.get("status"),
-                "reasonNotFiled": data.get("reasonNotFiled"),
                 "createdAt": data.get("createdAt"),
                 "modifiedAt": data.get("modifiedAt"),
             }
@@ -53,8 +51,6 @@ class MedicationAdministrationResponseDTO:
                 ),
                 "careGiverId": data.careGiver.id if data.careGiver else None,
                 "timeAdministered": data.timeAdministered,
-                "status": data.status,
-                "reasonNotFiled": data.reasonNotFiled,
                 "createdAt": data.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
                 "modifiedAt": data.modifiedAt.strftime("%Y-%m-%d %H:%M:%S"),
             }

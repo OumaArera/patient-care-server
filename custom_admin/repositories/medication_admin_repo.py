@@ -75,8 +75,6 @@ class MedicationAdministrationRepository:
                 "careGiver", 
                 "careGiver__firstName",
                 "careGiver__lastName",
-                "status",
-                "reasonNotFiled",
                 "timeAdministered", 
                 "createdAt", 
                 "modifiedAt"
@@ -104,6 +102,8 @@ class MedicationAdministrationRepository:
             administration.full_clean()
             administration.save()
             return administration
+        except NotFoundException as ex:
+            raise ex
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
