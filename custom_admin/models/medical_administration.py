@@ -24,7 +24,7 @@ class MedicationAdministration(models.Model):
 		on_delete=models.SET_NULL,
 		related_name='medication_ad'
 	)
-    timeAdministered = models.JSONField(default=list)
+    timeAdministered = models.DateTimeField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

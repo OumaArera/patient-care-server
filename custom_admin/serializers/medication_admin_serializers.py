@@ -9,7 +9,7 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
     """Serializer for creating MedicationAdministration records."""
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all())
-    timeAdministered = serializers.ListField(validators=[NonEmptyListValidator()], required=True)
+    timeAdministered = serializers.DateTimeField(required=True)
 
     class Meta:
         model = MedicationAdministration
@@ -26,7 +26,7 @@ class MedicationAdministrationUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating MedicationAdministration records."""
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all(), required=False)
-    timeAdministered = serializers.ListField(validators=[NonEmptyListValidator()], required=False)
+    timeAdministered = serializers.DateTimeField(required=False)
 
     class Meta:
         model = MedicationAdministration
