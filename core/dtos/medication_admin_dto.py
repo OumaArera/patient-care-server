@@ -21,7 +21,16 @@ class MedicationAdministrationResponseDTO:
                 ),
                 "facilityName": data.get('patient__branch__facility__facilityName'),
                 "branchName": data.get('patient__branch__branchName'),
-                "medicationId": data.get("medication__medicationId"),
+                "medication": {
+                    "medicationId": data.get("medication__medicationId"),
+                    "medicationName": data.get("medication__medicationName"),
+                    "medicationCode": data.get("medication__medicationCode"),
+                    "equivalentTo": data.get("medication__equivalentTo"),
+                    "instructions": data.get("medication__instructions"),
+                    "quantity": data.get("medication__quantity"),
+                    "diagnosis": data.get("medication__diagnosis"),
+                    "medicationTimes": data.get("medication__medicationTime")
+                },
                 "careGiverId": data.get("careGiver"),
                 "careGiverName": format_value(
                     data.get("careGiver__firstName"),
@@ -44,7 +53,16 @@ class MedicationAdministrationResponseDTO:
                     data.patient.branch.facility else None,
                 "branchName": data.patient.branch.branchName\
                     if data.patient and data.patient.branch else None,
-                "medicationId": data.medication.medicationId,
+                "medication": {
+                    "medicationId": data.medication.medicationId if data.medication else None,
+                    "medicationName": data.medication.medicationName if data.medication else None,
+                    "medicationCode": data.medication.medicationCode if data.medication else None,
+                    "equivalentTo": data.medication.equivalentTo if data.medication else None,
+                    "instructions": data.medication.instructions if data.medication else None,
+                    "quantity": data.medication.quantity if data.medication else None,
+                    "diagnosis": data.medication.diagnosis if data.medication else None,
+                    "medicationTimes": data.medication.medicationTime if data.medication else None
+                },
                 "careGiverName": format_value(
                     data.careGiver.firstName if data.careGiver else None,
                     data.careGiver.lastName if data.careGiver else None

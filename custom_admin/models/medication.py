@@ -17,11 +17,6 @@ class Medication(models.Model):
     quantity = models.CharField(max_length=255)
     diagnosis = models.TextField()
     medicationTime = models.JSONField(default=list)
-    STATUS_CHOICES = [
-        ('active', 'Active Medication'),
-        ('stale', 'Stale Medication'),
-    ]
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="active")
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

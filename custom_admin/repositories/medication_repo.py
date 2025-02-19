@@ -64,7 +64,7 @@ class MedicationRepository:
                 "patient"
             ).filter(**adjusted_filters).values(
                 "medicationId", "medicationName", "medicationCode", "equivalentTo",
-                "instructions", "quantity", "diagnosis", "medicationTime", "status",
+                "instructions", "quantity", "diagnosis", "medicationTime",
                 "patient__patientId", "createdAt", "modifiedAt", "patient__firstName",
                 "patient__lastName",
             ).order_by("createdAt")
