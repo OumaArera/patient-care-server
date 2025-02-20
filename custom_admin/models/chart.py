@@ -26,13 +26,6 @@ class Chart(models.Model):
       default=list,
       blank=True,
       null=True)
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('declined', 'Declined'),
-        ('approved', 'Approved')
-    ]
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
-    reasonNotFiled = models.TextField(blank=True, null=True, default=None)
     dateTaken = models.DateTimeField()
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
