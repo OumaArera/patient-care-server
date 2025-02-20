@@ -12,13 +12,7 @@ from core.utils.format_errors import format_validation_errors as fve
 
 class AppointmentView(APIView):
 
-    def get_permissions(self):
-        """Dynamically assigns permissions based on request method."""
-        if self.request.method == "POST":
-            self.permission_classes = [IsManager]
-        elif self.request.method == "GET":
-            self.permission_classes = [IsAllUsers]
-        return [permission() for permission in self.permission_classes]
+    permission_classes = [IsAllUsers]
 
     def post(self, request):
         """Handles creating a new appointment entry."""
@@ -86,13 +80,7 @@ class AppointmentView(APIView):
 
 class AppointmentQueryByIDView(APIView):
 
-    def get_permissions(self):
-        """Dynamically assigns permissions based on request method."""
-        if self.request.method in ["GET", "DELETE"]:
-            self.permission_classes = [IsManager]
-        elif self.request.method == "PUT":
-            self.permission_classes = [IsAllUsers]
-        return [permission() for permission in self.permission_classes]
+    permission_classes = [IsAllUsers]
 
     def get(self, request, appointmentId):
         """Handles fetching an appointment entry by ID."""
