@@ -62,10 +62,9 @@ class AppointmentRepository:
             ).filter(
                 **adjusted_filters
             ).values(
-                "appointmentId", "weeklyAppointments", 
-                "fortnightAppointments", "monthlyAppointments",
-                "patient__firstName", "patient__lastName", 
-                "patient__patientId", "createdAt", "attendedTo"
+                "appointmentId", "dateTaken", "details", "type",
+                "patient__firstName", "patient__lastName", "nextAppointmentDate",
+                "patient__patientId", "createdAt"
             ).order_by("createdAt") 
             
             return [AppointmentResponseDTO.transform_appointment(data) for data in appointments]

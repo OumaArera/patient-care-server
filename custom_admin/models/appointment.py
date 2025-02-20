@@ -10,22 +10,20 @@ class Appointment(models.Model):
 		on_delete=models.CASCADE,
 		related_name='appointments'
 	)
-    weeklyAppointments = models.JSONField(
-        default=list,
-        blank=True,
-        null=True
-    )
-    fortnightAppointments = models.JSONField(
-        default=list,
-        blank=True,
-        null=True
-    )
-    monthlyAppointments = models.JSONField(
-        default=list,
-        blank=True,
-        null=True
-    )
-    attendedTo = models.JSONField(default=list, blank=True, null=True)
+    dateTaken = models.DateField()
+    details = models.TextField(null=True, blank=True)
+    TYPE_CHOICES = [
+        ('Primary Care Provider (PCP)', 'Primary Care Provider (PCP)'),
+        ('Mental Health Provider / Physician/ Prescriber', 'Mental Health Provider / Physician/ Prescriber'),
+        ('Clinician', 'Clinician'),
+        ("Peer Support Counsellor", "Peer Support Counsellor"),
+        ("Counsellor", "Counsellor"),
+        ("Dentist", "Dentist"),
+        ("Specialist", "Specialist"),
+        ("Other", "Other")
+    ]
+    type = models.CharField(max_length=200, choices=TYPE_CHOICES)
+    nextAppointmentDate = models.DateField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

@@ -17,10 +17,10 @@ class AppointmentResponseDTO:
                     appointment.get('patient__firstName'),
                     appointment.get('patient__lastName')
                 ),
-                "attendedTo": appointment.get("attendedTo"),
-                "weeklyAppointments": appointment.get('weeklyAppointments'),
-                "fortnightAppointments": appointment.get('fortnightAppointments'),
-                "monthlyAppointments": appointment.get("monthlyAppointments"),
+                "dateTaken": appointment.get("dateTaken"),
+                "details": appointment.get('details'),
+                "type": appointment.get('type'),
+                "nextAppointmentDate": appointment.get("nextAppointmentDate"),
                 "createdAt": appointment.get('createdAt')
             }
         else:
@@ -31,10 +31,10 @@ class AppointmentResponseDTO:
                     appointment.patient.firstName if appointment.patient else None,
                     appointment.patient.lastName if appointment.patient else None
                 ),
-                "attendedTo": appointment.attendedTo,
-                "weeklyAppointments": appointment.weeklyAppointments,
-                "fortnightAppointments": appointment.fortnightAppointments,
-                "monthlyAppointments": appointment.monthlyAppointments,
+                "dateTaken": appointment.dateTaken,
+                "details": appointment.details,
+                "type": appointment.type,
+                "nextAppointmentDate": appointment.nextAppointmentDate,
                 "createdAt": appointment.createdAt
             }
     @staticmethod
