@@ -70,8 +70,6 @@ class UpdateRepository:
                 "updateId", 
                 "notes", 
                 "dateTaken", 
-                "status",
-                "reasonNotFiled",
                 "createdAt", 
                 "modifiedAt",
                 "type",

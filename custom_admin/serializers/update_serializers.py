@@ -95,12 +95,11 @@ class UpdateUpdateSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     notes = serializers.CharField(required=False)
     dateTaken = serializers.DateField(required=False)
-    status = serializers.ChoiceField(required=False, choices=['pending', 'declined', 'approved'])
     type = serializers.ChoiceField(required=False, choices=['weekly', 'monthly'])
     weight = serializers.IntegerField(min_value=0, required=False)
 
     class Meta:
         model = Update
         fields = [
-            "patient", "notes", "dateTaken", "status", "weight", "type"
+            "patient", "notes", "dateTaken", "weight", "type"
         ]
