@@ -89,7 +89,8 @@ class MedicationAdministrationRepository:
             ).order_by("createdAt")
 
             administrations = paginator.paginate_queryset(queryset=administrations, request=request)
-            return [MedicationAdministrationResponseDTO.transform_medication_administration(admin) for admin in administrations]
+            return [MedicationAdministrationResponseDTO.transform_medication_administration(admin)\
+                for admin in administrations]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching medication administrations: {ex}", exc_info=True)
             raise QueryException(message="Error executing query to fetch medication administrations.")
@@ -101,7 +102,8 @@ class MedicationAdministrationRepository:
     def update_medication_administration(administration_id, administration_data):
         """Updates an existing medication administration record."""
         try:
-            administration = MedicationAdministrationRepository.get_medication_administration_by_id(
+            administration = MedicationAdministrationRepository.\
+                get_medication_administration_by_id(
                 administration_id=administration_id
             )
             for field, value in administration_data.items():
@@ -125,7 +127,8 @@ class MedicationAdministrationRepository:
     def delete_medication_administration(administration_id):
         """Deletes a medication administration record by ID."""
         try:
-            administration = MedicationAdministrationRepository.get_medication_administration_by_id(
+            administration = MedicationAdministrationRepository.\
+                get_medication_administration_by_id(
                 administration_id=administration_id
             )
             administration.delete()

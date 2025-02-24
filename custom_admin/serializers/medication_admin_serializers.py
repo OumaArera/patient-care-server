@@ -10,7 +10,6 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all())
     timeAdministered = serializers.DateTimeField(required=True)
-    status = serializers.ChoiceField(required=True, choices=['removed', 'paused', 'active'])
 
     class Meta:
         model = MedicationAdministration
@@ -18,7 +17,7 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
             "medicationAdministrationId", "patient", "medication",
             "timeAdministered", "createdAt", "modifiedAt", "status"
         ]
-        read_only_fields = ["medicationAdministrationId", "createdAt", "modifiedAt"]
+        read_only_fields = ["medicationAdministrationId", "status", "createdAt", "modifiedAt"]
 
     def validate(self, data):
         """Ensure no duplicate medication administration within 1 hour."""
