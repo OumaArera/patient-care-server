@@ -1,7 +1,6 @@
 import logging
 from core.db_exceptions import *
 from django.db import IntegrityError, DatabaseError
-from core.paginator import paginator
 from django.core.exceptions import ValidationError
 from core.dtos.patient_manager_dto import PatientManagerResponseDTO
 from custom_admin.models.patient_manager import PatientManager
@@ -31,15 +30,6 @@ class PatientManagerRepository:
                 care_giver = User.objects.get(pk=care_giver_id)
             except User.DoesNotExist:
                 raise NotFoundException(entity_name=f"CareGiver with ID {care_giver_id} not found")
-
-            # Check for existing assignment
-            existing_manager = PatientManager.objects.filter(patient=patient).first()
-
-            if existing_manager:
-                if existing_manager.careGiver != care_giver:
-                    existing_manager.careGiver = care_giver
-                    existing_manager.save()
-                return existing_manager
             
             # Create new manager
             new_manager = PatientManager.create_patient_manager(

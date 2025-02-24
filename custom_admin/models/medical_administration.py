@@ -9,22 +9,28 @@ class MedicationAdministration(models.Model):
     medicationAdministrationId = models.AutoField(primary_key=True)
     patient =  models.ForeignKey(
 		Patient,
-		on_delete=models.CASCADE,
-		related_name='medication_ad'
-	)
+      on_delete=models.CASCADE,
+      related_name='medication_ad'
+    )
     medication =  models.ForeignKey(
 		Medication,
-		on_delete=models.CASCADE,
-		related_name='medication_ad'
-	)
+      on_delete=models.CASCADE,
+      related_name='medication_ad'
+    )
     careGiver =  models.ForeignKey(
 		User,
-		null=True,
-		blank=True,
-		on_delete=models.SET_NULL,
-		related_name='medication_ad'
-	)
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='medication_ad'
+    )
     timeAdministered = models.DateTimeField(null=True, blank=True)
+    STATUS_CHOICES = [
+        ('removed', 'Removed'),
+        ('paused', 'Paused'),
+        ("active", "Active")
+    ]
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='active')
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 
