@@ -12,12 +12,13 @@ class MedicationAdministrationSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all())
     timeAdministered = serializers.DateTimeField(required=True)
+    status = serializers.ChoiceField(required=True, choices=['removed', 'paused', 'active'])
 
     class Meta:
         model = MedicationAdministration
         fields = [
             "medicationAdministrationId", "patient", "medication",
-            "timeAdministered", "createdAt", "modifiedAt",
+            "timeAdministered", "createdAt", "modifiedAt", "status"
         ]
         read_only_fields = ["medicationAdministrationId", "createdAt", "modifiedAt"]
 
@@ -57,9 +58,10 @@ class MedicationAdministrationUpdateSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all(), required=False)
     timeAdministered = serializers.DateTimeField(required=False)
+    status = serializers.ChoiceField(required=False, choices=['removed', 'paused', 'active'])
 
     class Meta:
         model = MedicationAdministration
         fields = [
-            "patient", "medication", "timeAdministered"
+            "patient", "medication", "timeAdministered", "status"
         ]
