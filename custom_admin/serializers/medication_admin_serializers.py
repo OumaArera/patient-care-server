@@ -1,5 +1,4 @@
 from django.utils.timezone import timedelta
-from django.utils.timezone import now
 from rest_framework import serializers
 from custom_admin.models.medical_administration import MedicationAdministration
 from custom_admin.models.medication import Medication
@@ -8,7 +7,6 @@ from custom_admin.models.patient import Patient
 
 class MedicationAdministrationSerializer(serializers.ModelSerializer):
     """Serializer for creating MedicationAdministration records."""
-    
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     medication = serializers.PrimaryKeyRelatedField(queryset=Medication.objects.all())
     timeAdministered = serializers.DateTimeField(required=True)
