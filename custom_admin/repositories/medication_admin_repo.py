@@ -80,7 +80,6 @@ class MedicationAdministrationRepository:
                 "medication__diagnosis",
                 "medication__medicationTime",
                 "careGiver", 
-                "status",
                 "careGiver__firstName",
                 "careGiver__lastName",
                 "timeAdministered", 

@@ -20,6 +20,7 @@ class MedicationSerializer(serializers.ModelSerializer):
             "patient", "medicationName", "medicationCode", "equivalentTo",
             "instructions", "quantity", "diagnosis", "medicationTime", 
         ]
+        read_only_fields = ["status",  "createdAt", "modifiedAt"]
 
 
 class MedicationUpdateSerializer(serializers.ModelSerializer):
@@ -32,10 +33,13 @@ class MedicationUpdateSerializer(serializers.ModelSerializer):
     quantity = serializers.CharField(max_length=255, required=False)
     diagnosis = serializers.CharField(required=False)
     medicationTime = serializers.ListField(validators=[MedicationTimeValidator()], required=False)
+    status = serializers.ChoiceField(required=False, choices=['removed', 'paused', 'active'])
 
     class Meta:
         model = Medication
         fields = [
             "medicationName", "medicationCode", "equivalentTo", "patient",
-            "instructions", "quantity", "diagnosis", "medicationTime", 
+            "instructions", "quantity", "diagnosis", "medicationTime", "status"
         ]
+        
+        

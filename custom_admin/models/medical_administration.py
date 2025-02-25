@@ -25,12 +25,6 @@ class MedicationAdministration(models.Model):
       related_name='medication_ad'
     )
     timeAdministered = models.DateTimeField(null=True, blank=True)
-    STATUS_CHOICES = [
-        ('removed', 'Removed'),
-        ('paused', 'Paused'),
-        ("active", "Active")
-    ]
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='active')
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

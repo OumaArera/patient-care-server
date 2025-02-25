@@ -66,7 +66,7 @@ class MedicationRepository:
                 "medicationId", "medicationName", "medicationCode", "equivalentTo",
                 "instructions", "quantity", "diagnosis", "medicationTime",
                 "patient__patientId", "createdAt", "modifiedAt", "patient__firstName",
-                "patient__lastName",
+                "patient__lastName", "status",
             ).order_by("createdAt")
 
             # medications = paginator.paginate_queryset(queryset=medications, request=request)
