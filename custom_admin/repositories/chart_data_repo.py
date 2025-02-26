@@ -48,7 +48,6 @@ class ChartDataRepository:
         """Fetches and returns all the chart data with optional filtering."""
         try:
             field_mapping = {
-                "patient": "patient__patientId",
                 "timeToBeTaken": "timeToBeTaken__lte",
             }
 
@@ -64,8 +63,7 @@ class ChartDataRepository:
                 **adjusted_filters
             ).values(
                 "chartDataId", "behaviors", 
-                "behaviorsDescription", "timeToBeTaken",
-                "patient__firstName", "patient__lastName", 
+                "behaviorsDescription",
                 "patient__patientId", "vitals"
             ).order_by("createdAt")
             
