@@ -9,6 +9,11 @@ class PatientSerializer(serializers.ModelSerializer):
     middleNames = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     dateOfBirth = serializers.DateField()
     branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=True)
+    diagnosis = serializers.CharField(required=False)
+    allergies = serializers.CharField(required=False)
+    clinician = serializers.CharField(required=False)
+    room = serializers.CharField(required=False)
+    cart = serializers.CharField(required=False)
 
     def validate_dateOfBirth(self, value):
         """Ensure the patient is not older than 120 years."""
@@ -22,7 +27,7 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = [
             "patientId", "firstName", "middleNames", "lastName", "dateOfBirth",
-            "diagnosis", "allergies", "physicianName", "pcpOrDoctor", "branch", "room", "cart"
+            "diagnosis", "allergies", "physicianName", "pcpOrDoctor", "branch", "room", "cart", "clinician"
         ]
         read_only_fields = ["patientId"]
 
@@ -37,6 +42,7 @@ class PatientUpdateSerializer(serializers.ModelSerializer):
     allergies = serializers.CharField(required=False)
     physicianName = serializers.CharField(required=False)
     pcpOrDoctor = serializers.CharField(required=False)
+    clinician = serializers.CharField(required=False)
     room = serializers.CharField(required=False)
     cart = serializers.CharField(required=False)
     dateOfBirth = serializers.DateField(required=False)

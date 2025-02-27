@@ -10,10 +10,11 @@ class Patient(models.Model):
     middleNames = models.CharField(max_length=255, null=True, blank=True)
     lastName = models.CharField(max_length=255)
     dateOfBirth = models.DateField()
-    diagnosis = models.TextField()
-    allergies = models.TextField()
+    diagnosis = models.TextField(null=True, blank=True, default=None)
+    allergies = models.TextField(null=True, blank=True, default=None)
     physicianName = models.CharField(max_length=255)
     pcpOrDoctor = models.CharField(max_length=255)
+    clinician = models.CharField(max_length=255, null=True, blank=True, default=None)
     branch = models.ForeignKey(
 		Branch,
 		null=True,
@@ -21,8 +22,8 @@ class Patient(models.Model):
 		on_delete=models.SET_NULL,
 		related_name='patients'
 	)
-    room = models.CharField(max_length=255)
-    cart = models.CharField(max_length=255)
+    room = models.CharField(max_length=255, null=True, blank=True, default=None)
+    cart = models.CharField(max_length=255, null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

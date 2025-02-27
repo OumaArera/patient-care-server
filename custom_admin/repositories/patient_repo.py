@@ -82,6 +82,7 @@ class PatientRepository:
                 "cart",
                 "branch__branchId", 
                 "branch__branchName", 
+                "clinician",
                 "createdAt"
             ).order_by(
                 "createdAt"
