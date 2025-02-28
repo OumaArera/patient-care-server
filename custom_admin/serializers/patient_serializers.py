@@ -61,6 +61,6 @@ class PatientUpdateSerializer(serializers.ModelSerializer):
         model = Patient
         fields = [
             "firstName", "middleNames", "lastName", "dateOfBirth",
-            "diagnosis", "allergies", "physicianName", "pcpOrDoctor", "branch", "room", "cart"
+            "diagnosis", "allergies", "physicianName", "pcpOrDoctor", "branch", "room", "cart", "clinician"
         ]
         extra_kwargs = {field: {"required": False} for field in fields}

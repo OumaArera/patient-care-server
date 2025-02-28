@@ -108,6 +108,8 @@ class PatientRepository:
             patient.full_clean()
             patient.save()
             return patient
+        except NotFoundException as ex:
+            raise ex
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
