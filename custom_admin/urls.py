@@ -9,6 +9,7 @@ from custom_admin.views.medication_views import *
 from custom_admin.views.patient_manager_views import *
 from custom_admin.views.patient_views import *
 from custom_admin.views.update_views import *
+from custom_admin.views.vital_views import *
 
 urlpatterns=[
     path(
@@ -125,6 +126,17 @@ urlpatterns=[
         'appointments/<int:appointmentId>',
         AppointmentQueryByIDView.as_view(), 
         name='appointment-details'
+    ),
+
+    path(
+        'vitals',
+        VitalView.as_view(), 
+        name='vitals'
+    ),
+    path(
+        'vitals/<int:vitalId>',
+        VitalQueryByIDView.as_view(), 
+        name='vital-details'
     ),
 
 ]

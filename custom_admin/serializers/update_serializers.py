@@ -41,7 +41,7 @@ class UpdateSerializer(serializers.ModelSerializer):
 
             if existing_weekly_update:
                 raise serializers.ValidationError({
-                    "dateTaken": "A weekly update already exists for this patient in the selected week."
+                    "dateTaken": "A weekly update already exists for this resident in the selected week."
                 })
 
             # Weekly updates: weight and weightDeviation should not be required
@@ -64,7 +64,7 @@ class UpdateSerializer(serializers.ModelSerializer):
 
             if existing_monthly_update:
                 raise serializers.ValidationError({
-                    "dateTaken": "A monthly update already exists for this patient in the selected month."
+                    "dateTaken": "A monthly update already exists for this resident in the selected month."
                 })
 
             # Get the first and last day of the previous month

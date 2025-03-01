@@ -33,7 +33,7 @@ class Update(models.Model):
     @classmethod
     def create_update(cls, validated_data):
         """
-        Create a new charts instance from validated data.
+        Create a new update instance from validated data.
         """
         new_update = cls(**validated_data)
         return new_update

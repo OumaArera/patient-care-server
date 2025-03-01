@@ -23,7 +23,7 @@ class PatientManagerRepository:
             try:
                 patient = Patient.objects.get(pk=patient_id)
             except Patient.DoesNotExist:
-                raise NotFoundException(entity_name=f"Patient with ID {patient_id} not found")
+                raise NotFoundException(entity_name=f"Resident with ID {patient_id} not found")
 
             # Fetch care_giver instance
             try:
