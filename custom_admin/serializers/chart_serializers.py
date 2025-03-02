@@ -11,7 +11,7 @@ class ChartSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=True)
     behaviors = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
     behaviorsDescription = serializers.JSONField(validators=[MedicationTimeValidator()], required=True)
-    vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=True)
+    vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     dateTaken = serializers.DateTimeField(required=True)
 
     class Meta:

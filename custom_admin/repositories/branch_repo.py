@@ -8,6 +8,7 @@ from custom_admin.models.branch import Branch
 
 logger = logging.getLogger(__name__)
 
+
 class BranchRepository:
     """Handles the CRUD operations on the Branch model."""
 
