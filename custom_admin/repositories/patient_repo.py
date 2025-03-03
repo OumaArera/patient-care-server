@@ -82,6 +82,7 @@ class PatientRepository:
                 "pcpOrDoctor", 
                 "room", 
                 "cart",
+                "active",
                 "branch__branchId", 
                 "branch__branchName", 
                 "clinician",

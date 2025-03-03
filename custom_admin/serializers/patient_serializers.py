@@ -9,8 +9,8 @@ class PatientSerializer(serializers.ModelSerializer):
     middleNames = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     dateOfBirth = serializers.DateField()
     branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=True)
-    diagnosis = serializers.CharField(required=False)
-    allergies = serializers.CharField(required=False)
+    diagnosis = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    allergies = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     clinician = serializers.CharField(required=False)
     room = serializers.CharField(required=False)
     cart = serializers.CharField(required=False)
@@ -47,6 +47,7 @@ class PatientUpdateSerializer(serializers.ModelSerializer):
     cart = serializers.CharField(required=False)
     dateOfBirth = serializers.DateField(required=False)
     branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
+    active = serializers.BooleanField(required=False)
 
     def validate_dateOfBirth(self, value):
         """Ensure the patient is not older than 120 years."""
@@ -60,7 +61,7 @@ class PatientUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
         fields = [
-            "firstName", "middleNames", "lastName", "dateOfBirth",
+            "firstName", "middleNames", "lastName", "dateOfBirth", "active",
             "diagnosis", "allergies", "physicianName", "pcpOrDoctor", "branch", "room", "cart", "clinician"
         ]
         extra_kwargs = {field: {"required": False} for field in fields}

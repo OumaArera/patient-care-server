@@ -23,6 +23,7 @@ class PatientResponseDTO:
                 "branchName": patient.get("branch__branchName"),
                 "room": patient.get("room"),
                 "cart": patient.get("cart"),
+                "active": patient.get("active"),
             }
         else:
             return {
@@ -41,6 +42,7 @@ class PatientResponseDTO:
                 "branchName": patient.branch.branchName if patient.branch else None,
                 "room": patient.room,
                 "cart": patient.cart,
+                "active": patient.active,
             }
     
     @staticmethod
