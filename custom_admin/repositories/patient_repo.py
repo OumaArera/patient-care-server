@@ -64,6 +64,8 @@ class PatientRepository:
                 if value
             }
 
+            adjusted_filters["active"] = True 
+
             patients = Patient.objects.select_related(
                 "branch"
             ).filter(

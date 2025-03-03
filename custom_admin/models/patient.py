@@ -24,6 +24,7 @@ class Patient(models.Model):
 	)
     room = models.CharField(max_length=255, null=True, blank=True, default=None)
     cart = models.CharField(max_length=255, null=True, blank=True, default=None)
+    active = models.BooleanField(default=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 
