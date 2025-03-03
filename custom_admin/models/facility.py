@@ -11,9 +11,9 @@ class Facility(models.Model):
 
     def save(self, *args, **kwargs):
         """Ensure facilityName is unique, case insensitive, only during creation."""
-        if not self.pk:
-            if Facility.objects.filter(facilityName__iexact=self.facilityName).exists():
-                raise ValidationError(f"A facility with name {self.facilityName} already exists.")
+        if Facility.objects.exclude(pk=self.pk).filter(facilityName__iexact=self.facilityName).exists():
+            raise ValidationError(f"A facility with name '{self.facilityName}' already exists.")
+        
         super().save(*args, **kwargs)
 
 

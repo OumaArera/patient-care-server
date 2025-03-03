@@ -16,11 +16,11 @@ class Branch(models.Model):
     modifiedAt = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        """Ensure branchName is unique, case insensitive"""
-        if not self.pk:
-            if Branch.objects.filter(branchName__iexact=self.branchName).exists():
-                raise ValidationError(f"A branch with name {self.branchName} already exists.")
-            super().save(*args, **kwargs)
+        """Ensure branchName is unique, case insensitive for both creation and updates"""
+        if Branch.objects.exclude(pk=self.pk).filter(branchName__iexact=self.branchName).exists():
+            raise ValidationError(f"A branch with name '{self.branchName}' already exists.")
+        
+        super().save(*args, **kwargs)
 
     @classmethod
     def create_branch(cls, validated_data):
