@@ -12,13 +12,12 @@ from core.utils.format_errors import format_validation_errors as fve
 
 
 class PatientView(APIView):
-    
     def get_permissions(self):
         """Dynamically assigns permissions based on request method."""
         if self.request.method == "POST":
             self.permission_classes = [IsManager]
         elif self.request.method == "GET":
-            self.permission_classes = [IsManager]
+            self.permission_classes = [IsAllUsers]
         return [permission() for permission in self.permission_classes]
 
     def post(self, request):
@@ -91,9 +90,9 @@ class PatientQueryByIDView(APIView):
     
     def get_permissions(self):
         """Dynamically assigns permissions based on request method."""
-        if self.request.method in ["GET", "DELETE"]:
+        if self.request.method in ["DELETE"]:
             self.permission_classes = [IsManager]
-        elif self.request.method == "PUT":
+        elif self.request.method in ["GET", "PUT"]:
             self.permission_classes = [IsAllUsers]
         return [permission() for permission in self.permission_classes]
 
