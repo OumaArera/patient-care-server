@@ -2,6 +2,7 @@ from django.db import models # type: ignore
 from django.utils.translation import gettext_lazy as gtl # type: ignore
 from phonenumber_field.modelfields import PhoneNumberField # type: ignore
 from django.contrib.auth.models import AbstractUser, Group, Permission  # type: ignore
+# from custom_admin.models.branch import Branch
 
 
 class User(AbstractUser):
@@ -18,6 +19,14 @@ class User(AbstractUser):
     firstName = models.CharField(max_length=255)
     middleNames = models.CharField(max_length=255, null=True, blank=True)
     lastName = models.CharField(max_length=255)
+    branch = models.ForeignKey(
+		"custom_admin.Branch",
+		null=True,
+		blank=True,
+        default=None,
+		on_delete=models.SET_NULL,
+		related_name='users'
+	)
     email = models.EmailField(
         unique=True,
         error_messages={"unique": gtl("A user with that email already exists.")}

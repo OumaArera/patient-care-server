@@ -61,7 +61,7 @@ class ChartRepository:
 
 
             charts = Chart.objects.select_related(
-                "patient", "careGiver1", "careGiver2"
+                "patient", "careGiver"
             ).filter(
                 **adjusted_filters
             ).values(

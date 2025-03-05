@@ -3,6 +3,7 @@ from core.utils.generate_random_password import generate_random_password
 from users.repository import UserRepository
 from core.utils.email_html import EmailHtmlContent
 from users.serializers import UserSerializer
+from core.dtos.user_dto import UserResponseDTO
 
 
 class UserService:
@@ -35,6 +36,7 @@ class UserService:
     def get_user_by_username(username):
         try:
             user = UserRepository.get_user_by_username(username=username)
+            user = UserResponseDTO.transform_user(user)
             return user
         except Exception as ex:
             raise ex
@@ -110,7 +112,9 @@ class UserService:
     def get_user_by_id(user_id):
         """Fetches the details of a user by ID."""
         try:
-            return UserRepository.get_user_by_user_id(user_id=user_id)
+            user = UserRepository.get_user_by_user_id(user_id=user_id)
+            user = UserResponseDTO.transform_user(user)
+            return user
         except Exception as ex:
             raise ex
         
@@ -119,7 +123,9 @@ class UserService:
     def update_user(user_id, user_data):
         """Updates an existing user."""
         try:
-            return UserRepository.update_user(user_id=user_id, user_data=user_data)
+            user = UserRepository.update_user(user_id=user_id, user_data=user_data)
+            user = UserResponseDTO.transform_user(user)
+            return user
         except Exception as ex:
             raise ex
 

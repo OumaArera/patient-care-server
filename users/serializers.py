@@ -1,9 +1,11 @@
+from custom_admin.models.branch import Branch
 import phonenumbers  # type: ignore
 from rest_framework import serializers  # type: ignore
 from users.models import User
 import re
 
 class UserSerializer(serializers.ModelSerializer):
+    branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
     class Meta:
         model = User
         fields = [
@@ -15,7 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
             'phoneNumber',
             'sex',
             'role',
-            'status'
+            'status',
+            "branch"
         ]
 
 class UserDeserializer(serializers.Serializer):
@@ -27,6 +30,7 @@ class UserDeserializer(serializers.Serializer):
     phoneNumber = serializers.CharField(required=True)
     sex = serializers.ChoiceField(choices=["male", "female", "other"], required=True)
     role = serializers.ChoiceField(choices=["care giver", "manager", "superuser"], required=True)
+    branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
 
     def validate_phoneNumber(self, value):
         """Validates that the phone number is a valid international number """
@@ -48,6 +52,7 @@ class UpdateUserDeserializer(serializers.Serializer):
     phoneNumber = serializers.CharField(required=False)
     sex = serializers.ChoiceField(choices=["male", "female", "other"], required=False)
     role = serializers.ChoiceField(choices=["care giver", "manager", "superuser"], required=False)
+    branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
 
     def validate_phoneNumber(self, value):
         """Validates that the phone number is a valid international number"""

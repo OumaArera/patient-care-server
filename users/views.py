@@ -113,12 +113,11 @@ class UserQueryByIDView(APIView):
             user = UserService.get_user_by_id(
                 user_id=userId
             )
-            serialized_user = UserSerializer(instance=user)
             return Response(
                 APIResponse.success(
                     code="00",
                     message="User fetched successfully",
-                    data=serialized_user.data
+                    data=user
                 ),
                 status=status.HTTP_200_OK
             )
@@ -144,12 +143,11 @@ class UserQueryByIDView(APIView):
                     user_id=userId,
                     user_data=validated_data
                 )
-                serialized_user = UserSerializer(instance=updated_user)
                 return Response(
                     APIResponse.success(
                         code="00",
                         message="User updated successfully",
-                        data=serialized_user.data
+                        data=updated_user
                     ),
                     status=status.HTTP_200_OK
                 )

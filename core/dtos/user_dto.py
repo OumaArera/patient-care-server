@@ -20,9 +20,11 @@ class UserResponseDTO:
                 "phoneNumber": str(data.get("phoneNumber")),
                 "sex": data.get("sex"),
                 "role": data.get("role"),
-                "status": data.get("status")
+                "status": data.get("status"),
+                "branchName": data.get("branch__branchName"),
+                "branchId": data.get("branch__branchId"),
+                "facilityName": data.get("branch__facility__facilityName"),
             }
-        
         else:
             return {
                 "userId": data.id,
@@ -35,7 +37,11 @@ class UserResponseDTO:
                 "phoneNumber": str(data.phoneNumber),
                 "sex": data.sex,
                 "role": data.role,
-                "status": data.status
+                "status": data.status,
+                "branchName": data.branch.branchName if data.branch else None,
+                "branchId": data.branch.branchId if data.branch else None,
+                "facilityName": data.branch.facility.facilityName\
+                    if data.branch and data.branch.facility else None,
             }
 
     

@@ -127,7 +127,9 @@ class UserRepository:
             }
 
             # Query the database using filters
-            users = User.objects.filter(
+            users = User.objects.select_related(
+                "branch"
+            ).filter(
                 **adjusted_filters
             ).values(
                 "id",
@@ -138,7 +140,10 @@ class UserRepository:
                 "phoneNumber",
                 "sex",
                 "role",
-                "status"
+                "status",
+                "branch__branchName",
+                "branch__branchId",
+                "branch__facility__facilityName"
             ).order_by('createdAt')
             # users = paginator.paginate_queryset(queryset=users, request=request)
             return [UserResponseDTO.transform_user(user) for user in users]
@@ -184,6 +189,8 @@ class UserRepository:
             user.full_clean()
             user.save()
             return user
+        except NotFoundException as ex:
+            raise ex 
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:

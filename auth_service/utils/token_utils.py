@@ -11,6 +11,7 @@ def generate_jwt_token(user):
 	payload = {
 		"user_id": user.id,
 		"username": user.username,
+		"branch": user.branch.branchId if user.branch else None,
 		"fullName": f"{user.firstName} {user.lastName}",
 		"role": user.role,
 		"iss": JWT_ISSUER,
