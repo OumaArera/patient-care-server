@@ -26,6 +26,7 @@ class ResetPasswordView(APIView):
 					message="'username' field and value are required. Please check and try again")
 			
 			new_password = generate_random_password()
+			print(new_password)
 			# new_password = "Password2025!"
 			updated_user = UserRepository.update_user_password(
 				username=username,

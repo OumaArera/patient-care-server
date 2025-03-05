@@ -181,13 +181,25 @@ class UserRepository:
 
     @staticmethod
     def update_user(user_id, user_data):
-        """Updates the details of an existing user."""
+        """Updates the details of an existing user, ensuring the password is not modified accidentally."""
         try:
             user = UserRepository.get_user_by_user_id(user_id=user_id)
+
+            # Remove password from updates to prevent accidental override
+            password = user_data.pop("password", None)
+
+            # Update other fields
             for field, value in user_data.items():
                 setattr(user, field, value)
+
             user.full_clean()
             user.save()
+
+            # If password was provided, handle it separately
+            if password:
+                user.set_password(password)
+                user.save()
+
             return user
         except NotFoundException as ex:
             raise ex 
@@ -199,7 +211,8 @@ class UserRepository:
         except Exception as ex:
             logger.error(f"Unexpected error while updating user: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while updating user.")
-
+        
+        
     @staticmethod
     def delete_user(user_id):
         """Deletes a user record by ID."""
