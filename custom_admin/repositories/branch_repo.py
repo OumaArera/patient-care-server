@@ -64,7 +64,7 @@ class BranchRepository:
                 "facility"
             ).filter(**adjusted_filters).values(
                 "branchId", "branchName", "branchAddress", "facility_id", "createdAt",
-                'facility__facilityName'
+                'facility__facilityName', 'phoneNumber', 'email', 'fax'
             ).order_by("createdAt")
             
             # branches = paginator.paginate_queryset(queryset=branches, request=request)

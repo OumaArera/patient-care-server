@@ -23,7 +23,7 @@ class Appointment(models.Model):
         ("Other", "Other")
     ]
     type = models.CharField(max_length=200, choices=TYPE_CHOICES)
-    nextAppointmentDate = models.DateField(null=True, blank=True)
+    nextAppointmentDate = models.DateField(null=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

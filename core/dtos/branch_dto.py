@@ -13,6 +13,9 @@ class BranchResponseDTO:
                 "branchId": branch.get('branchId'),
                 "branchName": branch.get('branchName'),
                 "branchAddress": branch.get('branchAddress'),
+                "phoneNumber": branch.get('phoneNumber'),
+                "email": branch.get('email'),
+                "fax": branch.get("fax"),
                 "facilityId": branch.get('facility_id'),
                 "facilityName": branch.get("facility__facilityName")
             }
@@ -21,6 +24,9 @@ class BranchResponseDTO:
                 "branchId": branch.branchId,
                 "branchName": branch.branchName,
                 "branchAddress": branch.branchAddress,
+                "phoneNumber": branch.phoneNumber,
+                "email": branch.email,
+                "fax": branch.fax,
                 "facility": branch.facility.facilityId,
                 "facilityName": branch.facility.facilityName
             }

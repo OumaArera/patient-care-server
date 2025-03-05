@@ -1,6 +1,8 @@
 from django.db import models # type: ignore
 from custom_admin.models.facility import Facility  # type: ignore
 from django.core.exceptions import ValidationError # type: ignore
+from phonenumber_field.modelfields import PhoneNumberField # type: ignore
+from django.utils.translation import gettext_lazy as gtl # type: ignore
 
 class Branch(models.Model):
     """Create branches"""
@@ -12,6 +14,22 @@ class Branch(models.Model):
 	)
     branchName = models.CharField(max_length=255)
     branchAddress = models.CharField(max_length=255)
+    phoneNumber = models.CharField(
+        unique=True,
+        null=True, 
+        blank=True, 
+        default=None,
+        error_messages={"unique": gtl("A branch with the provided phone number already exists")},
+        help_text=gtl("Enter a valid phone number"),
+    )
+    email = models.EmailField(
+        unique=True,
+        null=True, 
+        blank=True, 
+        default=None,
+        error_messages={"unique": gtl("A branch with that email already exists.")},
+    )
+    fax = models.CharField(max_length=255, null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

@@ -13,7 +13,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         'Clinician', "Dentist", "Peer Support Counsellor",
         "Counsellor", "Specialist", "Other"
     ], required=True)
-    nextAppointmentDate = serializers.DateField(required=True)
+    nextAppointmentDate = serializers.DateField(required=True, allow_null=True)
     dateTaken = serializers.DateField(required=True)
 
     class Meta:
