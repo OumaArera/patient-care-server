@@ -77,7 +77,7 @@ class VitalRepository:
                 "patient__patientId",
                 "patient__firstName",
                 "patient__lastName"
-            ).order_by("-createdAt")
+            ).order_by("dateTaken")
 
             # vitals = paginator.paginate_queryset(queryset=vitals, request=request)
             return [VitalResponseDTO.transform_vital(vital) for vital in vitals]
