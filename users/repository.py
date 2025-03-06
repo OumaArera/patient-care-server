@@ -3,7 +3,6 @@ from core.db_exceptions import *
 from django.db import IntegrityError, DatabaseError # type: ignore
 from django.core.exceptions import ObjectDoesNotExist, ValidationError # type: ignore
 from core.dtos.user_dto import UserResponseDTO
-from core.paginator import paginator
 from users.models import User 
 
 logger = logging.getLogger(__name__)
@@ -145,7 +144,6 @@ class UserRepository:
                 "branch__branchId",
                 "branch__facility__facilityName"
             ).order_by('createdAt')
-            # users = paginator.paginate_queryset(queryset=users, request=request)
             return [UserResponseDTO.transform_user(user) for user in users]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching users: {ex}", exc_info=True)

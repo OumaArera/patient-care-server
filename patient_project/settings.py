@@ -52,7 +52,7 @@ DEFAULT_PASSWORD = os.environ.get("DEFAULT_PASSWORD")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 

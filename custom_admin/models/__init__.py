@@ -9,3 +9,4 @@ from custom_admin.models.chart_data import ChartData
 from custom_admin.models.patient_manager import PatientManager
 from custom_admin.models.appointment import Appointment
 from custom_admin.models.vitals import Vital
+from custom_admin.models.late_submission import LateSubmission

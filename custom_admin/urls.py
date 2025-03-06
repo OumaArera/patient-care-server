@@ -4,6 +4,7 @@ from custom_admin.views.branch_views import *
 from custom_admin.views.chart_data_views import *
 from custom_admin.views.chart_views import *
 from custom_admin.views.facility_views import *
+from custom_admin.views.late_submission_views import *
 from custom_admin.views.medication_admin_views import *
 from custom_admin.views.medication_views import *
 from custom_admin.views.patient_manager_views import *
@@ -137,6 +138,16 @@ urlpatterns=[
         'vitals/<int:vitalId>',
         VitalQueryByIDView.as_view(), 
         name='vital-details'
+    ),
+    path(
+        'late-submissions',
+        LateSubmissionView.as_view(), 
+        name='late-submissions'
+    ),
+    path(
+        'late-submissions/<int:submissionId>',
+        LateSubmissionQueryByIDView.as_view(), 
+        name='late-submission-details'
     ),
 
 ]
