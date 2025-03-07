@@ -26,6 +26,7 @@ class ChartResponseDTO:
                 "behaviors": chart.get('behaviors'),
                 "vitals": chart.get("vitals"),
                 "reasonEdited": chart.get("reasonEdited"),
+                "reasonFilledLate": chart.get("reasonFilledLate"),
                 "behaviorsDescription": chart.get('behaviorsDescription'),
                 "dateTaken": chart.get('dateTaken'),
                 "createdAt": chart.get('createdAt'),

@@ -13,10 +13,11 @@ class ChartSerializer(serializers.ModelSerializer):
     behaviorsDescription = serializers.JSONField(validators=[MedicationTimeValidator()], required=True)
     vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     dateTaken = serializers.DateTimeField(required=True)
+    reasonFilledLate = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta:
         model = Chart
-        fields = ["patient", "vitals", "behaviors", "behaviorsDescription", "dateTaken"]
+        fields = ["patient", "vitals", "behaviors", "behaviorsDescription", "dateTaken", "reasonFilledLate"]
 
     def validate(self, data):
         patient = data.get("patient")

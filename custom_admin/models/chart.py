@@ -28,6 +28,7 @@ class Chart(models.Model):
       null=True)
     dateTaken = models.DateTimeField()
     reasonEdited = models.TextField(null=True, blank=True, default=None)
+    reasonFilledLate = models.TextField(null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 
