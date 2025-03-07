@@ -52,7 +52,8 @@ class VitalUpdateSerializer(serializers.ModelSerializer):
     oxygenSaturation = serializers.FloatField(required=False)
     pain = serializers.CharField(allow_blank=True, required=False)
     dateTaken = serializers.DateTimeField(required=False)
+    reasonEdited = serializers.CharField(required=True)
     
     class Meta:
         model = Vital
-        fields = ["patient", "bloodPressure", "temperature", "pulse", "oxygenSaturation", "pain", "dateTaken"]
+        fields = ["patient", "bloodPressure", "temperature", "pulse", "oxygenSaturation", "pain", "dateTaken", "reasonEdited"]

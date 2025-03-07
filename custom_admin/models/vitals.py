@@ -17,6 +17,7 @@ class Vital(models.Model):
     oxygenSaturation = models.FloatField()
     pain = models.TextField(null=True, blank=True, default=None)
     dateTaken = models.DateTimeField()
+    reasonEdited = models.TextField(null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 
