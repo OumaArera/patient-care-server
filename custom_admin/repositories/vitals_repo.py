@@ -74,6 +74,7 @@ class VitalRepository:
                 "dateTaken",
                 "createdAt",
                 "modifiedAt",
+                "reasonEdited", 
                 "patient__patientId",
                 "patient__firstName",
                 "patient__lastName"

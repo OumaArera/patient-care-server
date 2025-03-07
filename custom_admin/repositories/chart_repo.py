@@ -74,7 +74,8 @@ class ChartRepository:
                 "patient__branch__branchName",
                 "patient__branch__facility__facilityName",
                 "careGiver__firstName", 
-                "careGiver__lastName", 
+                "careGiver__lastName",
+                "reasonEdited", 
                 "createdAt", 
                 "modifiedAt"
             ).order_by("createdAt")

@@ -23,6 +23,7 @@ class VitalResponseDTO:
                 "pulse": vital.get("pulse"),
                 "oxygenSaturation": vital.get("oxygenSaturation"),
                 "pain": vital.get("pain"),
+                "reasonEdited": vital.get("reasonEdited"),
                 "dateTaken": vital.get("dateTaken"),
                 "createdAt": vital.get("createdAt"),
                 "modifiedAt": vital.get("modifiedAt"),
@@ -41,6 +42,7 @@ class VitalResponseDTO:
             "pulse": vital.pulse,
             "oxygenSaturation": vital.oxygenSaturation,
             "pain": vital.pain,
+            "reasonEdited": vital.reasonEdited,
             "dateTaken": vital.dateTaken.strftime("%Y-%m-%d")
                 if isinstance(vital.dateTaken, datetime) else vital.dateTaken,
             "createdAt": vital.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
