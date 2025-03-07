@@ -39,7 +39,7 @@ class ChartUpdateSerializer(serializers.ModelSerializer):
     behaviorsDescription = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     vitals = serializers.JSONField(validators=[NonEmptyListValidator()], required=False)
     dateTaken = serializers.DateTimeField(required=False)
-    reasonEdited = serializers.CharField(required=True)
+    reasonEdited = serializers.CharField(required=True, allow_null=True, allow_blank=True)
 
     class Meta:
         model = Chart

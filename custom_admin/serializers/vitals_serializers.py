@@ -1,5 +1,3 @@
-from datetime import datetime
-from django.utils.timezone import make_aware
 from rest_framework import serializers
 from custom_admin.models.vitals import Vital
 from custom_admin.models.patient import Patient
@@ -52,7 +50,7 @@ class VitalUpdateSerializer(serializers.ModelSerializer):
     oxygenSaturation = serializers.FloatField(required=False)
     pain = serializers.CharField(allow_blank=True, required=False)
     dateTaken = serializers.DateTimeField(required=False)
-    reasonEdited = serializers.CharField(required=True)
+    reasonEdited = serializers.CharField(required=True, allow_null=True, allow_blank=True)
     
     class Meta:
         model = Vital
