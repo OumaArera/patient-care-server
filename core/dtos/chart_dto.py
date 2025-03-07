@@ -53,6 +53,7 @@ class ChartResponseDTO:
                 "behaviorsDescription": chart.behaviorsDescription,
                 "vitals": chart.vitals,
                 "reasonEdited": chart.reasonEdited,
+                "reasonFilledLate": chart.reasonFilledLate,
                 "dateTaken": chart.dateTaken,
                 "createdAt": chart.createdAt,
                 "modifiedAt": chart.modifiedAt,
