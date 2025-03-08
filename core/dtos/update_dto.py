@@ -28,6 +28,8 @@ class UpdateResponseDTO:
                     update.get("careGiver__firstName"),
                     update.get("careGiver__lastName")
                 ),
+                "reasonEdited": update.get("reasonEdited"),
+                "reasonFilledLate" : update.get("reasonFilledLate"),
                 "notes": update.get("notes"),
                 "dateTaken": update.get("dateTaken"),
                 "createdAt": update.get("createdAt"),
@@ -51,6 +53,8 @@ class UpdateResponseDTO:
             "branchName": update.patient.branch.branchName\
                 if update.patient and update.patient.branch else None,
             "careGiverId": update.careGiver.id if update.careGiver else None,
+            "reasonEdited": update.reasonEdited,
+            "reasonFilledLate" : update.reasonFilledLate,
             "notes": update.notes,
             "dateTaken": update.dateTaken.strftime("%Y-%m-%d")\
                 if isinstance(update.dateTaken, datetime) else update.dateTaken,

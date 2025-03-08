@@ -82,7 +82,9 @@ class UpdateRepository:
                 "patient__branch__branchName",
                 "careGiver",
                 "careGiver__firstName",
-                "careGiver__lastName"
+                "careGiver__lastName",
+                "reasonEdited",
+                "reasonFilledLate"
             ).order_by(
                 "-createdAt"
             )
