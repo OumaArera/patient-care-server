@@ -30,8 +30,7 @@ class LateSubmission(models.Model):
     TYPE_CHOICES = [
         ('charts', 'Charts'),
         ('medication', 'Medication'),
-        ('weekly update', 'Weekly Updates'),
-        ('monthly update', 'Monthly Update'),
+        ('updates', 'Updates'),
         ('vital', 'Vital')
     ]
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)

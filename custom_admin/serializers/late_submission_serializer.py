@@ -7,7 +7,7 @@ class LateSubmissionSerializer(serializers.ModelSerializer):
     """Serializer for creating a LateSubmission instance."""
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
     careGiver = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=True)
-    type = serializers.ChoiceField(required=True, choices=['charts', 'medication', 'weekly update', 'monthly update', 'vital'])
+    type = serializers.ChoiceField(required=True, choices=['charts', 'medication', 'updates', 'vital'])
     start = serializers.DateTimeField(required=True)
     duration = serializers.IntegerField(required=True)
     reasonForLateSubmission = serializers.CharField(required=True)
@@ -26,7 +26,7 @@ class LateSubmissionUpdateSerializer(serializers.ModelSerializer):
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), required=False)
     manager = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
     careGiver = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
-    type = serializers.ChoiceField(required=False, choices=['charts', 'medication', 'weekly update', 'monthly update', 'vital'])
+    type = serializers.ChoiceField(required=False, choices=['charts', 'medication', 'updates', 'vital'])
     start = serializers.DateTimeField(required=False)
     duration = serializers.IntegerField(required=False)
     reasonForLateSubmission = serializers.CharField(required=False)
