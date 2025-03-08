@@ -77,6 +77,8 @@ class ChartRepository:
                 "careGiver__lastName",
                 "reasonEdited", 
                 "reasonFilledLate",
+                "status",
+                "declineReason",
                 "createdAt", 
                 "modifiedAt"
             ).order_by("createdAt")
