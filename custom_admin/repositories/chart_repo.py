@@ -4,6 +4,8 @@ from django.db import IntegrityError, DatabaseError  # type: ignore
 from django.core.exceptions import ValidationError  # type: ignore
 from core.dtos.chart_dto import ChartResponseDTO
 from core.paginator import paginator
+from core.utils.email_html import EmailHtmlContent
+from core.utils.send_email import send_email
 from custom_admin.models.chart import Chart
 
 logger = logging.getLogger(__name__)
@@ -97,11 +99,32 @@ class ChartRepository:
         """Updates the details of an existing chart entry."""
         try:
             chart = ChartRepository.get_chart_by_id(chart_id=chart_id)
+            status_updated = False 
+
             for field, value in chart_data.items():
-                if hasattr(chart, field):  
+                if hasattr(chart, field):
+                    if field == "status" and getattr(chart, field) != value:
+                        status_updated = True
                     setattr(chart, field, value)
+
             chart.full_clean()
             chart.save()
+
+            if status_updated:
+                patientName = f"{chart.patient.firstName} {chart.patient.lastName}"
+                html_body = EmailHtmlContent.chart_update_html(
+                    chart.careGiver.firstName,
+                    patientName,
+                    chart.status
+                )
+
+                send_email(
+                    recipient_email=chart.careGiver.username,
+                    recipient_name=chart.careGiver.firstName,
+                    subject=f"Chart Update for {chart.patient.firstName} {chart.patient.lastName}",
+                    html_content=html_body
+                )
+
             return chart
         except NotFoundException as ex:
             raise ex
