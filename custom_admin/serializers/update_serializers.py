@@ -101,7 +101,7 @@ class UpdateUpdateSerializer(serializers.ModelSerializer):
     dateTaken = serializers.DateField(required=False)
     type = serializers.ChoiceField(required=False, choices=['weekly', 'monthly'])
     weight = serializers.IntegerField(min_value=0, required=False)
-    reasonEdited = serializers.CharField(required=True, allow_null=True, allow_blank=True)
+    reasonEdited = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     status = serializers.ChoiceField(required=False, choices=['pending', 'approved', 'declined', 'updated'])
     declineReason = serializers.CharField(required=False)
 
