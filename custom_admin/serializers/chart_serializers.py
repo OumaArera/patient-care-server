@@ -21,27 +21,15 @@ class ChartSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         patient = data.get("patient")
-        date_taken = localtime(data.get("dateTaken"))
-
-        # Extract time portion
-        hour = date_taken.hour
-
-        # Ensure time is T04 or T03
-        if hour not in [3, 4]:
-            date_taken = date_taken.replace(hour=4, minute=0, second=0, microsecond=0)
-
-        # Convert to date for comparison
-        date_only = date_taken.date()
+        date_taken = localtime(data.get("dateTaken")).date() 
 
         if Chart.objects.filter(
             Q(patient=patient) & 
-            Q(dateTaken__date=date_only)
+            Q(dateTaken__date=date_taken)
         ).exists():
             raise serializers.ValidationError(
                 "A chart entry for this resident already exists on this date."
             )
-        
-        data["dateTaken"] = date_taken
         return data
 
 
