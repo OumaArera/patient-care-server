@@ -30,7 +30,8 @@ class Chart(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('approved', 'Approved'),
-        ('declined', 'Declined')
+        ('declined', 'Declined'),
+        ('updated', 'Updated')
     ]
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="pending")
     declineReason = models.TextField(null=True, blank=True, default=None)
