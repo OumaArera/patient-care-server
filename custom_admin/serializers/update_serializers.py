@@ -19,9 +19,12 @@ class UpdateSerializer(serializers.ModelSerializer):
         model = Update
         fields = [
             "updateId", "patient", "notes", "dateTaken", "weight", "type", "weightDeviation",
-            "createdAt", "modifiedAt", "reasonEdited", "reasonFilledLate"
+            "createdAt", "modifiedAt", "reasonEdited", "reasonFilledLate", "status", "declineReason"
         ]
-        read_only_fields = ["updateId", "createdAt", "modifiedAt", "weightDeviation", "reasonEdited"]
+        read_only_fields = [
+            "updateId", "createdAt", "modifiedAt", "weightDeviation", "reasonEdited",
+            "status", "declineReason"
+        ]
 
     def validate(self, data):
         """Perform validation to ensure monthly updates are unique per month, and weekly updates per week."""
@@ -99,9 +102,12 @@ class UpdateUpdateSerializer(serializers.ModelSerializer):
     type = serializers.ChoiceField(required=False, choices=['weekly', 'monthly'])
     weight = serializers.IntegerField(min_value=0, required=False)
     reasonEdited = serializers.CharField(required=True, allow_null=True, allow_blank=True)
+    status = serializers.ChoiceField(required=False, choices=['pending', 'approved', 'declined', 'updated'])
+    declineReason = serializers.CharField(required=False)
 
     class Meta:
         model = Update
         fields = [
-            "patient", "notes", "dateTaken", "weight", "type", "reasonEdited"
+            "patient", "notes", "dateTaken", "weight", "type", "reasonEdited",
+            "status", "declineReason"
         ]

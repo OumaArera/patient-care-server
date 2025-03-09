@@ -32,6 +32,8 @@ class UpdateResponseDTO:
                 "reasonFilledLate" : update.get("reasonFilledLate"),
                 "notes": update.get("notes"),
                 "dateTaken": update.get("dateTaken"),
+                "declineReason": update.get("declineReason"),
+                "status": update.get("status"),
                 "createdAt": update.get("createdAt"),
                 "modifiedAt": update.get("modifiedAt"),
             }
@@ -58,6 +60,8 @@ class UpdateResponseDTO:
             "notes": update.notes,
             "dateTaken": update.dateTaken.strftime("%Y-%m-%d")\
                 if isinstance(update.dateTaken, datetime) else update.dateTaken,
+            "declineReason": update.declineReason,
+            "status": update.status,
             "createdAt": update.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
             "modifiedAt": update.modifiedAt.strftime("%Y-%m-%d %H:%M:%S"),
         }

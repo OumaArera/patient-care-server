@@ -25,6 +25,8 @@ class VitalResponseDTO:
                 "pain": vital.get("pain"),
                 "reasonEdited": vital.get("reasonEdited"),
                 "dateTaken": vital.get("dateTaken"),
+                "declineReason": vital.get("declineReason"),
+                "status": vital.get("status"),
                 "createdAt": vital.get("createdAt"),
                 "modifiedAt": vital.get("modifiedAt"),
             }
@@ -45,6 +47,8 @@ class VitalResponseDTO:
             "reasonEdited": vital.reasonEdited,
             "dateTaken": vital.dateTaken.strftime("%Y-%m-%d")
                 if isinstance(vital.dateTaken, datetime) else vital.dateTaken,
+            "declineReason": vital.declineReason,
+            "status": vital.status,
             "createdAt": vital.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
             "modifiedAt": vital.modifiedAt.strftime("%Y-%m-%d %H:%M:%S"),
         }

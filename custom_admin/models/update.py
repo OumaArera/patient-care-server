@@ -29,6 +29,14 @@ class Update(models.Model):
     weightDeviation = models.IntegerField(null=True, blank=True, default=0.0)
     reasonEdited = models.TextField(null=True, blank=True, default=None)
     reasonFilledLate = models.TextField(null=True, blank=True, default=None)
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('declined', 'Declined'),
+        ('updated', 'Updated')
+    ]
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="pending")
+    declineReason = models.TextField(null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

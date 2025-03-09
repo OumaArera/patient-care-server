@@ -84,9 +84,11 @@ class UpdateRepository:
                 "careGiver__firstName",
                 "careGiver__lastName",
                 "reasonEdited",
-                "reasonFilledLate"
+                "reasonFilledLate",
+                "declineReason",
+                "status"
             ).order_by(
-                "-createdAt"
+                "dateTaken"
             )
 
             updates = paginator.paginate_queryset(queryset=updates, request=request)

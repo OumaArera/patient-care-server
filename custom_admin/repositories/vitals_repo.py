@@ -53,7 +53,8 @@ class VitalRepository:
                 "bloodPressure": "bloodPressure__icontains",
                 "temperature": "temperature",
                 "pulse": "pulse",
-                "oxygenSaturation": "oxygenSaturation"
+                "oxygenSaturation": "oxygenSaturation",
+                "status": "status__icontains"
             }
 
             adjusted_filters = {
@@ -77,7 +78,9 @@ class VitalRepository:
                 "reasonEdited", 
                 "patient__patientId",
                 "patient__firstName",
-                "patient__lastName"
+                "patient__lastName",
+                "declineReason",
+                "status"
             ).order_by("dateTaken")
 
             # vitals = paginator.paginate_queryset(queryset=vitals, request=request)
