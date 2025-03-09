@@ -16,9 +16,10 @@ class VitalSerializer(serializers.ModelSerializer):
         model = Vital
         fields = [
             "vitalId", "patient", "bloodPressure", "temperature", "pulse", 
-            "oxygenSaturation", "pain", "dateTaken", "createdAt", "modifiedAt"
+            "oxygenSaturation", "pain", "dateTaken", "createdAt", "modifiedAt",
+            "status", "declineReason"
         ]
-        read_only_fields = ["vitalId", "createdAt", "modifiedAt"]
+        read_only_fields = ["vitalId", "createdAt", "modifiedAt", "status", "declineReason"]
     
     def validate(self, data):
         """Ensure that a patient does not have another vital entry for the same date."""
@@ -51,7 +52,13 @@ class VitalUpdateSerializer(serializers.ModelSerializer):
     pain = serializers.CharField(allow_blank=True, required=False)
     dateTaken = serializers.DateTimeField(required=False)
     reasonEdited = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    status = serializers.ChoiceField(required=False, choices=['pending', 'approved', 'declined', 'updated'])
+    declineReason = serializers.CharField(required=False)
     
     class Meta:
         model = Vital
-        fields = ["patient", "bloodPressure", "temperature", "pulse", "oxygenSaturation", "pain", "dateTaken", "reasonEdited"]
+        fields = [
+            "patient", "bloodPressure", "temperature", "pulse", 
+            "oxygenSaturation", "pain", "dateTaken", "reasonEdited",
+            "status", "declineReason"
+        ]
