@@ -80,6 +80,7 @@ class VitalRepository:
                 "patient__firstName",
                 "patient__lastName",
                 "declineReason",
+                "reasonFilledLate",
                 "status"
             ).order_by("dateTaken")
 
@@ -97,11 +98,16 @@ class VitalRepository:
         """Updates the details of an existing vital."""
         try:
             vital = VitalRepository.get_vital_by_id(vital_id=vital_id)
+            status_updated = False
             for field, value in vital_data.items():
                 if hasattr(vital, field):
+                    if field == "status" and getattr(vital, field) != value:
+                        status_updated = True
                     setattr(vital, field, value)
+            
             vital.full_clean()
             vital.save()
+            
             return vital
         except NotFoundException as ex:
             raise ex

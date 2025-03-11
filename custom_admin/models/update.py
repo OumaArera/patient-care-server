@@ -1,5 +1,4 @@
 from django.db import models # type: ignore
-
 from custom_admin.models.patient import Patient
 from users.models import User  # type: ignore
 

@@ -18,6 +18,7 @@ class Vital(models.Model):
     pain = models.TextField(null=True, blank=True, default=None)
     dateTaken = models.DateTimeField()
     reasonEdited = models.TextField(null=True, blank=True, default=None)
+    reasonFilledLate = models.TextField(null=True, blank=True, default=None)
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('approved', 'Approved'),
