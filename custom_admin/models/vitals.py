@@ -1,7 +1,7 @@
 from django.db import models # type: ignore
 
 from custom_admin.models.patient import Patient
-from users.models import User  # type: ignore
+from users.models import User
 
 class Vital(models.Model):
     """Create vitals"""
@@ -9,6 +9,14 @@ class Vital(models.Model):
     patient =  models.ForeignKey(
       Patient,
       on_delete=models.CASCADE,
+      related_name='vitals'
+    )
+    careGiver =  models.ForeignKey(
+      User,
+      default=None,
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
       related_name='vitals'
     )
     bloodPressure = models.CharField(max_length=100)

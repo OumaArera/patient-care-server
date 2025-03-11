@@ -7,15 +7,17 @@ class Chart(models.Model):
     """Create charts"""
     chartId = models.AutoField(primary_key=True)
     patient =  models.ForeignKey(
-		Patient,
-		on_delete=models.CASCADE,
-		related_name='charts'
-	)
+      Patient,
+      on_delete=models.CASCADE,
+      related_name='charts'
+    )
     careGiver =  models.ForeignKey(
-		User,
-		on_delete=models.CASCADE,
-		related_name='charts'
-	)
+      User,
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='charts'
+    )
     behaviors = models.JSONField()
     behaviorsDescription = models.JSONField(
       default=list,

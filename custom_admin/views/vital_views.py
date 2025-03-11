@@ -26,7 +26,7 @@ class VitalView(APIView):
             deserializer = VitalSerializer(data=request.data)
             if deserializer.is_valid():
                 validated_data = deserializer.validated_data
-                # validated_data['careGiver'] = request.user
+                validated_data['careGiver'] = request.user
                 new_vital = VitalService.create_vital(data=validated_data)
                 return Response(
                     APIResponse.success(

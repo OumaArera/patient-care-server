@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError  # type: ignore
 from core.db_exceptions import *
 from core.paginator import paginator
 from core.dtos.vital_dto import VitalResponseDTO  # Import the DTO
+from core.utils.email_html import EmailHtmlContent
+from core.utils.send_email import send_email
 from custom_admin.models.vitals import Vital
 
 logger = logging.getLogger(__name__)
@@ -107,6 +109,21 @@ class VitalRepository:
             
             vital.full_clean()
             vital.save()
+
+            if status_updated and vital.careGiver:
+                patientName = f"{vital.patient.firstName} {vital.patient.lastName}"
+                html_body = EmailHtmlContent.chart_update_html(
+                    vital.careGiver.firstName,
+                    patientName,
+                    vital.status
+                )
+
+                send_email(
+                    recipient_email=vital.careGiver.username,
+                    recipient_name=vital.careGiver.firstName,
+                    subject=f"Vital Update for {vital.patient.firstName} {vital.patient.lastName}",
+                    html_content=html_body
+                )
             
             return vital
         except NotFoundException as ex:
