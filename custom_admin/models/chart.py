@@ -39,6 +39,7 @@ class Chart(models.Model):
     declineReason = models.TextField(null=True, blank=True, default=None)
     reasonEdited = models.TextField(null=True, blank=True, default=None)
     reasonFilledLate = models.TextField(null=True, blank=True, default=None)
+    reasonNotFilled = models.TextField(null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

@@ -24,6 +24,7 @@ class VitalResponseDTO:
                 "oxygenSaturation": vital.get("oxygenSaturation"),
                 "pain": vital.get("pain"),
                 "reasonEdited": vital.get("reasonEdited"),
+                "reasonNotFilled": vital.get("reasonNotFilled"),
                 "dateTaken": vital.get("dateTaken"),
                 "declineReason": vital.get("declineReason"),
                 "reasonFilledLate": vital.get("reasonFilledLate"),
@@ -46,6 +47,7 @@ class VitalResponseDTO:
             "oxygenSaturation": vital.oxygenSaturation,
             "pain": vital.pain,
             "reasonEdited": vital.reasonEdited,
+            "reasonNotFilled": vital.reasonNotFilled,
             "dateTaken": vital.dateTaken.strftime("%Y-%m-%d")
                 if isinstance(vital.dateTaken, datetime) else vital.dateTaken,
             "declineReason": vital.declineReason,

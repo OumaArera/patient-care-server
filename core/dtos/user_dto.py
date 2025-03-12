@@ -24,6 +24,15 @@ class UserResponseDTO:
                 "branchName": data.get("branch__branchName"),
                 "branchId": data.get("branch__branchId"),
                 "facilityName": data.get("branch__facility__facilityName"),
+                "dateOfBirth": data.get("dateOfBirth"),
+                "maritalStatus" : data.get("maritalStatus"),
+                "position": data.get("position"),
+                "credential": data.get("credential"),
+                "credentialStatus": data.get("credentialStatus"),
+                "dateEmployed": data.get("dateEmployed"),
+                "supervisor": data.get("supervisor"),
+                "provider": data.get("provider"),
+                "employmentStatus": data.get("employmentStatus")
             }
         else:
             return {
@@ -42,6 +51,15 @@ class UserResponseDTO:
                 "branchId": data.branch.branchId if data.branch else None,
                 "facilityName": data.branch.facility.facilityName\
                     if data.branch and data.branch.facility else None,
+                "dateOfBirth": data.dateOfBirth,
+                "maritalStatus" : data.maritalStatus,
+                "position": data.position,
+                "credential": data.credential,
+                "credentialStatus": data.credentialStatus,
+                "dateEmployed": data.dateEmployed,
+                "supervisor": data.supervisor,
+                "provider": data.provider,
+                "employmentStatus": data.employmentStatus
             }
 
     

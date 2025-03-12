@@ -54,3 +54,20 @@ class EmailHtmlContent:
 		"""
 		return html_content
 	
+	@staticmethod
+	def generate_html(recipient, message):
+		sentences = message.split(". ")
+		formatted_message = "".join(f"<p>{sentence.strip()}.</p>" for sentence in sentences if sentence)
+
+		html_content = f"""
+		<div style="font-family: Arial, sans-serif; color: #333;">
+			<h4>Dear <strong>{recipient}</strong>, Happy Birthday! 🎉</h4>
+			{formatted_message}
+			<br />
+			<p>Best Regards,</p>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
+		</div>
+		"""
+		return html_content
+
+	

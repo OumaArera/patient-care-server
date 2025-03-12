@@ -49,6 +49,25 @@ class User(AbstractUser):
         ('blocked', 'Blocked')
     ]
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='active')
+    dateOfBirth = models.DateField(null=True, default=None)
+    maritalStatus = models.CharField(max_length=255, null=True, blank=True, default=None)
+    position = models.CharField(max_length=255, null=True, default=None, blank=True)
+    credential = models.CharField(max_length=255, null=True, blank=True, default=None)
+    CRED_STATUS_CHOICES =[
+        ('active', 'Active'),
+        ('inactive', 'Inactive')
+    ]
+    credentialStatus = models.CharField(max_length=50, choices=CRED_STATUS_CHOICES, default='active')
+    dateEmployed = models.DateField(null=True, default=None)
+    supervisor = models.CharField(max_length=255, null=True, blank=True, default=None)
+    provider = models.CharField(max_length=255, null=True, blank=True, default=None)
+    EMPLOYMENT_STATUS_CHOICES =[
+        ('active', 'Active'),
+        ('resigned', 'Resigned'),
+        ('dismissed', 'Dismissed')
+    ]
+    employmentStatus = models.CharField(max_length=50, choices=EMPLOYMENT_STATUS_CHOICES, default='active')
+
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

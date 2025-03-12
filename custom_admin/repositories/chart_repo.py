@@ -82,6 +82,7 @@ class ChartRepository:
                 "status",
                 "declineReason",
                 "createdAt", 
+                "reasonNotFilled",
                 "modifiedAt"
             ).order_by("createdAt")
             

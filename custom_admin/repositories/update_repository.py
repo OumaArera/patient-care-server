@@ -88,6 +88,7 @@ class UpdateRepository:
                 "reasonEdited",
                 "reasonFilledLate",
                 "declineReason",
+                "reasonNotFilled",
                 "status"
             ).order_by(
                 "dateTaken"

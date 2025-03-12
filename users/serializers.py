@@ -18,7 +18,15 @@ class UserSerializer(serializers.ModelSerializer):
             'sex',
             'role',
             'status',
-            "branch"
+            "branch",
+            "dateOfBirth",
+            "maritalStatus",
+            "position",
+            "credential",
+            "credentialStatus",
+            "dateEmployed",
+            "supervisor",
+            "employmentStatus"
         ]
 
 class UserDeserializer(serializers.Serializer):
@@ -31,6 +39,13 @@ class UserDeserializer(serializers.Serializer):
     sex = serializers.ChoiceField(choices=["male", "female", "other"], required=True)
     role = serializers.ChoiceField(choices=["care giver", "manager", "superuser"], required=True)
     branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
+    dateOfBirth = serializers.DateField(required=True, allow_null=True)
+    maritalStatus = serializers.CharField(required=True, allow_null=True, allow_blank=True)
+    position = serializers.CharField(required=True, allow_null=True, allow_blank=True)
+    credential = serializers.CharField(required=True, allow_null=True, allow_blank=True)
+    dateEmployed = serializers.DateField(required=True, allow_null=True)
+    supervisor = serializers.CharField(required=True, allow_null=True, allow_blank=True)
+    provider = serializers.CharField(required=True, allow_null=True, allow_blank=True)
 
     def validate_phoneNumber(self, value):
         """Validates that the phone number is a valid international number """
@@ -53,6 +68,16 @@ class UpdateUserDeserializer(serializers.Serializer):
     sex = serializers.ChoiceField(choices=["male", "female", "other"], required=False)
     role = serializers.ChoiceField(choices=["care giver", "manager", "superuser"], required=False)
     branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
+
+    dateOfBirth = serializers.DateField(allow_null=True, required=False)
+    maritalStatus = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    position = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    credential = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    credentialStatus = serializers.ChoiceField(choices=['active', 'inactive'], required=False)
+    dateEmployed = serializers.DateField(allow_null=True, required=False)
+    supervisor = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    provider = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    employmentStatus = serializers.CharField(allow_null=True, allow_blank=True, required=False)
 
     def validate_phoneNumber(self, value):
         """Validates that the phone number is a valid international number"""

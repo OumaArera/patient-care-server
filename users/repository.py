@@ -142,8 +142,18 @@ class UserRepository:
                 "status",
                 "branch__branchName",
                 "branch__branchId",
-                "branch__facility__facilityName"
+                "branch__facility__facilityName",
+                "dateOfBirth",
+                "maritalStatus",
+                "position",
+                "credential",
+                "credentialStatus",
+                "dateEmployed",
+                "supervisor",
+                "provider",
+                "employmentStatus"
             ).order_by('createdAt')
+
             return [UserResponseDTO.transform_user(user) for user in users]
         except DatabaseError as ex:
             logger.error(f"Database error while fetching users: {ex}", exc_info=True)
@@ -182,14 +192,20 @@ class UserRepository:
         """Updates the details of an existing user."""
         try:
             user = UserRepository.get_user_by_user_id(user_id=user_id)
+
             for field, value in user_data.items():
-                if hasattr(user, field):
+                if field == "password":
+                    if value:
+                        user.set_password(value)
+                elif hasattr(user, field):
                     setattr(user, field, value)
+
             user.full_clean()
             user.save()
             return user
+
         except NotFoundException as ex:
-            raise ex 
+            raise ex
         except ValidationError as ex:
             raise IntegrityException(message=ex)
         except DatabaseError as ex:
@@ -198,6 +214,7 @@ class UserRepository:
         except Exception as ex:
             logger.error(f"Unexpected error while updating user: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while updating user.")
+
 
     @staticmethod
     def delete_user(user_id):

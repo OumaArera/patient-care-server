@@ -35,6 +35,7 @@ class Vital(models.Model):
     ]
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="pending")
     declineReason = models.TextField(null=True, blank=True, default=None)
+    reasonNotFilled = models.TextField(null=True, blank=True, default=None)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now=True)
 

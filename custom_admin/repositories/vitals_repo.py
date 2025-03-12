@@ -83,6 +83,7 @@ class VitalRepository:
                 "patient__lastName",
                 "declineReason",
                 "reasonFilledLate",
+                "reasonNotFilled",
                 "status"
             ).order_by("dateTaken")
 
