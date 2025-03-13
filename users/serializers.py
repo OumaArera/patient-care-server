@@ -75,7 +75,7 @@ class UpdateUserDeserializer(serializers.Serializer):
     credentialStatus = serializers.ChoiceField(choices=['active', 'inactive'], required=False)
     supervisor = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     provider = serializers.CharField(allow_null=True, allow_blank=True, required=False)
-    employmentStatus = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    employmentStatus = serializers.ChoiceField(choices=["active", "resigned", "dismissed"], required=False)
 
     def validate_phoneNumber(self, value):
         """Validates that the phone number is a valid international number"""
