@@ -20,7 +20,7 @@ class ChartSerializer(serializers.ModelSerializer):
         fields = ["patient", "vitals", "behaviors", "behaviorsDescription", "dateTaken", "reasonFilledLate"]
 
     def validate(self, data):
-        patient = data.get("patient")
+        # patient = data.get("patient")
         date_taken = localtime(data.get("dateTaken"))
 
         # Extract time portion
@@ -31,17 +31,17 @@ class ChartSerializer(serializers.ModelSerializer):
             date_taken = date_taken.replace(hour=20, minute=0, second=0, microsecond=0)
 
         # Convert to date for comparison
-        date_only = date_taken.date()
+        # date_only = date_taken.date()
 
-        if Chart.objects.filter(
-            Q(patient=patient) & 
-            Q(dateTaken__date=date_only)
-        ).exists():
-            raise serializers.ValidationError(
-                "A chart entry for this resident already exists on this date."
-            )
+        # if Chart.objects.filter(
+        #     Q(patient=patient) & 
+        #     Q(dateTaken__date=date_only)
+        # ).exists():
+        #     raise serializers.ValidationError(
+        #         "A chart entry for this resident already exists on this date."
+        #     )
         
-        data["dateTaken"] = date_taken  # Update the dateTaken with modified time
+        data["dateTaken"] = date_taken 
         return data
 
 

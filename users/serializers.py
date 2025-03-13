@@ -57,7 +57,6 @@ class UserDeserializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid phone number format.")
         return value
 
-
 class UpdateUserDeserializer(serializers.Serializer):
     file = serializers.FileField(required=False)
     firstName = serializers.CharField(required=False)
@@ -68,13 +67,12 @@ class UpdateUserDeserializer(serializers.Serializer):
     sex = serializers.ChoiceField(choices=["male", "female", "other"], required=False)
     role = serializers.ChoiceField(choices=["care giver", "manager", "superuser"], required=False)
     branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=False)
-
-    dateOfBirth = serializers.DateField(allow_null=True, required=False)
+    dateOfBirth = serializers.DateField(required=False, allow_null=True)
+    dateEmployed = serializers.DateField(required=False, allow_null=True)
     maritalStatus = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     position = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     credential = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     credentialStatus = serializers.ChoiceField(choices=['active', 'inactive'], required=False)
-    dateEmployed = serializers.DateField(allow_null=True, required=False)
     supervisor = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     provider = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     employmentStatus = serializers.CharField(allow_null=True, allow_blank=True, required=False)
