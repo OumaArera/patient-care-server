@@ -66,6 +66,7 @@ class User(AbstractUser):
         ('resigned', 'Resigned'),
         ('dismissed', 'Dismissed')
     ]
+    
     employmentStatus = models.CharField(max_length=50, choices=EMPLOYMENT_STATUS_CHOICES, default='active')
 
     createdAt = models.DateTimeField(auto_now_add=True)
