@@ -134,6 +134,7 @@ class UserRepository:
                 "id",
                 "avatar",
                 "firstName",
+                "middleNames",
                 "lastName",
                 "email",
                 "phoneNumber",

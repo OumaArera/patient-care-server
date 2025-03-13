@@ -12,6 +12,9 @@ class UserResponseDTO:
             return {
                 "userId": data.get("id"),
                 "avatar": build_absolute_url(data.get("avatar")),
+                "firstName": data.get("firstName"),
+                "middleNames": data.get("middleNames"),
+                "lastName": data.get("lastName"),
                 "fullName": format_value(
                     data.get("firstName"),
                     data.get("lastName")
@@ -38,6 +41,9 @@ class UserResponseDTO:
             return {
                 "userId": data.id,
                 "avatar": build_absolute_url(data.avatar),
+                "firstName": data.firstName,
+                "middleNames": data.middleNames,
+                "lastName": data.lastName,
                 "fullName": format_value(
                     data.firstName,
                     data.lastName
