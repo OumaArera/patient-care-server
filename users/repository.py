@@ -3,6 +3,9 @@ from core.db_exceptions import *
 from django.db import IntegrityError, DatabaseError # type: ignore
 from django.core.exceptions import ObjectDoesNotExist, ValidationError # type: ignore
 from core.dtos.user_dto import UserResponseDTO
+from core.utils.email_html import EmailHtmlContent
+from core.utils.generate_random_password import generate_random_password
+from core.utils.send_email import send_email
 from users.models import User 
 
 logger = logging.getLogger(__name__)
@@ -198,6 +201,32 @@ class UserRepository:
                 if field == "password":
                     if value:
                         user.set_password(value)
+                elif field == "employmentStatus":
+                    if value in ["resigned", "dismissed"]:
+                        user.is_active = False
+                        user.is_staff = False
+                        user.status = "blocked"
+                    elif value == "active":
+                        user.is_active = True
+                        user.is_staff = True
+                        user.status = "active"
+
+                        # Generate new password
+                        password = generate_random_password()
+                        user.set_password(password)
+
+                        # Send email notification
+                        html_content = EmailHtmlContent.new_user_html(
+                            password=password,
+                            username=user.username,
+                            recipient=user.firstName
+                        )
+                        send_email(
+                            recipient_email=user.username,
+                            recipient_name=user.firstName,
+                            subject="User Reactivation!",
+                            html_content=html_content
+                        )
                 elif hasattr(user, field):
                     setattr(user, field, value)
 
@@ -208,7 +237,7 @@ class UserRepository:
         except NotFoundException as ex:
             raise ex
         except ValidationError as ex:
-            raise IntegrityException(message=ex)
+            raise IntegrityException(message=str(ex))
         except DatabaseError as ex:
             logger.error(f"Database error while updating user: {ex}", exc_info=True)
             raise QueryException(message="Error executing query to update user.")
