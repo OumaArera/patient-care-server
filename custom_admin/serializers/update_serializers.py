@@ -35,18 +35,18 @@ class UpdateSerializer(serializers.ModelSerializer):
 
         if update_type == "weekly":
             # Ensure only one weekly update exists per week for the given patient
-            start_of_week = date_taken - timedelta(days=date_taken.weekday())  # Monday of the same week
-            end_of_week = start_of_week + timedelta(days=6)  # Sunday of the same week
+            # start_of_week = date_taken - timedelta(days=date_taken.weekday())  # Monday of the same week
+            # end_of_week = start_of_week + timedelta(days=6)  # Sunday of the same week
 
-            existing_weekly_update = Update.objects.filter(
-                patient=patient, type="weekly",
-                dateTaken__range=(start_of_week, end_of_week)
-            ).exists()
+            # existing_weekly_update = Update.objects.filter(
+            #     patient=patient, type="weekly",
+            #     dateTaken__range=(start_of_week, end_of_week)
+            # ).exists()
 
-            if existing_weekly_update:
-                raise serializers.ValidationError({
-                    "dateTaken": "A weekly update already exists for this resident in the selected week."
-                })
+            # if existing_weekly_update:
+            #     raise serializers.ValidationError({
+            #         "dateTaken": "A weekly update already exists for this resident in the selected week."
+            #     })
 
             # Weekly updates: weight and weightDeviation should not be required
             data.pop("weight", None)
@@ -58,18 +58,18 @@ class UpdateSerializer(serializers.ModelSerializer):
 
             # Ensure only one monthly update exists per month for the given patient
             start_of_month = date_taken.replace(day=1)  # First day of the current month
-            next_month = (date_taken.replace(day=28) + timedelta(days=4)).replace(day=1)  # First day of next month
-            end_of_month = next_month - timedelta(days=1)  # Last day of the current month
+            # next_month = (date_taken.replace(day=28) + timedelta(days=4)).replace(day=1)  # First day of next month
+            # end_of_month = next_month - timedelta(days=1)  # Last day of the current month
 
-            existing_monthly_update = Update.objects.filter(
-                patient=patient, type="monthly",
-                dateTaken__range=(start_of_month, end_of_month)
-            ).exists()
+            # existing_monthly_update = Update.objects.filter(
+            #     patient=patient, type="monthly",
+            #     dateTaken__range=(start_of_month, end_of_month)
+            # ).exists()
 
-            if existing_monthly_update:
-                raise serializers.ValidationError({
-                    "dateTaken": "A monthly update already exists for this resident in the selected month."
-                })
+            # if existing_monthly_update:
+            #     raise serializers.ValidationError({
+            #         "dateTaken": "A monthly update already exists for this resident in the selected month."
+            #     })
 
             # Get the first and last day of the previous month
             first_day_of_prev_month = (start_of_month - timedelta(days=1)).replace(day=1)
@@ -103,7 +103,7 @@ class UpdateUpdateSerializer(serializers.ModelSerializer):
     weight = serializers.IntegerField(min_value=0, required=False)
     reasonEdited = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     status = serializers.ChoiceField(required=False, choices=['pending', 'approved', 'declined', 'updated'])
-    declineReason = serializers.CharField(required=False)
+    declineReason = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     class Meta:
         model = Update

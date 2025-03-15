@@ -5,11 +5,13 @@ from custom_admin.views.chart_data_views import *
 from custom_admin.views.chart_views import *
 from custom_admin.views.facility_views import *
 from custom_admin.views.late_submission_views import *
+from custom_admin.views.leave_views import *
 from custom_admin.views.medication_admin_views import *
 from custom_admin.views.medication_views import *
 from custom_admin.views.patient_manager_views import *
 from custom_admin.views.patient_views import *
 from custom_admin.views.update_views import *
+from custom_admin.views.utility_views import *
 from custom_admin.views.vital_views import *
 
 urlpatterns=[
@@ -139,6 +141,8 @@ urlpatterns=[
         VitalQueryByIDView.as_view(), 
         name='vital-details'
     ),
+
+
     path(
         'late-submissions',
         LateSubmissionView.as_view(), 
@@ -148,6 +152,28 @@ urlpatterns=[
         'late-submissions/<int:submissionId>',
         LateSubmissionQueryByIDView.as_view(), 
         name='late-submission-details'
+    ),
+
+    path(
+        'leaves',
+        LeaveView.as_view(), 
+        name='leaves'
+    ),
+    path(
+        'leaves/<int:leaveId>',
+        LeaveQueryByIDView.as_view(), 
+        name='leave-details'
+    ),
+
+    path(
+        'utilities',
+        UtilityView.as_view(), 
+        name='utilities'
+    ),
+    path(
+        'utilities/<int:utilityId>',
+        UtilityQueryByIDView.as_view(), 
+        name='utility-details'
     ),
 
 ]

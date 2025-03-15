@@ -1,5 +1,44 @@
 class EmailHtmlContent:
 	"""Generates Email Html Contents"""
+
+	@staticmethod
+	def utility_notification_html(recipient, staff, item, details):
+		""""""
+		html_content = \
+		f"""
+			<div>
+			<h4>Dear {recipient},</h4>
+			<p>An incident has been reported as below by <strong>{staff}</strong> for your action:</p>
+			<br />
+			<p>{item}</p>
+			<p>{details}</p>
+			<br />
+			<p>Best Regards,</p>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
+		</div>
+		"""
+		return html_content
+
+
+
+	@staticmethod
+	def leave_status_update_html(staff_name, status, reason):
+		html_content = \
+		f"""
+			<div>
+			<h4>Dear <strong>{staff_name}</strong>,</h4>
+			<p>You leave request with the below details has been reviewed.</p>
+			<br />
+			<p>{reason}</p>
+			<br />
+			<p>The status is <strong>{status}</strong>.</p>
+			<p>Please reach out to your supervisor for further instructions.</p>
+			<br />
+			<p>Best Regards,</p>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
+		</div>
+		"""
+		return html_content
 	
 	@staticmethod
 	def new_user_html(password, username, recipient):
