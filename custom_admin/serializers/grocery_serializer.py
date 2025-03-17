@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from custom_admin.models.branch import Branch
 from custom_admin.models.grocery import Grocery
 from users.models import User
 
@@ -7,11 +8,13 @@ class GrocerySerializer(serializers.ModelSerializer):
     """Serializer for creating a Grocery instance."""
 
     details = serializers.JSONField()
+    branch = serializers.PrimaryKeyRelatedField(queryset=Branch.objects.all(), required=True)
 
     class Meta:
         model = Grocery
         fields = [
-            "groceryId", "staff", "details", "status", "feedback", "feedback", "createdAt", "modifiedAt"
+            "groceryId", "staff", "details", "status", "feedback", "feedback", "createdAt", "modifiedAt",
+            "branch"
         ]
         read_only_fields = ["groceryId", "createdAt", "feedback", "status", "staff", "modifiedAt"]
 
