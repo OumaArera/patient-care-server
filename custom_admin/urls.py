@@ -4,6 +4,7 @@ from custom_admin.views.branch_views import *
 from custom_admin.views.chart_data_views import *
 from custom_admin.views.chart_views import *
 from custom_admin.views.facility_views import *
+from custom_admin.views.grocery_views import *
 from custom_admin.views.late_submission_views import *
 from custom_admin.views.leave_views import *
 from custom_admin.views.medication_admin_views import *
@@ -174,6 +175,17 @@ urlpatterns=[
         'utilities/<int:utilityId>',
         UtilityQueryByIDView.as_view(), 
         name='utility-details'
+    ),
+
+    path(
+        'groceries',
+        GroceryView.as_view(), 
+        name='groceries'
+    ),
+    path(
+        'groceries/<int:groceryId>',
+        GroceryQueryByIDView.as_view(), 
+        name='grocery-details'
     ),
 
 ]

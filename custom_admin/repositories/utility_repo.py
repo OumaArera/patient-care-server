@@ -5,14 +5,13 @@ from core.db_exceptions import *
 from core.dtos.utility_dto import UtilityResponseDTO
 from core.utils.email_html import EmailHtmlContent
 from core.utils.send_email import send_email
-from users.models import User
 from custom_admin.models.utility import Utility
 
 logger = logging.getLogger(__name__)
 
 class UtilityRepository:
     """Handles CRUD operations on the Utility model."""
-
+    
     @staticmethod
     def create_utility(utility_data):
         """Creates a new utility entry in the database and sends notification emails."""
@@ -34,8 +33,6 @@ class UtilityRepository:
                     staff=staff,
                     recipient = recipient["name"]
                 )
-
-
                 send_email(
                     recipient_email=recipient["email"],
                     recipient_name=recipient["name"],
@@ -53,6 +50,7 @@ class UtilityRepository:
             logger.error(f"Unexpected error while creating a new utility: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while creating utility.")
 
+
     @staticmethod
     def get_utility_by_id(utility_id):
         """Fetches details of a utility by ID."""
@@ -67,6 +65,7 @@ class UtilityRepository:
         except Exception as ex:
             logger.error(f"Unexpected error while fetching utility by ID: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while fetching utility by ID.")
+
 
     @staticmethod
     def get_all_utilities(query_params):
@@ -99,6 +98,7 @@ class UtilityRepository:
             logger.error(f"Unexpected error while fetching utilities: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while fetching utilities.")
 
+
     @staticmethod
     def update_utility(utility_id, utility_data):
         """Updates the details of an existing utility."""
@@ -121,6 +121,7 @@ class UtilityRepository:
             logger.error(f"Unexpected error while updating utility: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while updating utility.")
 
+
     @staticmethod
     def delete_utility(utility_id):
         """Deletes a utility record by ID."""
@@ -139,3 +140,5 @@ class UtilityRepository:
         except Exception as ex:
             logger.error(f"Unexpected error while deleting utility: {ex}", exc_info=True)
             raise DataBaseException("An unexpected error occurred while deleting utility.")
+
+

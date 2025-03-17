@@ -12,3 +12,4 @@ from custom_admin.models.vitals import Vital
 from custom_admin.models.late_submission import LateSubmission
 from custom_admin.models.leave import Leave
 from custom_admin.models.utility import Utility
+from custom_admin.models.grocery import Grocery
