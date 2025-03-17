@@ -17,7 +17,7 @@ class BranchView(APIView):
         if self.request.method == "POST":
             self.permission_classes = [IsManager]
         elif self.request.method == "GET":
-            self.permission_classes = [IsManager]
+            self.permission_classes = [IsAllUsers]
         return [permission() for permission in self.permission_classes]
 
     def post(self, request):
