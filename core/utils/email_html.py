@@ -2,7 +2,7 @@ class EmailHtmlContent:
 	"""Generates Email Html Contents"""
 
 	@staticmethod
-	def grocery_notification_html(recipient, staff, details):
+	def grocery_notification_html(recipient, branch, staff, details):
 		"""Generate HTML content for grocery notification email."""
 		table_rows = "".join(
 			f"<tr><td>{item['item']}</td><td>{item['quantity']}</td></tr>"
@@ -14,6 +14,7 @@ class EmailHtmlContent:
 				<h4>Dear {recipient},</h4>
 				<p>The following groceries have been requested by <strong>{staff}</strong>.</p>
 				<br />
+				<h3>{branch}</h3>
 				<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 50%;">
 					<thead>
 						<tr>

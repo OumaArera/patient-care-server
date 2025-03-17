@@ -18,6 +18,7 @@ class GroceryResponseDTO:
                     grocery.get("staff__firstName"),
                     grocery.get("staff__lastName")
                 ),
+                "branch": grocery.get("branch__branchName"),
                 "details": grocery.get("details", []),
                 "feedback": grocery.get("feedback"),
                 "status": grocery.get("status"),
@@ -33,6 +34,7 @@ class GroceryResponseDTO:
                 grocery.staff.firstName if grocery.staff else None,
                 grocery.staff.lastName if grocery.staff else None
             ),
+            "branch": grocery.branch.branchName if grocery.branch else None,
             "details": grocery.details,
             "feedback": grocery.feedback,
             "status": grocery.status,

@@ -29,6 +29,7 @@ class GroceryRepository:
             for recipient in recipients:
                 html_body = EmailHtmlContent.grocery_notification_html(
                     details=new_grocery.details,
+                    branch = new_grocery.branch.branchName,
                     staff=staff,
                     recipient=recipient["name"]
                 )
@@ -79,12 +80,12 @@ class GroceryRepository:
             }
 
             groceries = Grocery.objects.select_related(
-                "staff"
+                "staff", "branch"
             ).filter(
                 **adjusted_filters
             ).values(
                 "groceryId", "details", "feedback", "createdAt", "modifiedAt",
-                "staff__id", "staff__firstName", "staff__lastName", "status"
+                "staff__id", "staff__firstName", "staff__lastName", "status", "branch__branchName"
             ).order_by("createdAt")
 
             return [GroceryResponseDTO.transform_grocery(grocery) for grocery in groceries]

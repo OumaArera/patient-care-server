@@ -1,4 +1,5 @@
 from django.db import models
+from custom_admin.models.branch import Branch
 from users.models import User
 
 
@@ -8,6 +9,13 @@ class Grocery(models.Model):
     groceryId = models.AutoField(primary_key=True)
     staff =  models.ForeignKey(
       User,
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='groceries'
+    )
+    branch =  models.ForeignKey(
+      Branch,
       null=True,
       blank=True,
       on_delete=models.SET_NULL,
