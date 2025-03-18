@@ -27,7 +27,8 @@ class Grocery(models.Model):
         ('pending', 'Pending'),
         ('approved', 'Approved'),
         ('declined', 'Declined'),
-        ('updated', 'Updated')
+        ('updated', 'Updated'),
+        ('delivered', 'Delivered'),
     ]
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="pending")
     createdAt = models.DateTimeField(auto_now_add=True)

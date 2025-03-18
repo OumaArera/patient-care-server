@@ -37,7 +37,7 @@ class GroceryUpdateSerializer(serializers.ModelSerializer):
     staff = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False, allow_null=True)
     details = serializers.JSONField(required=False)
     feedback = serializers.CharField(required=False, allow_null=True, allow_blank=True)
-    status = serializers.ChoiceField(required=False, choices=['pending', 'updated', 'approved', 'updated'])
+    status = serializers.ChoiceField(required=False, choices=['pending', 'updated', 'approved', 'updated', 'delivered'])
 
     class Meta:
         model = Grocery
