@@ -1,10 +1,12 @@
 from django.urls import path # type: ignore
 from custom_admin.views.appointment_views import *
+from custom_admin.views.assessment_views import *
 from custom_admin.views.branch_views import *
 from custom_admin.views.chart_data_views import *
 from custom_admin.views.chart_views import *
 from custom_admin.views.facility_views import *
 from custom_admin.views.grocery_views import *
+from custom_admin.views.incident_views import *
 from custom_admin.views.late_submission_views import *
 from custom_admin.views.leave_views import *
 from custom_admin.views.medication_admin_views import *
@@ -186,6 +188,33 @@ urlpatterns=[
         'groceries/<int:groceryId>',
         GroceryQueryByIDView.as_view(), 
         name='grocery-details'
+    ),
+
+    path(
+        'incidents',
+        IncidentView.as_view(), 
+        name='incidents'
+    ),
+    path(
+        'incidents/<int:incidentId>',
+        IncidentQueryByIDView.as_view(), 
+        name='incident-details'
+    ),
+
+    path(
+        'assessments',
+        AssessmentView.as_view(), 
+        name='assessments'
+    ),
+    path(
+        'assessments/<int:assessmentId>',
+        AssessmentQueryByIDView.as_view(), 
+        name='assessment-details'
+    ),
+    path(
+        'notifications',
+        AssessmentNotificationSchedulerView.as_view(), 
+        name='notification-details'
     ),
 
 ]

@@ -13,3 +13,5 @@ from custom_admin.models.late_submission import LateSubmission
 from custom_admin.models.leave import Leave
 from custom_admin.models.utility import Utility
 from custom_admin.models.grocery import Grocery
+from custom_admin.models.incident import Incident
+from custom_admin.models.assessment import Assessment

@@ -1,5 +1,40 @@
 class EmailHtmlContent:
 	"""Generates Email Html Contents"""
+	
+	@staticmethod
+	def assessment_notification_html(resident, assessment_date, recipient, branch, socialWorker):
+		""""""
+		html_content = \
+		f"""
+			<div>
+			<h4>Dear {recipient},</h4>
+			<p>{resident}, resident at {branch} has an upcoming assessment as below:</p>
+			<p>{assessment_date}</p>
+			<p>Social Worker /Case Manager {socialWorker}</p>
+			<br />
+			<p>Best Regards,</p>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
+		</div>
+		"""
+		return html_content
+
+	@staticmethod
+	def incident_notification_html(details, file_path, staff, recipient):
+		""""""
+		html_content = \
+		f"""
+			<div>
+			<h4>Dear {recipient},</h4>
+			<p>An incident has been reported as below by <strong>{staff}</strong> for your action:</p>
+			<br />
+			<p>{details}</p>
+			<p>{file_path}</p>
+			<br />
+			<p>Best Regards,</p>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
+		</div>
+		"""
+		return html_content
 
 	@staticmethod
 	def grocery_notification_html(recipient, branch, staff, details):

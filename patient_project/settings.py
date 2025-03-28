@@ -87,6 +87,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'patient_project.urls'
 
+
+
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 	"https://patient-care-pied.vercel.app",
