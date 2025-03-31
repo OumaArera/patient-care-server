@@ -7,16 +7,16 @@ class GoogleDriveManager:
     A class to handle Google Drive file uploads and permissions.
     """
 
-    def __init__(self, credentials_path: str, scopes=None):
+    def __init__(self, credentials: dict, scopes=None):
         """
         Initializes the Google Drive API client.
-        :param credentials_path: Path to the service account credentials JSON file.
+        :param credentials: Dictionary containing the service account credentials.
         :param scopes: List of API scopes (default: ["https://www.googleapis.com/auth/drive.file"])
         """
         if scopes is None:
             scopes = ["https://www.googleapis.com/auth/drive.file"]
         
-        self.credentials_path = credentials_path
+        self.credentials = credentials
         self.scopes = scopes
         self.service = self.authenticate_google_drive()
 
@@ -24,7 +24,9 @@ class GoogleDriveManager:
         """
         Authenticates and returns a Google Drive API service instance.
         """
-        creds = Credentials.from_service_account_file(self.credentials_path, scopes=self.scopes)
+        # creds = Credentials.from_service_account_file(self.credentials_path, scopes=self.scopes)
+        creds = Credentials.from_service_account_info(self.credentials, scopes=self.scopes)
+
         service = googleapiclient.discovery.build("drive", "v3", credentials=creds)
         return service
 
