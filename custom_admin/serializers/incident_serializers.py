@@ -2,9 +2,8 @@ import os
 from rest_framework import serializers
 from core.utils.google_drive import GoogleDriveManager
 
-# Define the credentials file path
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CREDENTIALS_PATH = os.path.join(BASE_DIR, "credentials.json")
+# Define the credentials file path at the root directory
+CREDENTIALS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".", "credentials.json"))
 
 # Initialize Google Drive Manager
 drive_manager = GoogleDriveManager(CREDENTIALS_PATH)
@@ -55,9 +54,6 @@ class IncidentSerializer(serializers.Serializer):
             "filePath": validated_data["filePath"],
         }
 
-
-
-
 class IncidentUpdateSerializer(serializers.Serializer):
     """Serializer for updating an Incident instance."""
 
@@ -78,7 +74,7 @@ class IncidentUpdateSerializer(serializers.Serializer):
             with open(file_path, "wb") as f:
                 f.write(file.read())
 
-            file_url = upload_pdf(file_path, file.name)
+            file_url = drive_manager.upload_pdf(file_path, file.name)
             os.remove(file_path)
 
         return {

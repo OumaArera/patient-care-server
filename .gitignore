@@ -9,6 +9,8 @@ __pycache__/
 */seeds/
 /custom_admin/serializers/credentials.json
 
+credentials.json
+
 # */certificate.py
 
 # Distribution / packaging

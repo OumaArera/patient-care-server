@@ -17,7 +17,6 @@ def schedule_email_notifications():
             models.Q(assessmentNextDate__lte=notification_start_date, assessmentNextDate__gte=today) |
             models.Q(NCPNextDate__lte=notification_start_date, NCPNextDate__gte=today)
         )
-        print(f"Assessments: {due_assessments}")
         if not due_assessments.exists():
             logger.info("No assessments due for notifications today.")
             return
