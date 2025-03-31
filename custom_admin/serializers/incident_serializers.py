@@ -2,7 +2,7 @@ import os
 from rest_framework import serializers
 from core.utils.google_drive import GoogleDriveManager
 
-# Define the credentials file path at the root directory
+# Define the credentials file path at the root director
 CREDENTIALS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".", "credentials.json"))
 
 # Initialize Google Drive Manager
