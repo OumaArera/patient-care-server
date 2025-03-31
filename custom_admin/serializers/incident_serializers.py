@@ -1,12 +1,16 @@
 import os
+import json
 from rest_framework import serializers
 from core.utils.google_drive import GoogleDriveManager
 
-# Define the credentials file path at the root director
-CREDENTIALS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".", "credentials.json"))
+credentials_json = os.getenv("GOOGLE_CREDENTIALS")
+if not credentials_json:
+    raise ValueError("GOOGLE_CREDENTIALS environment variable not set")
+
+credentials = json.loads(credentials_json)
 
 # Initialize Google Drive Manager
-drive_manager = GoogleDriveManager(CREDENTIALS_PATH)
+drive_manager = GoogleDriveManager(credentials)
 
 class IncidentSerializer(serializers.Serializer):
     """Serializer to validate the Incident data and upload a file to Google Drive."""
