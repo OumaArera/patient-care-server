@@ -83,7 +83,7 @@ class IncidentRepository:
                 **adjusted_filters
             ).values(
                 "incidentId", "details", "filePath", "createdAt", "modifiedAt",
-                "staff__id", "staff__first_name", "staff__last_name", "status"
+                "staff__id", "staff__firstName", "staff__lastName", "status"
             ).order_by("createdAt")
 
             return [IncidentResponseDTO.transform_incident(incident) for incident in incidents]
