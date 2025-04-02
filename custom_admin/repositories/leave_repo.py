@@ -19,6 +19,26 @@ class LeaveRepository:
             new_leave = Leave.create_leave(validated_data=leave_data)
             new_leave.full_clean()
             new_leave.save()
+
+            # Send notification emails
+            recipients = [
+                {"name": "Nixon Duah", "email": "nixon.duah@edmondserenity.com"},
+                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"}
+            ]
+            staff = f"{new_leave.staff.firstName} {new_leave.staff.lastName}" if new_leave.staff else "Unknown Staff"
+            for recipient in recipients:
+                html_body = EmailHtmlContent.leave_request_html(
+                    supervisor=recipient["name"],
+                    staff_name=staff,
+                    reason=new_leave.reasonForLeave
+                )
+                send_email(
+                    recipient_email=recipient["email"],
+                    recipient_name=recipient["name"],
+                    subject="Leave Request",
+                    html_content=html_body
+                )
+
             return new_leave
         except ValidationError as ex:
             raise IntegrityException(message=ex)

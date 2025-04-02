@@ -86,6 +86,23 @@ class EmailHtmlContent:
 		</div>
 		"""
 		return html_content
+	
+	@staticmethod
+	def leave_request_html(supervisor, staff_name, reason):
+		html_content = \
+		f"""
+			<div>
+			<h4>Dear <strong>{supervisor}</strong>,</h4>
+			<p>Leave request has been made by {staff_name} for your action.</p>
+			<br />
+			<p>{reason}</p>
+			<br />
+			<br />
+			<p>Best Regards,</p>
+			<footer>1st Edmonds & Serenity Adult Family Homes</footer>
+		</div>
+		"""
+		return html_content
 
 
 

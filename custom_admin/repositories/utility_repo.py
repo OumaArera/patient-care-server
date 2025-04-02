@@ -22,8 +22,10 @@ class UtilityRepository:
 
             # Send notification emails
             recipients = [
-                {"name": "Ouma Arera", "email": "johnouma999@gmail.com"},
-                {"name": "Agnes Atieno", "email": "aluoch.kalal@gmail.com"}
+                {"name": "Nixon Duah", "email": "nixon.duah@edmondserenity.com"},
+                {"name": "Mass Lowe", "email": "mass.lowe@edmondserenity.com"},
+                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"},
+                {"name": "Abdoullie Lowe", "email": "abdoullie.lowe@edmondserenity.com"}
             ]
             staff = f"{new_utility.staff.firstName} {new_utility.staff.lastName}"
             for recipient in recipients:

@@ -22,8 +22,9 @@ class GroceryRepository:
 
             # Send notification emails
             recipients = [
-                {"name": "Ouma Arera", "email": "johnouma999@gmail.com"},
-                {"name": "Agnes Atieno", "email": "aluoch.kalal@gmail.com"}
+                {"name": "Nixon Duah", "email": "nixon.duah@edmondserenity.com"},
+                {"name": "Mass Lowe", "email": "mass.lowe@edmondserenity.com"},
+                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"}
             ]
             staff = f"{new_grocery.staff.firstName} {new_grocery.staff.lastName}" if new_grocery.staff else "Unknown Staff"
             for recipient in recipients:
