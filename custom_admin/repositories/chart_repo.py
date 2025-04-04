@@ -84,7 +84,7 @@ class ChartRepository:
                 "createdAt", 
                 "reasonNotFilled",
                 "modifiedAt"
-            ).order_by("createdAt")
+            ).order_by("dateTaken")
             
             charts = paginator.paginate_queryset(queryset=charts, request=request)
             return [ChartResponseDTO.transform_chart(chart) for chart in charts]

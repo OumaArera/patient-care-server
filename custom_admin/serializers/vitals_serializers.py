@@ -54,7 +54,7 @@ class VitalUpdateSerializer(serializers.ModelSerializer):
     dateTaken = serializers.DateTimeField(required=False)
     reasonEdited = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     status = serializers.ChoiceField(required=False, choices=['pending', 'approved', 'declined', 'updated'])
-    declineReason = serializers.CharField(required=False)
+    declineReason = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     reasonFilledLate = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     
     class Meta:
