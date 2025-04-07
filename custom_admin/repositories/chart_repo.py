@@ -51,8 +51,9 @@ class ChartRepository:
         try:
             field_mapping = {
                 "patient": "patient__patientId",
-                "dateTaken": "dateTaken",
-                "status": "status__icontains"
+                "dateTaken": "dateTaken__gte",
+                "status": "status__icontains",
+                "branch": "patient__branch__branchId"
             }
 
             adjusted_filters = {
@@ -74,6 +75,7 @@ class ChartRepository:
                 "patient__lastName", 
                 "patient__patientId",
                 "patient__branch__branchName",
+                "patient__branch__branchId",
                 "patient__branch__facility__facilityName",
                 "careGiver__firstName", 
                 "careGiver__lastName",

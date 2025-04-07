@@ -15,6 +15,7 @@ class ChartResponseDTO:
                 "patientId": chart.get('patient__patientId'),
                 "facilityName": chart.get('patient__branch__facility__facilityName'),
                 "branchName": chart.get('patient__branch__branchName'),
+                "branchId": chart.get("patient__branch__branchId"),
                 "patientName": format_value(
                     chart.get('patient__firstName'),
                     chart.get('patient__lastName')
@@ -44,6 +45,8 @@ class ChartResponseDTO:
                     else None,
                 "branchName": chart.patient.branch.branchName\
                     if chart.patient and chart.patient.branch else None,
+                "branchId": chart.patient.branch.branchId if chart.patient and \
+                    chart.patient.branch else None,
                 "patientName": format_value(
                     chart.patient.firstName, 
                     chart.patient.lastName
