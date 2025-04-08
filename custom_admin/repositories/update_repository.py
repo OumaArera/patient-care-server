@@ -3,7 +3,7 @@ from django.db import IntegrityError, DatabaseError  # type: ignore
 from django.core.exceptions import ValidationError  # type: ignore
 from core.db_exceptions import *
 from core.paginator import paginator
-from core.dtos.update_dto import UpdateResponseDTO  # Import the DTO
+from core.dtos.update_dto import UpdateResponseDTO
 from core.utils.email_html import EmailHtmlContent
 from core.utils.send_email import send_email
 from custom_admin.models.update import Update
@@ -108,29 +108,29 @@ class UpdateRepository:
         """Updates the details of an existing update."""
         try:
             update = UpdateRepository.get_update_by_id(update_id=update_id)
-            status_updated = True
+            # status_updated = True
             for field, value in update_data.items():
                 if hasattr(update, field):
-                    if field == "status" and getattr(update, field) != value:
-                        status_updated = True
+                    # if field == "status" and getattr(update, field) != value:
+                        # status_updated = True
                     setattr(update, field, value)
             update.full_clean()
             update.save()
 
-            if status_updated:
-                patientName = f"{update.patient.firstName} {update.patient.lastName}"
-                html_body = EmailHtmlContent.chart_update_html(
-                    update.careGiver.firstName,
-                    patientName,
-                    update.status
-                )
+            # if status_updated:
+            #     patientName = f"{update.patient.firstName} {update.patient.lastName}"
+            #     html_body = EmailHtmlContent.chart_update_html(
+            #         update.careGiver.firstName,
+            #         patientName,
+            #         update.status
+            #     )
 
-                send_email(
-                    recipient_email=update.careGiver.username,
-                    recipient_name=update.careGiver.firstName,
-                    subject=f"Update for {update.patient.firstName} {update.patient.lastName}",
-                    html_content=html_body
-                )
+            #     send_email(
+            #         recipient_email=update.careGiver.username,
+            #         recipient_name=update.careGiver.firstName,
+            #         subject=f"Update for {update.patient.firstName} {update.patient.lastName}",
+            #         html_content=html_body
+            #     )
 
             return update
         except ValidationError as ex:

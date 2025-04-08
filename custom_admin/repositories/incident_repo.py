@@ -22,8 +22,10 @@ class IncidentRepository:
 
             # Send notification emails
             recipients = [
-                {"name": "Ouma Arera", "email": "johnouma999@gmail.com"},
-                {"name": "Agnes Atieno", "email": "aluoch.kalal@gmail.com"}
+                {"name": "Nixon Duah", "email": "nixon.duah@edmondserenity.com"},
+                {"name": "Mass Lowe", "email": "mass.lowe@edmondserenity.com"},
+                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"},
+                {"name": "John Ouma", "email": "john.ouma@edmondserenity.com"},
             ]
             staff = f"{new_incident.staff.firstName} {new_incident.staff.lastName}" if new_incident.staff else "Unknown Staff"
             for recipient in recipients:

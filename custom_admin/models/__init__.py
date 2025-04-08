@@ -15,3 +15,4 @@ from custom_admin.models.utility import Utility
 from custom_admin.models.grocery import Grocery
 from custom_admin.models.incident import Incident
 from custom_admin.models.assessment import Assessment
+from custom_admin.models.sleep import Sleep

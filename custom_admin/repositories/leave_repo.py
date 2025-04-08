@@ -23,7 +23,8 @@ class LeaveRepository:
             # Send notification emails
             recipients = [
                 {"name": "Nixon Duah", "email": "nixon.duah@edmondserenity.com"},
-                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"}
+                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"},
+                {"name": "John Ouma", "email": "john.ouma@edmondserenity.com"},
             ]
             staff = f"{new_leave.staff.firstName} {new_leave.staff.lastName}" if new_leave.staff else "Unknown Staff"
             for recipient in recipients:

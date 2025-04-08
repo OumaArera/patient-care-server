@@ -13,6 +13,7 @@ from custom_admin.views.medication_admin_views import *
 from custom_admin.views.medication_views import *
 from custom_admin.views.patient_manager_views import *
 from custom_admin.views.patient_views import *
+from custom_admin.views.sleep_views import *
 from custom_admin.views.update_views import *
 from custom_admin.views.utility_views import *
 from custom_admin.views.vital_views import *
@@ -215,6 +216,17 @@ urlpatterns=[
         'notifications',
         AssessmentNotificationSchedulerView.as_view(), 
         name='notification-details'
+    ),
+
+    path(
+        'sleeps',
+        SleepView.as_view(), 
+        name='sleeps'
+    ),
+    path(
+        'sleeps/<int:sleepId>',
+        SleepQueryByIDView.as_view(), 
+        name='sleep-details'
     ),
 
 ]
