@@ -91,7 +91,7 @@ class UpdateRepository:
                 "reasonNotFilled",
                 "status"
             ).order_by(
-                "dateTaken"
+                "-dateTaken"
             )
 
             updates = paginator.paginate_queryset(queryset=updates, request=request)
