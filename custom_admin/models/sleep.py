@@ -14,7 +14,8 @@ class Sleep(models.Model):
     )
     SLEEP_CHOICES =[
         ("A", "Awake"), 
-        ("S", "Sleeping")
+        ("S", "Sleeping"),
+        ("N/A", "Not Applicable")
     ]
     markAs = models.CharField(max_length=50, choices=SLEEP_CHOICES)
     dateTaken = models.DateField()
