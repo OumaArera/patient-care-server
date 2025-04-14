@@ -206,6 +206,7 @@ class UserRepository:
                         user.is_active = False
                         user.is_staff = False
                         user.status = "blocked"
+                        user.employmentStatus = value
                     elif value == "active":
                         user.is_active = True
                         user.is_staff = True
