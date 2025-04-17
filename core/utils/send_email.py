@@ -1,16 +1,11 @@
 from patient_project import settings
-import requests # type: ignore
-
-from django.core.mail import send_mail
 from django.conf import settings
-
 from django.core.mail import EmailMultiAlternatives
-from django.conf import settings
+from patient_project import settings
 
 def send_email(recipient_email, recipient_name, subject, html_content):
     """Sends Email using SMTP with domain email"""
     try:
-        # Create the email message
         email = EmailMultiAlternatives(
             subject=subject,
             body="", 
