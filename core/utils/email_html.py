@@ -24,7 +24,7 @@ class EmailHtmlContent:
 		html_content = \
 		f"""
 			<div>
-			<h4>Dear {recipient},</h4>
+			<h4>Dear Management,</h4>
 			<p>An incident has been reported as below by <strong>{staff}</strong> for your action:</p>
 			<br />
 			<p>{details}</p>
@@ -46,7 +46,7 @@ class EmailHtmlContent:
 
 		html_content = f"""
 			<div>
-				<h4>Dear {recipient},</h4>
+				<h4>Dear Management,</h4>
 				<p>The following groceries have been requested by <strong>{staff}</strong>.</p>
 				<br />
 				<h3>{branch}</h3>
@@ -92,7 +92,7 @@ class EmailHtmlContent:
 		html_content = \
 		f"""
 			<div>
-			<h4>Dear <strong>{supervisor}</strong>,</h4>
+			<h4>Dear Management,</h4>
 			<p>Leave request has been made by {staff_name} for your action.</p>
 			<br />
 			<p>{reason}</p>
