@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class EmailHtmlContent:
 	"""Generates Email Html Contents"""
 	
@@ -36,21 +38,36 @@ class EmailHtmlContent:
 		"""
 		return html_content
 
+	
 	@staticmethod
 	def grocery_notification_html(recipient, branch, staff, details):
-		"""Generate HTML content for grocery notification email."""
-		table_rows = "".join(
-			f"<tr><td>{item['item']}</td><td>{item['quantity']}</td></tr>"
-			for item in details
-		)
+		"""Generate HTML content for grocery notification email, grouped by category."""
 
+		# Group items by category
+		grouped_items = defaultdict(list)
+		for item in details:
+			grouped_items[item['category'].upper()].append(item)
+
+		# Generate table rows for each category
+		category_sections = ""
+		for category, items in grouped_items.items():
+			rows = "".join(
+				f"<tr><td>{item['item']}</td><td>{item['quantity']}</td></tr>"
+				for item in items
+			)
+			category_sections += f"""
+				<tr style="background-color: #f2f2f2;"><th colspan="2" style="text-align:left;">{category}</th></tr>
+				{rows}
+			"""
+
+		# Final HTML structure
 		html_content = f"""
 			<div>
 				<h4>Dear Management,</h4>
 				<p>The following groceries have been requested by <strong>{staff}</strong>.</p>
 				<br />
 				<h3>{branch}</h3>
-				<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 50%;">
+				<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 60%;">
 					<thead>
 						<tr>
 							<th>Item</th>
@@ -58,7 +75,7 @@ class EmailHtmlContent:
 						</tr>
 					</thead>
 					<tbody>
-						{table_rows}
+						{category_sections}
 					</tbody>
 				</table>
 				<br />
@@ -67,6 +84,7 @@ class EmailHtmlContent:
 			</div>
 		"""
 		return html_content
+
 	
 
 	@staticmethod
