@@ -18,30 +18,7 @@ class IncidentRepository:
         try:
             new_incident = Incident.create_incident(validated_data=incident_data)
             new_incident.full_clean()
-            new_incident.save()
-
-            # Send notification emails
-            recipients = [
-                {"name": "Nixon Duah", "email": "nixon.duah@edmondserenity.com"},
-                {"name": "Mass Lowe", "email": "mass.lowe@edmondserenity.com"},
-                {"name": "David Obuya", "email": "david.obuya@edmondserenity.com"},
-                {"name": "John Ouma", "email": "john.ouma@edmondserenity.com"},
-            ]
-            staff = f"{new_incident.staff.firstName} {new_incident.staff.lastName}" if new_incident.staff else "Unknown Staff"
-            for recipient in recipients:
-                html_body = EmailHtmlContent.incident_notification_html(
-                    details=new_incident.details,
-                    file_path=new_incident.filePath,
-                    staff=staff,
-                    recipient=recipient["name"]
-                )
-                send_email(
-                    recipient_email=recipient["email"],
-                    recipient_name=recipient["name"],
-                    subject="Incident Reporting",
-                    html_content=html_body
-                )
-            
+            new_incident.save() 
             return new_incident
         except ValidationError as ex:
             raise IntegrityException(message=ex)
@@ -72,8 +49,13 @@ class IncidentRepository:
         """Fetches and returns all incidents with optional filtering."""
         try:
             field_mapping = {
-                "staff": "staff_id",
-                "status": "status__icontains"
+                "raisedBy": "raisedBy__id",
+                "assignedTo": "assignedTo__id",
+                "type": "type",
+                "status": "status",
+                "priority": "priority",
+                "resolvedAt": "resolvedAt__gte",
+                "createdAt": "createdAt__gte"
             }
             adjusted_filters = {
                 field_mapping.get(key, key): value
@@ -81,11 +63,21 @@ class IncidentRepository:
                 if value
             }
 
-            incidents = Incident.objects.select_related("staff").filter(
+            incidents = Incident.objects.select_related("raisedBy", "assignedTo").filter(
                 **adjusted_filters
             ).values(
-                "incidentId", "details", "filePath", "createdAt", "modifiedAt",
-                "staff__id", "staff__firstName", "staff__lastName", "status"
+                "incidentId", 
+                "raisedBy__id",
+                "raisedBy__firstName", 
+                "raisedBy__lastName",
+                "assignedTo__id",
+                "assignedTo__firstName", 
+                "assignedTo__lastName",
+                "incident", "type",
+                "comments", "status", 
+                "priority", "resolvedAt", 
+                "createdAt",
+                "modifiedAt"
             ).order_by("createdAt")
 
             return [IncidentResponseDTO.transform_incident(incident) for incident in incidents]

@@ -12,14 +12,22 @@ class IncidentResponseDTO:
         if isinstance(incident, dict):
             return {
                 "incidentId": incident.get("incidentId"),
-                "staffId": incident.get("staff__id"),
-                "staffName": format_value(
-                    incident.get("staff__firstName"),
-                    incident.get("staff__lastName")
+                "raisedById": incident.get("raisedBy__id"),
+                "raisedBy": format_value(
+                    incident.get("raisedBy__firstName"),
+                    incident.get("raisedBy__lastName")
                 ),
-                "filePath": incident.get("filePath"),
-                "details": incident.get("details"),
+                "assignedToId": incident.get("assignedTo__id"),
+                "assignedTo": format_value(
+                    incident.get("assignedTo__firstName"),
+                    incident.get("assignedTo__lastName")
+                ),
+                "incident": incident.get("incident"),
+                "type": incident.get("type"),
+                "comments": incident.get("comments"),
                 "status": incident.get("status"),
+                "priority": incident.get("priority"),
+                "resolvedAt": incident.get("resolvedAt"),
                 "createdAt": incident.get("createdAt"),
                 "modifiedAt": incident.get("modifiedAt"),
             }
@@ -27,14 +35,22 @@ class IncidentResponseDTO:
         # Handling model instance
         return {
             "incidentId": incident.incidentId,
-            "staffId": incident.staff.id if incident.staff else None,
-            "staffName": format_value(
-                incident.staff.firstName if incident.staff else None,
-                incident.staff.lastName if incident.staff else None
+            "raisedById": incident.raisedBy.id if incident.raisedBy else None,
+            "raisedBy": format_value(
+                incident.raisedBy.firstName,
+                incident.raisedBy.lastName
             ),
-            "filePath": incident.filePath,
-            "details": incident.details,
+            "assignedToId": incident.assignedTo.id if incident.assignedTo else None,
+            "assignedTo": format_value(
+                incident.assignedTo.firstName if incident.assignedTo else None,
+                incident.assignedTo.lastName if incident.assignedTo else None
+            ),
+            "incident": incident.incident,
+            "type": incident.type,
+            "comments": incident.comments,
             "status": incident.status,
+            "priority": incident.priority,
+            "resolvedAt": incident.resolvedAt,
             "createdAt": incident.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
             "modifiedAt": incident.modifiedAt.strftime("%Y-%m-%d %H:%M:%S"),
         }

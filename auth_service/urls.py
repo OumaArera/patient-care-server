@@ -34,7 +34,4 @@ urlpatterns=[
         UnBlockUserView.as_view(), 
         name='unblock-users'
     ),
-
-
-
 ]

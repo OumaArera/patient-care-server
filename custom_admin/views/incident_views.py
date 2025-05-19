@@ -21,7 +21,7 @@ class IncidentView(APIView):
             deserializer = IncidentSerializer(data=request.data)
             if deserializer.is_valid():
                 validated_data = deserializer.validated_data
-                validated_data["staff"] = request.user  # Assign the logged-in user
+                validated_data["raisedBy"] = request.user 
                 new_incident = IncidentService.create_incident(data=validated_data)
                 return Response(
                     APIResponse.success(
