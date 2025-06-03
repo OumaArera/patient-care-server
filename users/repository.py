@@ -132,6 +132,7 @@ class UserRepository:
             users = User.objects.select_related(
                 "branch"
             ).filter(
+                status="active",
                 **adjusted_filters
             ).values(
                 "id",

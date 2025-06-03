@@ -51,9 +51,9 @@ class IncidentRepository:
             field_mapping = {
                 "raisedBy": "raisedBy__id",
                 "assignedTo": "assignedTo__id",
-                "type": "type",
-                "status": "status",
-                "priority": "priority",
+                "type": "type__icontains",
+                "status": "status__icontains",
+                "priority": "priority__icontains",
                 "resolvedAt": "resolvedAt__gte",
                 "createdAt": "createdAt__gte"
             }
