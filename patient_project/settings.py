@@ -63,7 +63,13 @@ DEFAULT_PASSWORD = os.environ.get("DEFAULT_PASSWORD")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+# ALLOWED_HOSTS = [
+#     "api.edmondserenity.com",
+#     "localhost",
+#     "127.0.0.1"
+# ]
 
 ALLOWED_HOSTS = ["*"]
 
@@ -103,7 +109,7 @@ ROOT_URLCONF = 'patient_project.urls'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-	"https://patient-care-pied.vercel.app",
+    "https://patient-care-pied.vercel.app",
     "https://edmondserenity.com"
 ]
 
