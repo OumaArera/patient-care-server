@@ -135,7 +135,7 @@ class UserRepository:
                 status="active",
                 **adjusted_filters
             ).exclude(
-                username="john.ouma@edmondserenity.com"
+                username="bigted114@gmail.com"
             ).values(
                 "id",
                 "avatar",
