@@ -19,6 +19,7 @@ class GroceryResponseDTO:
                     grocery.get("staff__lastName")
                 ),
                 "branch": grocery.get("branch__branchName"),
+                "address": grocery.get("branch__branchAddress"),
                 "details": grocery.get("details", []),
                 "feedback": grocery.get("feedback"),
                 "status": grocery.get("status"),
@@ -35,6 +36,7 @@ class GroceryResponseDTO:
                 grocery.staff.lastName if grocery.staff else None
             ),
             "branch": grocery.branch.branchName if grocery.branch else None,
+            "address": grocery.branch.branchAddress if grocery.branch else None,
             "details": grocery.details,
             "feedback": grocery.feedback,
             "status": grocery.status,
