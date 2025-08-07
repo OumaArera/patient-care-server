@@ -89,7 +89,7 @@ class GroceryRepository:
                 "groceryId", "details", "feedback", "createdAt", "modifiedAt",
                 "staff__id", "staff__firstName", "staff__lastName", "status", 
                 "branch__branchName", "branch__branchAddress"
-            ).order_by("createdAt")
+            ).order_by("-createdAt")
 
             return [GroceryResponseDTO.transform_grocery(grocery) for grocery in groceries]
         except DatabaseError as ex:
