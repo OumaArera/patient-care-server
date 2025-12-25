@@ -52,6 +52,7 @@ JWT_ISSUER = os.environ.get('JWT_ISSUER')
 
 # EMAIL settings
 # EMAIL service credentials
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_API_KEY = os.getenv("EMAIL_API_KEY")
 EMAIL_SENDER_ID = os.getenv("EMAIL_SENDER_ID")
 EMAIL_API_URL = os.getenv("EMAIL_API_URL")
